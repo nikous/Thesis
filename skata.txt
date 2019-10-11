@@ -1,0 +1,70 @@
+ <nav
+      class="navbar navbar-expand-lg fixed-top navbar-transparent nav-down"
+      color-on-control="500"
+    >
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"> Nick site</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">stocks</a></li>
+          <li><a href="#">Predictions</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#"
+              ><span class="glyphicon glyphicon-user"></span> Sign Up</a
+            >
+          </li>
+          <li>
+            <a href="#"
+              ><span class="glyphicon glyphicon-log-in"></span> Login</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    .my-header {
+  width: 100%;
+  height: 700px;
+}
+
+.my-header img {
+  width: 100%;
+  height: 922px;
+  position: absolute;
+  z-index: -22;
+  top: 0;
+}
+
+.my-header .my-navbar {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.my-navbar .navbar-brand {
+  color: whitesmoke;
+}
+
+.my-navbar .navbar-nav li a {
+  color: whitesmoke;
+}
+.nav-links {
+  
+}
+.navbar {
+  min-height: 60px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: 30px;
+  line-height: 40px;
+}
+
+li {
+  margin: 15px 10px;
+}
