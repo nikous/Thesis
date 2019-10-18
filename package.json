@@ -1,0 +1,30 @@
+{
+  "name": "pt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^2.8.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.0",
+    "jQuery": "^1.7.4",
+    "jquery": "^3.4.1",
+    "jsdom": "^15.2.0",
+    "local": "^0.3.3",
+    "mongoose": "^5.7.5",
+    "passport": "^0.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

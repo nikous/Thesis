@@ -1,0 +1,133 @@
+.nav-link,
+.navbar-brand {
+  color: #161515;
+  cursor: pointer;
+  padding: 30px;
+  height: 60px;
+  line-height: 20px;
+}
+
+.nav-link {
+  margin-right: 1em !important;
+}
+
+.nav-link:hover {
+  background: #943d3d;
+  color: #1b0e02;
+}
+
+.header {
+  background-image: url("/public/photos/stock.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(240, 234, 234, 0.79);
+}
+
+.description {
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  margin: auto;
+  padding: 2em;
+}
+
+.description h1 {
+  color: rgba(240, 234, 234, 0.79);
+}
+.description p {
+  color: rgba(240, 234, 234, 0.79);
+  font-size: 20px;
+  width: 100%;
+  line-height: 1.5;
+}
+.description button {
+  color: #943d3d;
+  border-color: #943d3d;
+}
+
+.description button:hover {
+  background: #943d3d;
+  color: #1b0e02;
+}
+.modal-content {
+  background: #eceaea;
+  color: #1b0e02;
+}
+
+.login-or {
+  position: relative;
+  color: #aaa;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #eceaea;
+  width: 50px;
+  text-align: center;
+}
+.hr-or {
+  height: 1px;
+  margin-top: 1px !important;
+  margin-bottom: 0px !important;
+}
+
+.g-signin2 {
+  margin-left: 190px;
+}
+.modal-header {
+  background: #943d3d;
+}
+
+.submit button {
+  color: #1d1b1b;
+  border-color: #943d3d;
+  background: #943d3d;
+}
+.submit button:hover {
+  background: #943d3d;
+  color: #1b0e02;
+  border-color: #000000;
+}
+
+.social-icons a:last-child {
+  margin-right: 0;
+}
+
+.social-icons a:hover {
+  background-color: #943d3d;
+}
+
+.social-icons a {
+  display: inline-block;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #01060c;
+  color: #fff !important;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 3.5rem;
+  margin-right: 1rem;
+}
+
+.social-icons {
+  position: absolute;
+  bottom: 5%;
+  left: 82%;
+}

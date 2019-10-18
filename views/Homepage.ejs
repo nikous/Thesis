@@ -1,0 +1,151 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg fixed-top ">
+        <a class="navbar-brand" href="homepage">Logo</a>
+        <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav mr-auto "></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="about">How it works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="stocks">stocks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="predictions">Predictions</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        User/Login
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">User Page</a>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="Signup" tabindex="-1" role="dialog" aria-labelledby="SignupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header primary-color white-text">
+                    <h4 class="title">
+                        Sign up</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/users/register " method="POST">
+                        <div class="input-group Name mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="name" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+                                placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
+                        </div>
+
+                        <div class="input-group Email mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp" placeholder="Enter Email"
+                                value="<%= typeof email != 'undefined' ? email : '' %>" />
+                        </div>
+
+                        <div class="input-group Password mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" id="password" name="password"
+                                aria-describedby="PasswordHelp" placeholder="Enter password"
+                                value="<%= typeof password != 'undefined' ? password : '' %>" />
+                        </div>
+
+                        <div class="input-group Password mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" id="password2" name="password2"
+                                aria-describedby="PasswordHelp" placeholder="Enter password"
+                                value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+                        </div>
+
+                        <div class="text-center">
+                            <div class="submit">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="login-or">
+                        <hr class="hr-or" />
+                        <span class="span-or">or</span>
+                    </div>
+
+                    <div class="row justify-modal-center">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    </div>
+
+    <header class="header">
+
+        <div class="description">
+            <h1>
+                Welcome
+            </h1>
+            <p>This is a site about stock market and stock predictions</p>
+            <button class="btn btn-outline-secondary btn lg " data-toggle="modal" data-target="#Signup">
+                Sign up
+            </button>
+        </div>
+
+    </header>
+
+    <div class="social-icons ">
+        <a href="#">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+    </div>
+
+    <script type="text/javascript" src="/public/js/main.js"></script>
+
+</body>
+
+</html>
