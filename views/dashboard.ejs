@@ -1,0 +1,22 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
+    <script type="text/javascript" src="/public/js/api.js"></script>
+</head>
+
+<% include ./navbar %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class=" col-md-7 ">
+
+            <h1 class="mt-4">Welcome </h1>
+
+            <p id="name" class="lead mb-3">Welcome <%if (user) { %>
+                <%=user.name %>
+                <% } else {%>
+                to UserPage.Please login to view content
+                <%}%> </p>
+            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
+</div>
