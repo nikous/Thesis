@@ -5,6 +5,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const fetch = require('node-fetch');
+require('dotenv').config();
+
 const app = express();
 
 
@@ -74,10 +76,11 @@ app.use(express.json());
 //  /:symbol
 // app.get('/getApi', async (request, response) => {
 app.get('/getApi/:symbol', async (request, response) => {
+    const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
     console.log("1");
     console.log(request.params.symbol);
-    const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=Y9UA86U1XKPNI04J';
+    const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=' + api_key + '';
     //'https://api.worldtradingdata.com/api/v1/history?symbol=MFST&api_token=UXuQYzpm2MAQzDNLCgEcuC9Tna6gx2Tabo9ODNpkCsH9nfaK1BZxnjFUFrrV';
     console.log(api_url);
     //  'https://api.worldtradingdata.com/api/v1/history?symbol=' + symbol + '&date=2018-10-30&api_token=UXuQYzpm2MAQzDNLCgEcuC9Tna6gx2Tabo9ODNpkCsH9nfaK1BZxnjFUFrrV';
@@ -102,6 +105,6 @@ app.post('/getApi', (request, response) => {
 
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
