@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+
 // Load User model
 const User = require('../models/User');
-
-const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
@@ -16,21 +16,18 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 // Register
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
-    console.log(name);
+    const { stock } = { stock: 'TSLA' };
     let errors = [];
 
     if (!name || !email || !password || !password2) {
         errors.push({ msg: 'Please enter all fields' });
     }
-
     if (password != password2) {
         errors.push({ msg: 'Passwords do not match' });
     }
-
     if (password.length < 6) {
         errors.push({ msg: 'Password must be at least 6 characters' });
     }
-
     if (errors.length > 0) {
         res.render('register', {
             errors,
@@ -40,6 +37,7 @@ router.post('/register', (req, res) => {
             password2
         });
     } else {
+        //Find if Users email exist
         User.findOne({ email: email }).then(user => {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
@@ -51,12 +49,14 @@ router.post('/register', (req, res) => {
                     password2
                 });
             } else {
+                //Make new User
                 const newUser = new User({
                     name,
                     email,
-                    password
+                    password,
+                    stock
                 });
-
+                //encrypt password and save User to database
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if (err) throw err;
@@ -78,21 +78,16 @@ router.post('/register', (req, res) => {
     }
 });
 
-
-
 //Login handle 
 router.post('/login', (req, res, next) => {
+    //If successful login user redirect to Homepage else 
+    //redirect to login in page
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true,
-
-
     })(req, res, next);
-
 });
-
-
 
 //Logout handler
 router.get('/logout', (req, res) => {
@@ -100,12 +95,5 @@ router.get('/logout', (req, res) => {
     req.flash('success_msg', 'You are logged out');
     res.redirect('/homepage');
 });
-
-
-
-
-
-
-
 
 module.exports = router;

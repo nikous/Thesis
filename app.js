@@ -5,18 +5,18 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const fetch = require('node-fetch');
-require('dotenv').config();
-
 const app = express();
 
-
+//Require .env to server
+require('dotenv').config();
 
 // Passport Config
 require('./config/passport')(passport);
-//Passport middleware
 
+//Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -25,7 +25,6 @@ mongoose
     .connect(
         db,
         { useNewUrlParser: true, useUnifiedTopology: true }
-
     )
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
@@ -71,38 +70,26 @@ app.use('/public', express.static('public'));
 //Middleware for my incoming json data
 app.use(express.json());
 
-
-
-//  /:symbol
-// app.get('/getApi', async (request, response) => {
+//Take Stocks name from use call Api and send response to client
 app.get('/getApi/:symbol', async (request, response) => {
     const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
-    console.log("1");
-    console.log(request.params.symbol);
     const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=' + api_key + '';
-    //'https://api.worldtradingdata.com/api/v1/history?symbol=MFST&api_token=UXuQYzpm2MAQzDNLCgEcuC9Tna6gx2Tabo9ODNpkCsH9nfaK1BZxnjFUFrrV';
-    console.log(api_url);
-    //  'https://api.worldtradingdata.com/api/v1/history?symbol=' + symbol + '&date=2018-10-30&api_token=UXuQYzpm2MAQzDNLCgEcuC9Tna6gx2Tabo9ODNpkCsH9nfaK1BZxnjFUFrrV';
     const fetch_response = await fetch(api_url);
-
     const json = await fetch_response.json();
+
+    console.log(request.params.symbol);
+    console.log(api_url);
+
     response.json(json);
-
-
     exports.symbol = request.params.symbol;
-
-
 });
-
 
 app.post('/getApi', (request, response) => {
     console.log('I got a request');
     console.log(request.body);
     console.log(request.array);
     response.json(request.body);
-
-
 });
 
 const PORT = process.env.PORT || 5000;

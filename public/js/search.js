@@ -3,40 +3,30 @@ let id = [];
 let symbols = [];
 let define = [];
 
-
-
 async function searchStock() {
-
-    console.log("@");
     const response = await fetch('../public/data/data_stock.csv');
     const data = await response.text();
     const rows = data.split('\n').slice(1);
 
     rows.forEach(elt => {
-
         const row = elt.split(',');
         const id = row[0];
         const def = row[1];
         symbols.push(row[0]);
         define.push(row[1]);
-
     });
-    autocomplete(document.getElementById("myInput"), symbols, rows, define);
 
+    autocomplete(document.getElementById("myInput"), symbols, rows, define);
 };
 
 
 function autocomplete(inp, arr, arr1, arr2) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
-
     var currentFocus;
-
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
-
         var a, b, i, c, val = this.value;
-
         /*close any already open lists of autocompleted values*/
         closeAllLists();
 
@@ -200,28 +190,21 @@ function autocomplete(inp, arr, arr1, arr2) {
 
     }
 
-    /*execute a function when someone clicks in the document:*/
-
-
-
 };
 
-
+/*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
+
     symbol = document.getElementById('myInput').value;
-    console.log("TO symbol apo to koumpi einai", symbol);
     var change = true;
 
-
-
+    //Reset arrays 
     open_array = [];
     close_array = [];
     high_array = [];
     low_array = [];
     volume_array = [];
     date_array = [];
-
-
     date_labels = [];
     open_labels = [];
     close_labels = [];
@@ -231,6 +214,5 @@ document.getElementById('suButton').addEventListener("click", function (e) {
 
     jQuery('#symbol').load('/stocks #symbol > *');
     chartIt(symbol, change);
-
 
 }, { passive: true });

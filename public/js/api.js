@@ -1,5 +1,3 @@
-
-
 let open_array = [];
 let close_array = [];
 let high_array = [];
@@ -8,23 +6,20 @@ let volume_array = [];
 let date_array = [];
 // let symbol = 'MFST';
 
+//GetData wait Ajax function to retrieve data from Api
 async function getData(symbol) {
-
-    console.log("2");
 
     if (symbol == null) {
         symbol = 'MSFT';
     }
 
+    // Send stocks name to server and Retrieves data from Api 
     await $.ajax({
-
         url: '/getApi/' + symbol + '',
         dataType: 'json',
         type: 'get',
         cache: false,
         success: function (data) {
-
-            console.log(symbol);
             const time = "Time Series (Daily)";
             const json_length = Object.keys(data[time]).length;
             var length = json_length - 1;
@@ -33,6 +28,7 @@ async function getData(symbol) {
             // const symbol = data["Meta Data"]["2. Symbol"];
             // const final_array = make2Darray(6, json_length);
 
+            //Fill arrays with data from servers json response
             for (var date in data["Time Series (Daily)"]) {
                 date_array.push(date);
                 open_array.push(data[time][date]["1. open"]);
@@ -40,54 +36,29 @@ async function getData(symbol) {
                 low_array.push(data[time][date]["3. low"]);
                 high_array.push(data[time][date]["2. high"]);
                 volume_array.push(data[time][date]["5. volume"]);
-
             };
-
+            //Fill in reverse arrays to visualize stocks data
             for (var i = 0; i <= length; i++) {
-
                 if (i == 0) {
-
                     date_labels[0] = date_array[json_length - 1];
                     open_labels[0] = open_array[json_length - 1];
                     close_labels[0] = close_array[json_length - 1];
                     low_labels[0] = low_array[json_length - 1];
                     high_labels[0] = high_array[json_length - 1];
                     volume_labels[0] = volume_array[json_length - 1];
-
                 }
-
                 else {
-
                     date_labels[i] = date_array[length - i];
                     open_labels[i] = open_array[length - i];
                     close_labels[i] = close_array[length - i];
                     low_labels[i] = low_array[length - i];
                     high_labels[i] = high_array[length - i];
                     volume_labels[i] = volume_array[length - i];
-
                 }
             };
-
-            // console.log("Eginan oi pinakes gia kathe stoixeio tou json. Example: close_array[", json_length - 1, "]=", close_array[json_length - 1]);
-            // console.log("Egine o pinakas 2D pou perilamvanei olous tous allous pinakes. Example: date_array[", json_length - 1, "]=", date_array[json_length - 1]);
-            // console.log(date_array);
-            //console.log(close_array);
-            //console.log(close_labels);
-
         }
-
     });
-
-
-
-
 };
-
-
-
-
-
-
 
 // document.getElementById('subButton').addEventListener('click', event => {
 
