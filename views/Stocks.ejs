@@ -10,18 +10,26 @@
   <% include ./navbar %>
 
   <div class="container-stock">
+
     <div class="row">
 
+      <!-- Send name of stock from follow button to database -->
+      <form id="send" action="/stocks" method="POST">
+
+        <button type="submit" name="stock" id="stock" class="btn btn-primary btn-block" value="stock :">
+          Follow Stock
+        </button>
+
+      </form>
+
+      <!-- value="<%= typeof stock != 'undefined' ? stock : '' %>" /> -->
       <div class="col-md" style="position: relative; height:80vh; width:50vw">
 
-        <canvas id="myChart">
-
-        </canvas>
+        <canvas id="myChart"> </canvas>
 
       </div>
 
-
-      <div class="col-md">
+      <div class="col-sm">
 
         <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
 
@@ -30,43 +38,22 @@
           <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
 
         </form>
+
       </div>
+
     </div>
-    <form id="send" action="/stocks" method="POST">
-      <div class="form-group">
-        <label for="stock">Stocks</label>
-        <input type="name" id="stock" name="stock" class="form-control" placeholder="Enter Stock"
-          value="<%= typeof stock != 'undefined' ? stock : '' %>" />
-      </div>
 
-      <button type="submit" class="btn btn-primary btn-block">
-        Follow
-      </button>
-
-    </form>
-    <script>
-
-    </script>
   </div>
 
   <%include ./list %>
 
   </div>
   </div>
-  <div class="container" id="symbol">
-    <h3><%=symbol %></h3>
-  </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>
-
   <script type="text/javascript" src="/public/js/chart.js"></script>
-
   <script type="text/javascript" src="/public/js/api.js"></script>
-
-  <script>
-
-    searchStock();</script>
-
+  <script> searchStock();</script>
 
 </body>
 

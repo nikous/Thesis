@@ -8,7 +8,7 @@ mongoose.set('useFindAndModify', false);
 const User = require('../models/User');
 const Stocks = require('../models/UserStocks');
 
-//Require symbol from server
+//Require symbol from app.js
 symbol = require('../app');
 
 //Index page
@@ -61,7 +61,7 @@ router.get('/about', (req, res) => {
 router.get('/stocks', (req, res) => {
     if (passport.authenticate) {
         res.render('Stocks', {
-            // Send Stock name for server to client
+            // Send Stock name from server to client
             symbol: symbol.symbol,
             user: req.user,
             error: true
@@ -76,6 +76,7 @@ router.get('/stocks', (req, res) => {
 });
 
 router.post('/stocks', (req, res) => {
+
     // Find user in database by id 
     const user = req.user._id;
     const { stock } = req.body;
@@ -88,7 +89,6 @@ router.post('/stocks', (req, res) => {
         console.log(doc);
     });
 });
-
 
 //Predictions Page
 router.get('/predictions', (req, res) => res.render('Predictions'));

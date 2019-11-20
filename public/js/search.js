@@ -195,8 +195,12 @@ function autocomplete(inp, arr, arr1, arr2) {
 /*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
 
+    //Take stock name from search input
     symbol = document.getElementById('myInput').value;
+
+    //if change true update chart
     var change = true;
+    var stock = symbol;
 
     //Reset arrays 
     open_array = [];
@@ -212,7 +216,10 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     high_labels = [];
     volume_labels = [];
 
-    jQuery('#symbol').load('/stocks #symbol > *');
+    //call charIt to make chart for new Api 
     chartIt(symbol, change);
+
+    //reload follow button.So server sent stock name to client without reloading the page
+    $("#stock").attr("value", function (i, origValue) { return stock; })
 
 }, { passive: true });
