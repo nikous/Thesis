@@ -203,7 +203,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     var stock = symbol;
 
     //Reset arrays 
-    open_array = [];
+    // open_array = [];
     close_array = [];
     high_array = [];
     low_array = [];
@@ -216,9 +216,36 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     high_labels = [];
     volume_labels = [];
 
+    date_array_Realtime = [];
+    open_array_Realtime = [];
+    close_array_Realtime = [];
+    low_array_Realtime = [];
+    high_array_Realtime = [];
+    volume_array_Realtime = [];
+    date_labels_Realtime = [];
+    open_labels_Realtime = [];
+    close_labels_Realtime = [];
+    low_labels_Realtime = [];
+    high_labels_Realtime = [];
+    volume_labels_Realtime = [];
+
+    date_array_Real = [];
+    open_array_Real = [];
+    close_array_Real = [];
+    low_array_Real = [];
+    high_array_Real = [];
+    volume_array_Real = [];
+    date_labels_Real = [];
+    open_labels_Real = [];
+    close_labels_Real = [];
+    low_labels_Real = [];
+    high_labels_Real = [];
+    volume_labels_Real = [];
+
     //call charIt to make chart for new Api 
     chartIt(symbol, change);
-
+    chartItRealtime(symbol, change);
+    chartItReal(symbol, change);
     //reload follow button.So server sent stock name to client without reloading the page
     $("#stock").attr("value", function (i, origValue) { return stock; })
 

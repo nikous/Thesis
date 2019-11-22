@@ -55,3 +55,17 @@ input[type=submit] {
   color: #ffffff;
 }
 
+.list-group-stocks{
+  position: absolute;
+  left:-30px;
+  height: 400px;
+  width: 350px;
+  overflow-y: scroll;
+}
+.tab-content-dashboard{
+  position: relative;
+  left:500px;
+  height:80vh;
+  width: 50vw;
+  top:5px;
+}

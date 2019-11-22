@@ -3,6 +3,9 @@
   <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
   <link rel="stylesheet" type="text/css" href="/public/css/third.css" />
 
+
+  <script type="text/javascript" src="/public/js/chart.js"></script>
+  <script type="text/javascript" src="/public/js/api.js"></script>
 </head>
 
 <body>
@@ -14,18 +17,52 @@
     <div class="row">
 
       <!-- Send name of stock from follow button to database -->
-      <form id="send" action="/stocks" method="POST">
 
-        <button type="submit" name="stock" id="stock" class="btn btn-primary btn-block" value="stock :">
-          Follow Stock
-        </button>
-
-      </form>
 
       <!-- value="<%= typeof stock != 'undefined' ? stock : '' %>" /> -->
       <div class="col-md" style="position: relative; height:80vh; width:50vw">
+        <div class="modal-header">
 
-        <canvas id="myChart"> </canvas>
+          <form id="send" action="/stocks" method="POST">
+
+            <button type="submit" name="stock" id="stock" class="btn btn-primary btn-block" value="stock :">
+              Follow Stock
+            </button>
+
+          </form>
+        </div>
+
+
+        <ul class="nav nav-tabs" id="tabContent">
+          <li class="active"><a href="#details" data-toggle="tab">Weekly |</a></li>
+          <li><a href="#realitime-tab" data-toggle="tab">| Daily |</a></li>
+          <li><a href="#year-tab" data-toggle="tab">| Realtime</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="details">
+
+            <canvas id="myChart">
+              <script>chartIt();</script> </canvas>
+
+            <div class="control-group">
+              <label class="control-label">Instance Name</label>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="realitime-tab">
+
+            <canvas id="myChartRealtime">
+              <script>chartItRealtime();</script> </canvas>
+          </div>
+
+
+          <div class="tab-pane" id="year-tab">
+            <canvas id="myChartReal">
+              <script>chartItReal();</script> </canvas>
+          </div>
+        </div>
+
 
       </div>
 
@@ -45,13 +82,11 @@
 
   </div>
 
-  <%include ./list %>
 
   </div>
   </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>
-  <script type="text/javascript" src="/public/js/chart.js"></script>
   <script type="text/javascript" src="/public/js/api.js"></script>
   <script> searchStock();</script>
 

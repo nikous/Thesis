@@ -1,6 +1,9 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
+
     <script type="text/javascript" src="/public/js/api.js"></script>
+    <script type="text/javascript" src="/public/js/chart.js"></script>
+
 </head>
 
 <% include ./navbar %>
@@ -8,15 +11,54 @@
 <div class="container-fluid">
     <div class="row">
         <div class=" col-md-7 ">
-
-            <h1 class="mt-4">Welcome </h1>
-
-            <p id="name" class="lead mb-3">Welcome <%if (user) { %>
-                <%=user.name %>
+            <p id="name" class="lead mb-3"> <%if (user) { %>
+                Your stocks <% user.stock.length %>
                 <% } else {%>
                 to UserPage.Please login to view content
                 <%}%> </p>
-            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+                <script>
+
+                </script>
+            <div class="list-container">
+                <% include ./list %>
         </div>
     </div>
+
+    <ul class="nav nav-tabs" id="tabContent">
+        <li class="active"><a href="#details" data-toggle="tab">Weekly |</a></li>
+        <li><a href="#realitime-tab" data-toggle="tab">| Daily |</a></li>
+        <li><a href="#year-tab" data-toggle="tab">| Realtime</a></li>
+    </ul>
+
+    <!-- <div class="tab-content-dashboard">
+        <div class="tab-pane active" id="details">
+
+            <canvas id="myChart">
+                <script>chartIt();</script> </canvas>
+
+            <div class="control-group">
+                <label class="control-label">Instance Name</label>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="realitime-tab">
+
+            <canvas id="myChartRealtime">
+                <script>chartItRealtime();</script> </canvas>
+        </div>
+
+
+        <div class="tab-pane" id="year-tab">
+            <canvas id="myChartReal">
+                <script>chartItReal();</script> </canvas>
+        </div>
+    </div> -->
+
+
+</div>
+
+</div>
+
+
+</div>
 </div>

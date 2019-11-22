@@ -1,31 +1,79 @@
-<!-- <%# include ../public/js/api.js/symbol %>
-<ul class="list-group">
-    <li class="list-group-item list-group-item-action list-group-item-light" id="TSLA" data-value="stocks" href="#">
-        TESLA
-        <span class="badge badge-primary badge-pill">+14 </span>
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/third.css" />
+
+
+</head>
+
+
+<ul class="list-group-stocks">
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="TSLA"
+        data-value="stocks" href="#">
+        <%=user.stock[0] %>
+        <% if (user.stock[0]!="null"){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 2
-        <span class="badge badge-primary badge-pill">-2</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[1] %>
+        <% if (user.stock[1]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 3
-        <span class="badge badge-primary badge-pill">+1</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[2] %>
+        <% if (user.stock[2]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 1
-        <span class="badge badge-primary badge-pill">14</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[3] %>
+        <% if (user.stock[3]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[4] %>
+        <% if (user.stock[4]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 2
-        <span class="badge badge-primary badge-pill">2</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[5] %>
+        <% if (user.stock[5]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 3
-        <span class="badge badge-primary badge-pill">1</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[6] %>
+        <% if (user.stock[6]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[7] %>
+        <% if (user.stock[7]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Stock 3
-        <span class="badge badge-primary badge-pill">1</span>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[8] %>
+        <% if (user.stock[8]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
     </li>
-</ul> -->
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[9] %>
+        <% if (user.stock[9]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[10] %>
+        <% if (user.stock[10]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[11] %>
+        <% if (user.stock[11]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[12] %>
+        <% if (user.stock[12]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    </li>
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <%=user.stock[13] %>
+        <% if (user.stock[13]!=null){%> <span class="badge badge-primary badge-pill">+14 </span>
+        <%}%>
+    </li>
+
+</ul>

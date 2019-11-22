@@ -74,15 +74,45 @@ app.use(express.json());
 app.get('/getApi/:symbol', async (request, response) => {
     const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
-    const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=' + api_key + '';
+    const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=' + symbol + '&apikey=' + api_key + '';
     const fetch_response = await fetch(api_url);
     const json = await fetch_response.json();
 
     console.log(request.params.symbol);
     console.log(api_url);
 
+
     response.json(json);
+
     exports.symbol = request.params.symbol;
+});
+
+app.get('/getAp/:symbol', async (request, response) => {
+    const api_key = process.env.API_KEY;
+    const symbol = request.params.symbol;
+    const api_url_Realtime = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&outputsize=full&apikey=' + api_key + '';
+    const fetch_response_Realtime = await fetch(api_url_Realtime);
+    const Realtimejson = await fetch_response_Realtime.json();
+
+    console.log(request.params.symbol);
+    console.log(api_url_Realtime);
+
+    response.json(Realtimejson);
+
+});
+
+app.get('/getAps/:symbol', async (request, response) => {
+    const api_key = process.env.API_KEY;
+    const symbol = request.params.symbol;
+    const api_url_Real = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=5min&outputsize=full&apikey=' + api_key + '';
+    const fetch_response_Real = await fetch(api_url_Real);
+    const Realjson = await fetch_response_Real.json();
+
+    console.log(request.params.symbol);
+    console.log(api_url_Real);
+
+    response.json(Realjson);
+
 });
 
 app.post('/getApi', (request, response) => {
