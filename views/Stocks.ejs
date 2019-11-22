@@ -34,30 +34,27 @@
 
 
         <ul class="nav nav-tabs" id="tabContent">
-          <li class="active"><a href="#details" data-toggle="tab">Weekly |</a></li>
-          <li><a href="#realitime-tab" data-toggle="tab">| Daily |</a></li>
-          <li><a href="#year-tab" data-toggle="tab">| Realtime</a></li>
+          <li class="active"><a href="#weekly" data-toggle="tab">Weekly |</a></li>
+          <li><a href="#realTime" data-toggle="tab">| Realtime</a></li>
         </ul>
 
         <div class="tab-content">
-          <div class="tab-pane active" id="details">
+          <div class="tab-pane active" id="weekly">
 
             <canvas id="myChart">
               <script>chartIt();</script> </canvas>
 
-            <div class="control-group">
-              <label class="control-label">Instance Name</label>
-            </div>
+
           </div>
 
-          <div class="tab-pane" id="realitime-tab">
+          <!-- <div class="tab-pane" id="realitime-tab">
 
             <canvas id="myChartRealtime">
               <script>chartItRealtime();</script> </canvas>
-          </div>
+          </div> -->
 
 
-          <div class="tab-pane" id="year-tab">
+          <div class="tab-pane" id="realTime">
             <canvas id="myChartReal">
               <script>chartItReal();</script> </canvas>
           </div>

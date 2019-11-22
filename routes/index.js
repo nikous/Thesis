@@ -90,6 +90,17 @@ router.post('/stocks', (req, res) => {
     });
 });
 
+//Login handle 
+router.post('/login', (req, res, next) => {
+    //If successful login user redirect to Homepage else 
+    //redirect to login in page
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true,
+    })(req, res, next);
+});
+
 //Predictions Page
 router.get('/predictions', (req, res) => res.render('Predictions'));
 

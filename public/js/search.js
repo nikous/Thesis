@@ -216,18 +216,18 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     high_labels = [];
     volume_labels = [];
 
-    date_array_Realtime = [];
-    open_array_Realtime = [];
-    close_array_Realtime = [];
-    low_array_Realtime = [];
-    high_array_Realtime = [];
-    volume_array_Realtime = [];
-    date_labels_Realtime = [];
-    open_labels_Realtime = [];
-    close_labels_Realtime = [];
-    low_labels_Realtime = [];
-    high_labels_Realtime = [];
-    volume_labels_Realtime = [];
+    // date_array_Realtime = [];
+    // open_array_Realtime = [];
+    // close_array_Realtime = [];
+    // low_array_Realtime = [];
+    // high_array_Realtime = [];
+    // volume_array_Realtime = [];
+    // date_labels_Realtime = [];
+    // open_labels_Realtime = [];
+    // close_labels_Realtime = [];
+    // low_labels_Realtime = [];
+    // high_labels_Realtime = [];
+    // volume_labels_Realtime = [];
 
     date_array_Real = [];
     open_array_Real = [];
@@ -244,7 +244,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
 
     //call charIt to make chart for new Api 
     chartIt(symbol, change);
-    chartItRealtime(symbol, change);
+    // chartItRealtime(symbol, change);
     chartItReal(symbol, change);
     //reload follow button.So server sent stock name to client without reloading the page
     $("#stock").attr("value", function (i, origValue) { return stock; })

@@ -6,12 +6,12 @@ let high_labels = [];
 let volume_labels = [];
 var myChart;
 
-let date_labels_Realtime = [];
-let open_labels_Realtime = [];
-let close_labels_Realtime = [];
-let low_labels_Realtime = [];
-let high_labels_Realtime = [];
-let volume_labels_Realtime = [];
+// let date_labels_Realtime = [];
+// let open_labels_Realtime = [];
+// let close_labels_Realtime = [];
+// let low_labels_Realtime = [];
+// let high_labels_Realtime = [];
+// let volume_labels_Realtime = [];
 
 let date_labels_Real = [];
 let open_labels_Real = [];
@@ -48,33 +48,33 @@ async function chartIt(symbol, destroy) {
     if (destroy == true) { myChart.update(); }
 }
 
-async function chartItRealtime(symbol, destroy) {
-    //ChartIt waits getData to complete and then starts to visualize data
-    await getDataRealtime(symbol);
+// async function chartItRealtime(symbol, destroy) {
+//     //ChartIt waits getData to complete and then starts to visualize data
+//     await getDataRealtime(symbol);
 
-    const ctx = document.getElementById('myChartRealtime').getContext('2d');
-    const myChartRealtime = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: date_labels_Realtime,
-            datasets: [{
-                label: 'Chart',
-                data: close_labels_Realtime,
-                fill: false,
-                backgroundColor:
-                    'rgb(76, 114, 38)'
-                ,
-                borderColor:
-                    'rgb(76, 114, 38)'
-                ,
-                borderWidth: 1,
-                pointRadius: 0,
-                lineTension: 0
-            }]
-        },
-    });
-    if (destroy == true) { myChart.update(); }
-}
+//     const ctx = document.getElementById('myChartRealtime').getContext('2d');
+//     const myChartRealtime = new Chart(ctx, {
+//         type: 'line',
+//         data: {
+//             labels: date_labels_Realtime,
+//             datasets: [{
+//                 label: 'Chart',
+//                 data: close_labels_Realtime,
+//                 fill: false,
+//                 backgroundColor:
+//                     'rgb(76, 114, 38)'
+//                 ,
+//                 borderColor:
+//                     'rgb(76, 114, 38)'
+//                 ,
+//                 borderWidth: 1,
+//                 pointRadius: 0,
+//                 lineTension: 0
+//             }]
+//         },
+//     });
+//     if (destroy == true) { myChart.update(); }
+// }
 
 async function chartItReal(symbol, destroy) {
     //ChartIt waits getData to complete and then starts to visualize data
