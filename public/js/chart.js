@@ -4,7 +4,7 @@ let close_labels = [];
 let low_labels = [];
 let high_labels = [];
 let volume_labels = [];
-var myChart;
+
 
 // let date_labels_Realtime = [];
 // let open_labels_Realtime = [];
@@ -20,7 +20,10 @@ let low_labels_Real = [];
 let high_labels_Real = [];
 let volume_labels_Real = [];
 
+
+
 async function chartIt(symbol, destroy) {
+
     //ChartIt waits getData to complete and then starts to visualize data
     await getData(symbol);
 
@@ -45,7 +48,7 @@ async function chartIt(symbol, destroy) {
             }]
         },
     });
-    if (destroy == true) { myChart.update(); }
+
 }
 
 // async function chartItRealtime(symbol, destroy) {
