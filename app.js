@@ -13,6 +13,9 @@ require('dotenv').config();
 // Passport Config
 require('./config/passport')(passport);
 
+app.get('/', function (req, res) {
+    res.redirect('/homepage');
+});
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
