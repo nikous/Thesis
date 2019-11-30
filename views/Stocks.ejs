@@ -12,7 +12,7 @@
 
   <% include ./navbar %>
 
-  <div class="container-stock">
+  <div class="container-stock" id="nickolakos">
 
     <div class="row">
 
@@ -34,30 +34,73 @@
 
 
         <ul class="nav nav-tabs" id="tabContent">
-          <li class="active"><a href="#weekly" data-toggle="tab">Weekly |</a></li>
-          <li><a href="#realTime" data-toggle="tab">| Realtime</a></li>
+          <li class="active"><a href="#oneDay" data-toggle="tab">1 Day |</a></li>
+          <li><a href="#Days" data-toggle="tab">| 3 Days |</a></li>
+          <li><a href="#Month" data-toggle="tab">| 1 Month |</a></li>
+          <li><a href="#fourMonths" data-toggle="tab">| 4 Months |</a></li>
+          <li><a href="#oneYear" data-toggle="tab">| 1 Year |</a></li>
+          <li><a href="#fiveYears" data-toggle="tab">| 5 Years |</a></li>
+          <li><a href="#max" data-toggle="tab">| Max</a></li>
         </ul>
 
         <div class="tab-content">
-          <div class="tab-pane active" id="weekly">
+          <div class="tab-pane active" id="max">
 
             <canvas id="myChart">
-              <script>chartIt();</script> </canvas>
+              <script>
+
+                chartIt();</script> </canvas>
 
 
           </div>
 
-          <!-- <div class="tab-pane" id="realitime-tab">
+          <div class="tab-pane" id="oneDay">
+            <canvas id="myChart1Day">
+              <script>
 
-            <canvas id="myChartRealtime">
-              <script>chartItRealtime();</script> </canvas>
+                chartIt1Day();</script> </canvas>
+          </div>
+
+
+          <div class="tab-pane" id="Days">
+            <canvas id="myChart3Days">
+              <script>
+
+                chartIt3Days();</script> </canvas>
+          </div>
+
+          <div class="tab-pane" id="Month">
+            <canvas id="myChart1Month">
+              <script>
+
+                chartIt1Month();</script> </canvas>
+          </div>
+
+          <div class="tab-pane" id="fourMonths">
+            <canvas id="myChart4Months">
+              <script>
+
+                chartIt4Months();</script> </canvas>
+          </div>
+          <div class="tab-pane" id="oneYear">
+            <canvas id="myChart1Year">
+              <script>
+
+                chartIt1Year();</script> </canvas>
+          </div>
+
+          <div class="tab-pane" id="fiveYears">
+            <canvas id="myChart5Years">
+
+              <script>chartIt5Years();</script> </canvas>
+          </div>
+
+          <!-- <div class="tab-pane" id="max">
+            <canvas id="myChart">
+              <script>chartIt();</script> </canvas>
           </div> -->
 
 
-          <div class="tab-pane" id="realTime">
-            <canvas id="myChartReal">
-              <script>chartItReal();</script> </canvas>
-          </div>
         </div>
 
 

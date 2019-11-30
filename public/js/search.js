@@ -203,7 +203,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     var stock = symbol;
 
     //Reset arrays 
-    // open_array = [];
+    open_array = [];
     close_array = [];
     high_array = [];
     low_array = [];
@@ -215,19 +215,6 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     low_labels = [];
     high_labels = [];
     volume_labels = [];
-
-    // date_array_Realtime = [];
-    // open_array_Realtime = [];
-    // close_array_Realtime = [];
-    // low_array_Realtime = [];
-    // high_array_Realtime = [];
-    // volume_array_Realtime = [];
-    // date_labels_Realtime = [];
-    // open_labels_Realtime = [];
-    // close_labels_Realtime = [];
-    // low_labels_Realtime = [];
-    // high_labels_Realtime = [];
-    // volume_labels_Realtime = [];
 
     date_array_Real = [];
     open_array_Real = [];
@@ -242,10 +229,60 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     high_labels_Real = [];
     volume_labels_Real = [];
 
+    date_array_Daily = [];
+    open_array_Daily = [];
+    close_array_Daily = [];
+    low_array_Daily = [];
+    high_array_Daily = [];
+    volume_array_Daily = [];
+    date_labels_Daily = [];
+    open_labels_Daily = [];
+    close_labels_Daily = [];
+    low_labels_Daily = [];
+    high_labels_Daily = [];
+    volume_labels_Daily = [];
+
+    close_labels_1Day_chart = [];
+    date_labels_1Day_chart = [];
+
+    date_labels_3Days_chart = [];
+    close_labels_3Days_chart = [];
+
+    date_labels_1Month_chart = [];
+    close_labels_1Month_chart = [];
+
+    date_labels_4Months_chart = [];
+    close_labels_4Months_chart = [];
+
+    date_labels_1Year_chart = [];
+    close_labels_1Year_chart = [];
+
+    date_labels_5Years_chart = [];
+    close_labels_5Years_chart = [];
+
+
+
+    //this line is to watch the result in console , you can remove it later	
+    console.log("Refreshed");
+
     //call charIt to make chart for new Api 
+    chartIt1Month(symbol, change);
+    chartIt4Months(symbol, change);
+
     chartIt(symbol, change);
+
     // chartItRealtime(symbol, change);
-    chartItReal(symbol, change);
+
+    chartIt1Day(symbol, change);
+    chartIt3Days(symbol, change);
+
+
+
+    chartIt1Year(symbol, change);
+    chartIt5Years(symbol, change);
+
+
+
     //reload follow button.So server sent stock name to client without reloading the page
     $("#stock").attr("value", function (i, origValue) { return stock; })
 
