@@ -25,6 +25,7 @@ var Yearclose_labels = [];
 
 var fiveYear_labels = [];
 var fiveYearclose_labels = [];
+var day = [];
 //GetData wait Ajax function to retrieve data from Api
 async function getData(symbol) {
 
@@ -39,11 +40,13 @@ async function getData(symbol) {
         type: 'get',
         cache: false,
         success: function (data) {
+
             console.log(data);
             const time = "Weekly Time Series";
             const json_length = Object.keys(data[time]).length;
             var length = json_length - 1;
             console.log("Weekly data length:", json_length);
+
 
             //const date_array = JSON.stringify(data).match(/\d\d\d\d-\d\d-\d\d/g).slice(1); //find dates from json and put it in array 
             // const symbol = data["Meta Data"]["2. Symbol"];
@@ -123,6 +126,8 @@ async function getData(symbol) {
                 date_labels_5Years_chart[i] = fiveYear_labels[i];
                 close_labels_5Years_chart[i] = fiveYearclose_labels[i];
             }
+
+
         },
         error: function (xhr, status, errorThrown) {
             console.log('Error happens. Try again.');
@@ -143,20 +148,41 @@ async function getDataDaily(symbol) {
         type: 'get',
         cache: false,
         success: function (data) {
+
+
             console.log(data);
             const time = "Time Series (Daily)";
             const symbol = data["Meta Data"]["2. Symbol"];
             const json_length = Object.keys(data[time]).length;
             var length = json_length - 1;
 
+            var month = new Date();
+            var thisMonth = month.getMonth() + 1;
+            var thisDate = month.getDate();
+            var prevMonths = thisMonth - 1;
+            var prevDate = thisDate - 1;
+
+
+            if (thisDate < 10) {
+                thisDate = '0' + thisDate;
+                prevDate = '0' + prevDate;
+            }
+
+
             console.log(symbol);
-            //const date_array = JSON.stringify(data).match(/\d\d\d\d-\d\d-\d\d/g).slice(1); //find dates from json and put it in array 
+            // let myReg = new RegExp("-" + thisMonth + "-" + thisDate, "g");
+            // let secReg = new RegExp("-" + prevMonths + "-" + prevDate, "g");
+            // day = JSON.stringify(data).match(myReg); //find dates from json and put it in array 
+            // var start = data.indexOf(day);
+            // console.log(start);
             console.log("Daily data length:", json_length);
 
             // const final_array = make2Darray(6, json_length);
 
             //Fill arrays with data from servers json response
             for (var date in data["Time Series (Daily)"]) {
+
+
                 date_array_Daily.push(date);
                 open_array_Daily.push(data[time][date]["1. open"]);
                 close_array_Daily.push(data[time][date]["4. close"]);
@@ -164,6 +190,7 @@ async function getDataDaily(symbol) {
                 high_array_Daily.push(data[time][date]["2. high"]);
                 volume_array_Daily.push(data[time][date]["5. volume"]);
             };
+            console.log(day);
             //Fill in reverse arrays to visualize stocks data
             for (var i = 0; i <= length; i++) {
                 if (i == 0) {
@@ -184,23 +211,24 @@ async function getDataDaily(symbol) {
                 }
             };
 
-            var month = new Date();
-            var thisMonth = month.getMonth() + 1;
 
             var jz = 0;
-            for (var i = 0; i <= length; i++) {
-                if (date_labels_Daily[i].endsWith(thisMonth, 7)) {
-                    date_labels_1Month_chart[jz] = date_labels_Daily[i];
-                    close_labels_1Month_chart[jz] = close_labels_Daily[i];
-                    jz++;
-                }
+            for (var i = 80; i <= length; i++) {
+
+
+                date_labels_1Month_chart[jz] = date_labels_Daily[i];
+                close_labels_1Month_chart[jz] = close_labels_Daily[i];
+                jz++;
             }
 
+            console.log(date_labels_1Month_chart);
             for (var i = 0; i <= length; i++) {
                 date_labels_4Months_chart[i] = date_labels_Daily[i];
                 close_labels_4Months_chart[i] = close_labels_Daily[i];
 
             }
+
+
 
         },
         error: function (xhr, status, errorThrown) {
@@ -208,6 +236,8 @@ async function getDataDaily(symbol) {
             console.log(errorThrown);
 
         }
+
+
 
     });
 }
@@ -222,6 +252,7 @@ async function getDataReal(symbol) {
         type: 'get',
         cache: false,
         success: function (data) {
+
             console.log(data);
             const time = "Time Series (15min)";
             const symbol = data["Meta Data"]["2. Symbol"];
@@ -261,6 +292,11 @@ async function getDataReal(symbol) {
 
             var day = new Date();
             var curDay = day.getDate() - 1;
+            console.log(curDay);
+            if (curDay < 10) {
+                curDay = '0' + curDay;
+
+            }
 
             var ja = 0;
             for (var i = 0; i <= length; i++) {
@@ -270,7 +306,7 @@ async function getDataReal(symbol) {
                     ja++;
                 }
             }
-
+            console.log(date_labels_1Day_chart);
             var jq = 0;
             for (var j = 3; j >= 0; j--) {
                 for (var i = 0; i <= length; i++) {
@@ -282,6 +318,9 @@ async function getDataReal(symbol) {
                     }
                 }
             };
+
+
+
 
         },
         error: function (xhr, status, errorThrown) {

@@ -194,7 +194,7 @@ function autocomplete(inp, arr, arr1, arr2) {
 
 /*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
-
+    // $.when($("#charts-container").load(window.location.href + " #charts-container")).done(function () {
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
@@ -209,6 +209,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     low_array = [];
     volume_array = [];
     date_array = [];
+
     date_labels = [];
     open_labels = [];
     close_labels = [];
@@ -222,6 +223,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     low_array_Real = [];
     high_array_Real = [];
     volume_array_Real = [];
+
     date_labels_Real = [];
     open_labels_Real = [];
     close_labels_Real = [];
@@ -235,6 +237,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     low_array_Daily = [];
     high_array_Daily = [];
     volume_array_Daily = [];
+
     date_labels_Daily = [];
     open_labels_Daily = [];
     close_labels_Daily = [];
@@ -260,30 +263,26 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     date_labels_5Years_chart = [];
     close_labels_5Years_chart = [];
 
-
-
-    //this line is to watch the result in console , you can remove it later	
-    console.log("Refreshed");
-
     //call charIt to make chart for new Api 
     chartIt1Month(symbol, change);
     chartIt4Months(symbol, change);
 
     chartIt(symbol, change);
-
-    // chartItRealtime(symbol, change);
+    chartIt1Year(symbol, change);
+    chartIt5Years(symbol, change);
 
     chartIt1Day(symbol, change);
     chartIt3Days(symbol, change);
 
-
-
-    chartIt1Year(symbol, change);
-    chartIt5Years(symbol, change);
-
+    $("#max").load(window.location.href + " #max");
+    $("#oneDay").load(window.location.href + " #oneDay");
+    $("#myChart3Days").load(window.location.href + " #myChart3Days");
+    $("#Month").load(window.location.href + " #Month");
+    // $('#oneYear').html(div);
+    // $("#oneYear").load(window.location.reload + " #oneYear");
 
 
     //reload follow button.So server sent stock name to client without reloading the page
     $("#stock").attr("value", function (i, origValue) { return stock; })
-
+    // });
 }, { passive: true });

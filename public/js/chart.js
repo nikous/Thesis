@@ -39,6 +39,8 @@ let close_labels_1Year_chart = [];
 let date_labels_5Years_chart = [];
 let close_labels_5Years_chart = [];
 
+
+
 async function chartIt(symbol, destroy) {
     console.log("7");
     console.log(close_labels);
@@ -46,7 +48,7 @@ async function chartIt(symbol, destroy) {
     await getData(symbol);
 
     const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: date_labels,
@@ -66,7 +68,7 @@ async function chartIt(symbol, destroy) {
             }]
         },
     });
-    if (destroy == true) { myChart.update(); }
+    // if (destroy == true) { myChart.destroy(); }
 }
 
 // async function chartItDaily(symbol, destroy) {
@@ -130,38 +132,6 @@ async function chartIt1Day(symbol, destroy) {
     //     console.log("update");
     // { myChart1Day.update(); }
 }
-
-async function chartIt3Days(symbol, destroy) {
-    await chartIt1Day();
-    console.log("2");
-    console.log(close_labels_3Days_chart);
-    //ChartIt waits getData to complete and then starts to visualize data
-
-
-    const ctx = document.getElementById('myChart3Days').getContext('2d');
-    const myChart3Days = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: date_labels_3Days_chart,
-            datasets: [{
-                label: 'Chart',
-                data: close_labels_3Days_chart,
-                fill: false,
-                backgroundColor:
-                    'rgb(76, 114, 38)'
-                ,
-                borderColor:
-                    'rgb(76, 114, 38)'
-                ,
-                borderWidth: 1,
-                pointRadius: 2,
-                lineTension: 0
-            }]
-        },
-    });
-    if (destroy == true) { myChart3Days.update(); }
-}
-
 async function chartIt1Month(symbol, destroy) {
     console.log("3");
     console.log(close_labels_1Month_chart);
@@ -190,7 +160,40 @@ async function chartIt1Month(symbol, destroy) {
             }]
         },
     });
-    if (destroy == true) { myChart1Month.update(); }
+    // if (destroy == true) { myChart1Month.update(); }
+}
+
+// $.when(chartIt1Day(), chartIt1Month(), chartIt()).done(function (symbol) {
+
+async function chartIt3Days(symbol, destroy) {
+
+    console.log("2");
+    console.log(close_labels_3Days_chart);
+    //ChartIt waits getData to complete and then starts to visualize data
+
+
+    const ctx = document.getElementById('myChart3Days').getContext('2d');
+    const myChart3Days = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: date_labels_3Days_chart,
+            datasets: [{
+                label: 'Chart',
+                data: close_labels_3Days_chart,
+                fill: false,
+                backgroundColor:
+                    'rgb(76, 114, 38)'
+                ,
+                borderColor:
+                    'rgb(76, 114, 38)'
+                ,
+                borderWidth: 1,
+                pointRadius: 2,
+                lineTension: 0
+            }]
+        },
+    });
+    // if (destroy == true) { myChart3Days.update(); }
 }
 
 async function chartIt4Months(symbol, destroy) {
@@ -220,14 +223,15 @@ async function chartIt4Months(symbol, destroy) {
             }]
         },
     });
-    if (destroy == true) { myChart4Months.update(); }
+    // if (destroy == true) { myChart4Months.update(); }
 }
 
 async function chartIt1Year(symbol, destroy) {
+
     console.log("5");
     console.log(close_labels_1Year_chart);
     //ChartIt waits getData to complete and then starts to visualize data
-    ;
+
 
     const ctx = document.getElementById('myChart1Year').getContext('2d');
     const myChart1Year = new Chart(ctx, {
@@ -250,7 +254,7 @@ async function chartIt1Year(symbol, destroy) {
             }]
         },
     });
-    if (destroy == true) { myChart1Year.update(); }
+    // if (destroy == true) { myChart1Year.update(); }
 }
 
 async function chartIt5Years(symbol, destroy) {
@@ -294,5 +298,6 @@ async function chartIt5Years(symbol, destroy) {
 
     });
 
-    if (destroy == true) { myChart5Years.update(); }
+    // if (destroy == true) { myChart5Years.update(); }
 }
+//})

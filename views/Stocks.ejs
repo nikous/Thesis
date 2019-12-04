@@ -12,7 +12,7 @@
 
   <% include ./navbar %>
 
-  <div class="container-stock" id="nickolakos">
+  <div class="container-stock">
 
     <div class="row">
 
@@ -43,13 +43,16 @@
           <li><a href="#max" data-toggle="tab">| Max</a></li>
         </ul>
 
-        <div class="tab-content">
+        <div class="tab-content" id=charts-container>
           <div class="tab-pane active" id="max">
 
             <canvas id="myChart">
               <script>
 
-                chartIt();</script> </canvas>
+                $.when(chartIt()).done(function () {
+                  chartIt1Year();
+                  chartIt5Years();
+                });</script> </canvas>
 
 
           </div>
@@ -58,48 +61,51 @@
             <canvas id="myChart1Day">
               <script>
 
-                chartIt1Day();</script> </canvas>
+                $.when(chartIt1Day()).done(function () {
+                  chartIt3Days();
+                });</script> </canvas>
           </div>
 
 
           <div class="tab-pane" id="Days">
             <canvas id="myChart3Days">
-              <script>
 
-                chartIt3Days();</script> </canvas>
+            </canvas>
           </div>
 
           <div class="tab-pane" id="Month">
             <canvas id="myChart1Month">
               <script>
 
-                chartIt1Month();</script> </canvas>
+                $.when(chartIt1Month()).done(function () {
+                  chartIt4Months();
+                });
+              </script> </canvas>
           </div>
 
           <div class="tab-pane" id="fourMonths">
             <canvas id="myChart4Months">
               <script>
 
-                chartIt4Months();</script> </canvas>
+
+              </script> </canvas>
           </div>
           <div class="tab-pane" id="oneYear">
             <canvas id="myChart1Year">
               <script>
 
-                chartIt1Year();</script> </canvas>
+
+              </script> </canvas>
           </div>
 
           <div class="tab-pane" id="fiveYears">
             <canvas id="myChart5Years">
 
-              <script>chartIt5Years();</script> </canvas>
+              <script>
+
+
+              </script> </canvas>
           </div>
-
-          <!-- <div class="tab-pane" id="max">
-            <canvas id="myChart">
-              <script>chartIt();</script> </canvas>
-          </div> -->
-
 
         </div>
 
