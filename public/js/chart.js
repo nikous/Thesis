@@ -301,3 +301,8 @@ async function chartIt5Years(symbol, destroy) {
     // if (destroy == true) { myChart5Years.update(); }
 }
 //})
+
+async function refresh() {
+    $("#fourMonths").load(window.location.href + " #fourMonths");
+    console.log("refresh fourmonths");
+}

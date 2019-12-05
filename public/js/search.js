@@ -275,12 +275,12 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     chartIt3Days(symbol, change);
 
     $("#max").load(window.location.href + " #max");
-    $("#oneDay").load(window.location.href + " #oneDay");
-    $("#myChart3Days").load(window.location.href + " #myChart3Days");
-    $("#Month").load(window.location.href + " #Month");
+    $("#1Day").load(window.location.href + " #1Day");
+
+    $("#1Month").load(window.location.href + " #1Month");
     // $('#oneYear').html(div);
     // $("#oneYear").load(window.location.reload + " #oneYear");
-
+    refresh();
 
     //reload follow button.So server sent stock name to client without reloading the page
     $("#stock").attr("value", function (i, origValue) { return stock; })

@@ -6,6 +6,7 @@
 
   <script type="text/javascript" src="/public/js/chart.js"></script>
   <script type="text/javascript" src="/public/js/api.js"></script>
+
 </head>
 
 <body>
@@ -17,110 +18,150 @@
     <div class="row">
 
       <!-- Send name of stock from follow button to database -->
-
-
       <!-- value="<%= typeof stock != 'undefined' ? stock : '' %>" /> -->
+
       <div class="col-md" style="position: relative; height:80vh; width:50vw">
-        <div class="modal-header">
 
+        <div class="header">
+          <%if (user) { %>
           <form id="send" action="/stocks" method="POST">
+            <button type="submit" name="stock" id="stock" class="buttonStock" style="vertical-align:middle"
+              value="stock :"><span>Follow Stock </span></button>
 
-            <button type="submit" name="stock" id="stock" class="btn btn-primary btn-block" value="stock :">
-              Follow Stock
-            </button>
 
           </form>
-        </div>
+          <%}%>
+          <div class="col-sm" id="search_bar">
 
+            <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
 
-        <ul class="nav nav-tabs" id="tabContent">
-          <li class="active"><a href="#oneDay" data-toggle="tab">1 Day |</a></li>
-          <li><a href="#Days" data-toggle="tab">| 3 Days |</a></li>
-          <li><a href="#Month" data-toggle="tab">| 1 Month |</a></li>
-          <li><a href="#fourMonths" data-toggle="tab">| 4 Months |</a></li>
-          <li><a href="#oneYear" data-toggle="tab">| 1 Year |</a></li>
-          <li><a href="#fiveYears" data-toggle="tab">| 5 Years |</a></li>
-          <li><a href="#max" data-toggle="tab">| Max</a></li>
-        </ul>
+              <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
+                placeholder="Search" aria-label="Search">
 
-        <div class="tab-content" id=charts-container>
-          <div class="tab-pane active" id="max">
+              <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
 
-            <canvas id="myChart">
-              <script>
+            </form>
 
-                $.when(chartIt()).done(function () {
-                  chartIt1Year();
-                  chartIt5Years();
-                });</script> </canvas>
-
-
-          </div>
-
-          <div class="tab-pane" id="oneDay">
-            <canvas id="myChart1Day">
-              <script>
-
-                $.when(chartIt1Day()).done(function () {
-                  chartIt3Days();
-                });</script> </canvas>
-          </div>
-
-
-          <div class="tab-pane" id="Days">
-            <canvas id="myChart3Days">
-
-            </canvas>
-          </div>
-
-          <div class="tab-pane" id="Month">
-            <canvas id="myChart1Month">
-              <script>
-
-                $.when(chartIt1Month()).done(function () {
-                  chartIt4Months();
-                });
-              </script> </canvas>
-          </div>
-
-          <div class="tab-pane" id="fourMonths">
-            <canvas id="myChart4Months">
-              <script>
-
-
-              </script> </canvas>
-          </div>
-          <div class="tab-pane" id="oneYear">
-            <canvas id="myChart1Year">
-              <script>
-
-
-              </script> </canvas>
-          </div>
-
-          <div class="tab-pane" id="fiveYears">
-            <canvas id="myChart5Years">
-
-              <script>
-
-
-              </script> </canvas>
           </div>
 
         </div>
 
+        <section id="tabs">
 
-      </div>
+          <div class="container">
 
-      <div class="col-sm">
+            <div class="row">
 
-        <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
+              <div class="col-xs-12">
 
-          <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text" placeholder="Search"
-            aria-label="Search">
-          <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
+                <nav>
 
-        </form>
+                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day" role="tab"
+                      aria-controls="nav-home" aria-selected="true">1Day</a>
+                    <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days" role="tab"
+                      aria-controls="nav-profile" aria-selected="false">3Days</a>
+                    <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month" role="tab"
+                      aria-controls="nav-contact" aria-selected="false">1Month</a>
+                    <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months" role="tab"
+                      aria-controls="nav-about" aria-selected="false">4Months</a>
+                    <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab" href="#nav-1Year" role="tab"
+                      aria-controls="nav-about" aria-selected="false">1Year</a>
+                    <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab" href="#nav-5Years" role="tab"
+                      aria-controls="nav-about" aria-selected="false">5Years</a>
+                    <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max" role="tab"
+                      aria-controls="nav-about" aria-selected="false">Max</a>
+
+                  </div>
+
+                </nav>
+
+                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                  <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
+                    aria-labelledby="nav-profile-tab">
+
+                    <canvas id="myChart1Day">
+                      <script>
+
+                        $.when(chartIt1Day()).done(function () {
+                          chartIt3Days();
+                        });</script> </canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                    <canvas id="myChart3Days"> </canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
+
+                    <canvas id="myChart1Month">
+
+                      <script>
+
+                        $.when(chartIt1Month()).done(function () {
+
+                          $.when(refresh()).done(function () {
+
+                            chartIt4Months();
+                          });
+
+                        });
+
+                      </script>
+
+                    </canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="nav-4Months" role="tabpanel" aria-labelledby="nav-about-tab">
+
+                    <canvas id="myChart4Months"></canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="nav-1Year" role="tabpanel" aria-labelledby="nav-about-tab">
+
+                    <canvas id="myChart1Year"> </canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="nav-5Years" role="tabpanel" aria-labelledby="nav-about-tab">
+                    <canvas id="myChart5Years"> </canvas>
+
+                  </div>
+
+                  <div class="tab-pane fade " id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+
+                    <canvas id="myChart">
+
+                      <script>
+
+                        $.when(chartIt()).done(function () {
+                          chartIt1Year();
+                          chartIt5Years();
+                        });
+
+                      </script>
+
+                    </canvas>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
 
       </div>
 
@@ -128,8 +169,6 @@
 
   </div>
 
-
-  </div>
   </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>

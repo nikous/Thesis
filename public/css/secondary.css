@@ -14,10 +14,10 @@
   background: #070000;
 }
 
-.nav-link:hover {
-  background: #943d3d;
+/* .nav-link:hover {
+  background: #67ad24;
   color: #1b0e02;
-}
+} */
 
 .description {
   position: absolute;
@@ -106,3 +106,43 @@
   color: white;
 }
 
+.buttonStock {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #943d3d;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 20px;
+ 
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.buttonStock span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonStock span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonStock:hover span {
+  padding-right: 25px;
+}
+
+.buttonStock:hover span:after {
+  opacity: 1;
+  right: 0;
+}

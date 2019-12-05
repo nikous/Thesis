@@ -29,7 +29,7 @@ input[type=submit] {
   border-top: none;
   z-index: 99;
   /*position the autocomplete items to be the same width as the container:*/
-  top: 5.8%;
+  top: 80%;
   left: 0;
   right: 0;
   height: 300px;
@@ -55,17 +55,48 @@ input[type=submit] {
   color: #ffffff;
 }
 
-.list-group-stocks{
+/* .list-group-stocks{
   position: absolute;
   left:-30px;
   height: 400px;
   width: 350px;
   overflow-y: scroll;
-}
-.tab-content-dashboard{
+} */
+.tab-content{
   position: relative;
-  left:500px;
-  height:80vh;
+  left:60px;
+  height:50vh;
   width: 50vw;
   top:5px;
+}
+
+#tabs{
+background: rgb(255, 255, 255);
+  color: rgb(255, 250, 250);
+}
+
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color:#943d3d;
+  background-color: transparent;
+  border-color: transparent transparent #f3f3f3;
+  border-bottom: 4px solid !important;
+  font-size: 70px;
+  font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  color: #943d3d;
+  font-size: 15px;
+}
+#search_bar{
+  position: absolute;
+  
+  left: 1000px;
+  top:3%;
+}
+.list-group-stocks{
+  width: 15vw;
 }
