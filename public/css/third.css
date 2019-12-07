@@ -1,7 +1,5 @@
-* { box-sizing: border-box; }
-body {
-  font: 16px Arial;
-}
+
+
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
@@ -30,14 +28,12 @@ input[type=submit] {
   z-index: 99;
   /*position the autocomplete items to be the same width as the container:*/
   top: 80%;
-  left: 0;
+  left: 3%;
   right: 0;
   height: 300px;
-  width: 250px;
+  width: 210px;
   overflow-y: scroll;
 }
-
-
 
 .autocomplete-items div {
   padding: 10px;
@@ -55,13 +51,6 @@ input[type=submit] {
   color: #ffffff;
 }
 
-/* .list-group-stocks{
-  position: absolute;
-  left:-30px;
-  height: 400px;
-  width: 350px;
-  overflow-y: scroll;
-} */
 .tab-content{
   position: relative;
   left:60px;
@@ -92,10 +81,11 @@ background: rgb(255, 255, 255);
   font-size: 15px;
 }
 #search_bar{
-  position: absolute;
+
   
-  left: 1000px;
-  top:3%;
+  left:120px;
+  top:99px;
+
 }
 .list-group-stocks{
   width: 15vw;

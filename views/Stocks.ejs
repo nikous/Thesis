@@ -16,22 +16,22 @@
   <div class="container-stock">
 
     <div class="row">
-
       <!-- Send name of stock from follow button to database -->
       <!-- value="<%= typeof stock != 'undefined' ? stock : '' %>" /> -->
 
-      <div class="col-md" style="position: relative; height:80vh; width:50vw">
+      <div class="col-sm">
 
-        <div class="header">
-          <%if (user) { %>
-          <form id="send" action="/stocks" method="POST">
-            <button type="submit" name="stock" id="stock" class="buttonStock" style="vertical-align:middle"
-              value="stock :"><span>Follow Stock </span></button>
+        <%if (user) { %>
+        <form id="send" action="javascript:void(0)">
+          <button type="submit" name="stock" id="stock" class="buttonStock" style="vertical-align:middle"
+            value="stock :"><span>Follow Stock </span></button>
 
 
-          </form>
-          <%}%>
-          <div class="col-sm" id="search_bar">
+        </form>
+
+        <%}%>
+      </div>
+          <div class="col-xs-6 col-md-4" id="search_bar">
 
             <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
 
@@ -43,9 +43,9 @@
             </form>
 
           </div>
-
-        </div>
-
+        
+        
+      </div>
         <section id="tabs">
 
           <div class="container">
@@ -60,7 +60,7 @@
                     <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day" role="tab"
                       aria-controls="nav-home" aria-selected="true">1Day</a>
                     <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days" role="tab"
-                      aria-controls="nav-profile" aria-selected="false">3Days</a>
+                      aria-controls="nav-profile " aria-selected="false">3Days</a>
                     <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month" role="tab"
                       aria-controls="nav-contact" aria-selected="false">1Month</a>
                     <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months" role="tab"
@@ -83,32 +83,29 @@
 
                     <canvas id="myChart1Day">
                       <script>
-
+                        console.log("n");
                         $.when(chartIt1Day()).done(function () {
+                          console.log("i");
                           chartIt3Days();
                         });</script> </canvas>
 
                   </div>
 
-                  <div class="tab-pane fade" id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
+                  <div class="tab-pane fade " id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
 
                     <canvas id="myChart3Days"> </canvas>
 
                   </div>
 
-                  <div class="tab-pane fade" id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
+                  <div class="tab-pane fade "  id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
 
                     <canvas id="myChart1Month">
 
                       <script>
-
+                        console.log("c");
                         $.when(chartIt1Month()).done(function () {
-
-                          $.when(refresh()).done(function () {
-
-                            chartIt4Months();
-                          });
-
+                          console.log("k");
+                          chartIt4Months();
                         });
 
                       </script>
@@ -139,8 +136,9 @@
                     <canvas id="myChart">
 
                       <script>
-
+                        console.log("o");
                         $.when(chartIt()).done(function () {
+                          console.log("s");
                           chartIt1Year();
                           chartIt5Years();
                         });
@@ -160,12 +158,6 @@
           </div>
 
         </section>
-
-
-
-      </div>
-
-    </div>
 
   </div>
 

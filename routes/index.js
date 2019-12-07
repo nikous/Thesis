@@ -75,14 +75,15 @@ router.get('/stocks', (req, res) => {
     }
 });
 
-router.post('/stocks', (req, res) => {
+router.post('/getStock/:symbol', (req, res) => {
 
     // Find user in database by id 
     const user = req.user._id;
-    const { stock } = req.body;
+    const symbol = req.params.symbol;
 
     //Add Stock to users stock array 
-    User.findOneAndUpdate({ _id: user }, { '$push': { stock: stock } }, (err, doc) => {
+    // User.findOneAndUpdate({ _id: user }, { '$push': { stock: stock } }, (err, doc) => {
+    User.findOneAndUpdate({ _id: user }, { '$push': { stock: symbol } }, (err, doc) => {
         if (err) {
             console.log("Something wrong when updating data!");
         }

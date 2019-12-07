@@ -50,7 +50,7 @@
   /* remember to set a width */
   margin-left: 2%;
 
-  margin-top: 10%;
+  margin-top: 7%;
 }
 .container-stock .list-group {
   margin-top: 26%;
@@ -145,4 +145,18 @@
 .buttonStock:hover span:after {
   opacity: 1;
   right: 0;
+}
+#charts{
+  position: absolute;
+  top: 20%;
+  left:20%;
+  /* width:60px; */
+}
+
+.list-container{
+  position: absolute;
+  top:100%;
+  height: 400px;
+  width: 260px;
+  overflow-y: scroll;
 }

@@ -194,7 +194,7 @@ function autocomplete(inp, arr, arr1, arr2) {
 
 /*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
-    // $.when($("#charts-container").load(window.location.href + " #charts-container")).done(function () {
+
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
@@ -263,26 +263,44 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     date_labels_5Years_chart = [];
     close_labels_5Years_chart = [];
 
-    //call charIt to make chart for new Api 
-    chartIt1Month(symbol, change);
-    chartIt4Months(symbol, change);
+    //Reload charts with new Data
+    reload();
 
-    chartIt(symbol, change);
-    chartIt1Year(symbol, change);
-    chartIt5Years(symbol, change);
+    //sleep function
+    function sleep(ms) {
 
-    chartIt1Day(symbol, change);
-    chartIt3Days(symbol, change);
+        return new Promise(resolve => setTimeout(resolve, ms));
 
-    $("#max").load(window.location.href + " #max");
-    $("#1Day").load(window.location.href + " #1Day");
+    };
 
-    $("#1Month").load(window.location.href + " #1Month");
-    // $('#oneYear').html(div);
-    // $("#oneYear").load(window.location.reload + " #oneYear");
-    refresh();
+    async function reload() {
 
-    //reload follow button.So server sent stock name to client without reloading the page
-    $("#stock").attr("value", function (i, origValue) { return stock; })
-    // });
+        $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
+
+        //Wait to refresh  div and then add the new charts
+        sleep(1000).then(() => {
+
+            chartIt1Day(symbol, change);
+            chartIt3Days(symbol, change);
+            chartIt1Month(symbol, change);
+            chartIt4Months(symbol, change);
+            chartIt(symbol, change);
+            chartIt1Year(symbol, change);
+            chartIt5Years(symbol, change);
+
+        });
+
+    };
+
 }, { passive: true });
+
+//send stock to database and stops form to reload the page
+$('#send').submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: '/getStock/' + symbol + '',
+        dataType: 'text',
+        type: 'post',
+        cache: false,
+    });
+});

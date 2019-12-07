@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class=" col-md-7 ">
+        <div class=" col ">
             <p id="name" class="lead mb-3"> <%if (user) { %>
                 Your stocks <% user.stock.length %>
                 <% } else {%>
@@ -23,109 +23,106 @@
                 <% include ./list %>
         </div>
     </div>
+    <div class="col" id="charts">
+        <section id="tabs">
 
-    <section id="tabs">
+            <div class="container">
 
-        <div class="container">
+                <div class="row">
 
-            <div class="row">
+                    <div class="col-xs-12">
 
-                <div class="col-xs-12">
+                        <nav>
 
-                    <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day"
+                                    role="tab" aria-controls="nav-home" aria-selected="true">1Day</a>
+                                <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days"
+                                    role="tab" aria-controls="nav-profile" aria-selected="false">3Days</a>
+                                <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month"
+                                    role="tab" aria-controls="nav-contact" aria-selected="false">1Month</a>
+                                <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">4Months</a>
+                                <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab" href="#nav-1Year"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">1Year</a>
+                                <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab" href="#nav-5Years"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">5Years</a>
+                                <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">Max</a>
 
-                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day"
-                                role="tab" aria-controls="nav-home" aria-selected="true">1Day</a>
-                            <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days"
-                                role="tab" aria-controls="nav-profile" aria-selected="false">3Days</a>
-                            <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month"
-                                role="tab" aria-controls="nav-contact" aria-selected="false">1Month</a>
-                            <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months"
-                                role="tab" aria-controls="nav-about" aria-selected="false">4Months</a>
-                            <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab" href="#nav-1Year"
-                                role="tab" aria-controls="nav-about" aria-selected="false">1Year</a>
-                            <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab" href="#nav-5Years"
-                                role="tab" aria-controls="nav-about" aria-selected="false">5Years</a>
-                            <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max" role="tab"
-                                aria-controls="nav-about" aria-selected="false">Max</a>
+                            </div>
 
-                        </div>
+                        </nav>
 
-                    </nav>
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 
-                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
 
-                        <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
-                            aria-labelledby="nav-profile-tab">
+                                <canvas id="myChart1Day">
+                                    <script>
 
-                            <canvas id="myChart1Day">
-                                <script>
+                                        $.when(chartIt1Day()).done(function () {
+                                            chartIt3Days();
+                                        });</script> </canvas>
 
-                                    $.when(chartIt1Day()).done(function () {
-                                        chartIt3Days();
-                                    });</script> </canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade" id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
 
-                        <div class="tab-pane fade" id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <canvas id="myChart3Days"> </canvas>
 
-                            <canvas id="myChart3Days"> </canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade" id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
 
-                        <div class="tab-pane fade" id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <canvas id="myChart1Month">
 
-                            <canvas id="myChart1Month">
+                                    <script>
 
-                                <script>
-
-                                    $.when(chartIt1Month()).done(function () {
-
-                                        $.when(refresh()).done(function () {
-
+                                        $.when(chartIt1Month()).done(function () {
                                             chartIt4Months();
                                         });
 
-                                    });
+                                    </script>
 
-                                </script>
+                                </canvas>
 
-                            </canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade" id="nav-4Months" role="tabpanel" aria-labelledby="nav-about-tab">
 
-                        <div class="tab-pane fade" id="nav-4Months" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <canvas id="myChart4Months"></canvas>
 
-                            <canvas id="myChart4Months"></canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade" id="nav-1Year" role="tabpanel" aria-labelledby="nav-about-tab">
 
-                        <div class="tab-pane fade" id="nav-1Year" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <canvas id="myChart1Year"> </canvas>
 
-                            <canvas id="myChart1Year"> </canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade" id="nav-5Years" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <canvas id="myChart5Years"> </canvas>
 
-                        <div class="tab-pane fade" id="nav-5Years" role="tabpanel" aria-labelledby="nav-about-tab">
-                            <canvas id="myChart5Years"> </canvas>
+                            </div>
 
-                        </div>
+                            <div class="tab-pane fade " id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
 
-                        <div class="tab-pane fade " id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+                                <canvas id="myChart">
 
-                            <canvas id="myChart">
+                                    <script>
 
-                                <script>
+                                        $.when(chartIt()).done(function () {
+                                            chartIt1Year();
+                                            chartIt5Years();
+                                        });
 
-                                    $.when(chartIt()).done(function () {
-                                        chartIt1Year();
-                                        chartIt5Years();
-                                    });
+                                    </script>
 
-                                </script>
+                                </canvas>
 
-                            </canvas>
+                            </div>
 
                         </div>
 
@@ -135,8 +132,7 @@
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
+    </div>
 </div>
 </div>
