@@ -320,6 +320,7 @@ async function getDataReal(symbol) {
                     ja++;
 
                 }
+
             }
 
             var jq = 0;

@@ -192,9 +192,24 @@ function autocomplete(inp, arr, arr1, arr2) {
 
 };
 
+
+
 /*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
 
+    var timer = new Timer();
+    timer.start({ precision: 'seconds', startValues: { seconds: 00 }, target: { seconds: 60 } });
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString());
+    });
+
+    if (timer.getTimeValues().seconds < 30) {
+        document.getElementById("suButton").disabled = true;
+    }
+    timer.addEventListener('targetAchieved', function (e) {
+        document.getElementById("suButton").disabled = false;
+        $('#gettingValuesExample .seconds').html('');
+    });
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
