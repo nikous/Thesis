@@ -32,12 +32,13 @@
 
         <%}%>
       </div>
-      <!-- <div class="col-sm"id="gettingValuesExample">
+      <div class="col-sm"id="gettingValuesExample">
                   
-          <span class="seconds"></span><span> </span>
+       <span class="seconds"> </span>    
           
       </div>
-        -->
+       
+   
         
         
       </div>
@@ -77,9 +78,9 @@
 
                     <canvas id="myChart1Day">
                       <script>
-                        console.log("n");
+
                         $.when(chartIt1Day()).done(function () {
-                          console.log("i");
+
 
                           chartIt3Days();
                         });</script> </canvas>
@@ -97,9 +98,9 @@
                     <canvas id="myChart1Month">
 
                       <script>
-                        console.log("c");
+
                         $.when(chartIt1Month()).done(function () {
-                          console.log("k");
+
                           chartIt4Months();
                         });
 
@@ -131,9 +132,9 @@
                     <canvas id="myChart">
 
                       <script>
-                        console.log("o");
+
                         $.when(chartIt()).done(function () {
-                          console.log("s");
+
                           chartIt1Year();
                           chartIt5Years();
 
@@ -152,11 +153,7 @@
                 <div class="row">
               <div class="col-xs-12 col-md-12" id="search_bar">
             
-                <!-- <div id="gettingValuesExample">
-                  
-                  <span class="seconds"></span><span> </span>
-                  
-              </div> -->
+               
                 <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
     
                   <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
@@ -171,7 +168,7 @@
               <div class="row">
               <div class="col-xs-4" id="cardBody" >
                 
-                <h4  id="holder" >Microsoft Corporation</h5>
+                <h4  id="holder" >Microsoft Corporation</h4>
                   <h5  id="holderSymbol" >MSFT </h5><a id="diference"></a>
                 
         <div class="card-body">
@@ -198,6 +195,7 @@
   <script type="text/javascript" src="/public/js/search.js"></script>
   
   <script> searchStock();</script>
+  <script> setTimer();</script>
 
 </body>
 

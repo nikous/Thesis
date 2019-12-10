@@ -418,11 +418,11 @@ async function getDataReal(symbol) {
             document.getElementById("PrevClose").innerHTML = " " + close_array_Real[secIndex];
 
             if (close_array_Real[getIndex] >= close_array_Real[secIndex]) {
-                document.getElementById("diference").innerHTML = " +" + difference.toFixed(2) + "   (" + percentage.toFixed(2) + "%)" + " " + "&#8593;";
+                document.getElementById("diference").innerHTML = " +" + difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&#8593;";
                 document.getElementById("diference").style.color = "green";
             }
             else {
-                document.getElementById("diference").innerHTML = " -" + difference.toFixed(2) + "   (" + percentage.toFixed(2) + "%)";
+                document.getElementById("diference").innerHTML = difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&darr;";
                 document.getElementById("diference").style.color = "red";
             }
 

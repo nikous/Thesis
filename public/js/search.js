@@ -191,6 +191,22 @@ function autocomplete(inp, arr, arr1, arr2) {
     }
 
 };
+function setTimer() {
+    var timer = new Timer();
+    timer.start({ countdown: true, startValues: { seconds: 60 } });
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
+    });
+
+    if (timer.getTimeValues().seconds == 00) {
+        document.getElementById("suButton").disabled = true;
+    }
+    timer.addEventListener('targetAchieved', function (e) {
+        document.getElementById("suButton").disabled = false;
+        $('#gettingValuesExample .seconds').html('');
+    });
+
+};
 
 
 
@@ -198,19 +214,7 @@ function autocomplete(inp, arr, arr1, arr2) {
 document.getElementById('suButton').addEventListener("click", function (e) {
     var number;
 
-    var timer = new Timer();
-    timer.start({ precision: 'seconds', startValues: { seconds: 00 }, target: { seconds: 60 } });
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString());
-    });
-
-    if (timer.getTimeValues().seconds < 30) {
-        document.getElementById("suButton").disabled = true;
-    }
-    timer.addEventListener('targetAchieved', function (e) {
-        document.getElementById("suButton").disabled = false;
-        $('#gettingValuesExample .seconds').html('');
-    });
+    setTimer();
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
     console.log(symbol);

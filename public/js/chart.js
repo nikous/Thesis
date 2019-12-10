@@ -66,6 +66,18 @@ async function chartIt(symbol, destroy) {
                 lineTension: 0
             }]
         },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        },
 
     });
 
@@ -97,6 +109,18 @@ async function chartIt1Day(symbol, destroy) {
                 lineTension: 0
             }]
         },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        },
     });
 
 }
@@ -123,6 +147,18 @@ async function chartIt3Days(symbol, destroy) {
                 pointRadius: 2,
                 lineTension: 0
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
         },
     });
 
@@ -151,6 +187,18 @@ async function chartIt1Month(symbol, destroy) {
                 pointRadius: 2,
                 lineTension: 0
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
         },
     });
 }
@@ -181,6 +229,18 @@ async function chartIt4Months(symbol, destroy) {
                 lineTension: 0
             }]
         },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        },
     });
 
 }
@@ -208,6 +268,18 @@ async function chartIt1Year(symbol, destroy) {
                 pointRadius: 2,
                 lineTension: 0
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
         },
     });
 
@@ -253,5 +325,4 @@ async function chartIt5Years(symbol, destroy) {
 
 }
 
-// $.when(chartIt1Day(), chartIt1Month(), chartIt()).done(function (symbol) {
 
