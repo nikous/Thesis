@@ -292,6 +292,8 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     date_labels_5Years_chart = [];
     close_labels_5Years_chart = [];
 
+
+
     //Reload charts with new Data
     reload();
 
@@ -303,7 +305,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     };
 
     async function reload() {
-
+        $('.nav-tabs a:first').tab('show');
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
 
 
@@ -320,9 +322,13 @@ document.getElementById('suButton').addEventListener("click", function (e) {
 
             document.getElementById("holder").innerHTML = define[number];
             document.getElementById("holderSymbol").innerHTML = symbol;
+
+
+
         });
 
     };
+
 
     // $("#cardBody").attr("value", function (i, origValue) { return stock; })
 }, { passive: true });
