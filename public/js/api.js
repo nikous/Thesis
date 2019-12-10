@@ -1,3 +1,5 @@
+
+
 var open_array = [];
 var close_array = [];
 var high_array = [];
@@ -26,7 +28,8 @@ var Yearclose_labels = [];
 var fiveYear_labels = [];
 var fiveYearclose_labels = [];
 var day = [];
-
+var high_labels_1Day = [];
+var low_labels_1Day = [];
 //GetData wait Ajax function to retrieve data from Api
 async function getData(symbol) {
 
@@ -302,19 +305,37 @@ async function getDataReal(symbol) {
 
             var day = new Date();
             var curDay = day.getDate() - 1;
+            var numDay = day.getDay();
+            var numHour = day.getHours();
+            if (numHour > 16 && numDay != 6 && numDay != 7) {
+                curDay = curDay + 1;
+
+            }
+            if (numDay == 1 && numHour <= 16) {
+                curDay = curDay - 2;
+
+            }
+            if (numDay == 7) {
+                curDay = curDay - 1;
+
+            }
 
             if (curDay < 10) {
 
                 curDay = '0' + curDay;
 
+
             }
+
+
 
             var ja = 0;
 
             for (var i = 0; i <= length; i++) {
 
                 if (date_labels_Real[i].endsWith(curDay, 10)) {
-
+                    high_labels_1Day[ja] = high_labels_Real[i];
+                    low_labels_1Day[ja] = low_labels_Real[i];
                     date_labels_1Day_chart[ja] = date_labels_Real[i];
                     close_labels_1Day_chart[ja] = close_labels_Real[i];
                     ja++;
@@ -338,6 +359,77 @@ async function getDataReal(symbol) {
                     }
                 }
             };
+
+            var getIndex = 0;
+            var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00"));
+            var openIndex = date_array_Real.findIndex(element => element.endsWith("09:45:00"));
+            if (secIndex == getIndex) {
+                for (i = 1; i <= length; i++) {
+                    if (date_array_Real[i].endsWith("16:00:00")) {
+                        secIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            function indexOfMax(arr) {
+                if (arr.length === 0) {
+                    return -1;
+                }
+
+                var max = arr[0];
+                var maxIndex = 0;
+
+                for (var i = 1; i < arr.length; i++) {
+                    if (arr[i] > max) {
+                        maxIndex = i;
+                        max = arr[i];
+                    }
+                }
+
+                return maxIndex;
+            }
+
+            function indexOfMin(arr) {
+                if (arr.length === 0) {
+                    return -1;
+                }
+
+                var min = arr[0];
+                var minIndex = 0;
+
+                for (var i = 1; i < arr.length; i++) {
+                    if (arr[i] < min) {
+                        minIndex = i;
+                        min = arr[i];
+                    }
+                }
+
+                return minIndex;
+            }
+
+
+            var difference = close_array_Real[getIndex] - close_array_Real[secIndex];
+            var percentage = ((difference / close_array_Real[secIndex]) * 100);
+
+            document.getElementById("open").innerHTML = " " + open_array_Real[openIndex];
+            document.getElementById("high").innerHTML = " " + high_labels_1Day[indexOfMax(close_labels_1Day_chart)];
+            document.getElementById("low").innerHTML = " " + low_labels_1Day[indexOfMin(close_labels_1Day_chart)];
+            document.getElementById("PrevClose").innerHTML = " " + close_array_Real[secIndex];
+
+            if (close_array_Real[getIndex] >= close_array_Real[secIndex]) {
+                document.getElementById("diference").innerHTML = " +" + difference.toFixed(2) + "   (" + percentage.toFixed(2) + "%)" + " " + "&#8593;";
+                document.getElementById("diference").style.color = "green";
+            }
+            else {
+                document.getElementById("diference").innerHTML = " -" + difference.toFixed(2) + "   (" + percentage.toFixed(2) + "%)";
+                document.getElementById("diference").style.color = "red";
+            }
+
+
+
+
+
         },
 
         error: function (xhr, status, errorThrown) {

@@ -196,6 +196,7 @@ function autocomplete(inp, arr, arr1, arr2) {
 
 /*execute function when someone clicks in the document:*/
 document.getElementById('suButton').addEventListener("click", function (e) {
+    var number;
 
     var timer = new Timer();
     timer.start({ precision: 'seconds', startValues: { seconds: 00 }, target: { seconds: 60 } });
@@ -212,6 +213,15 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     });
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
+    console.log(symbol);
+    ;
+    for (var i = 0; i <= symbols.length; i++) {
+
+        if (symbols[i] == symbol) {
+
+            number = i;
+        };
+    };
 
     //if change true update chart
     var change = true;
@@ -292,6 +302,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
 
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
 
+
         //Wait to refresh  div and then add the new charts
         sleep(1000).then(() => {
 
@@ -303,10 +314,13 @@ document.getElementById('suButton').addEventListener("click", function (e) {
             chartIt1Year(symbol, change);
             chartIt5Years(symbol, change);
 
+            document.getElementById("holder").innerHTML = define[number];
+            document.getElementById("holderSymbol").innerHTML = symbol;
         });
 
     };
 
+    // $("#cardBody").attr("value", function (i, origValue) { return stock; })
 }, { passive: true });
 
 //send stock to database and stops form to reload the page

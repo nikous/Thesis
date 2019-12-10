@@ -66,6 +66,7 @@ async function chartIt(symbol, destroy) {
                 lineTension: 0
             }]
         },
+
     });
 
 

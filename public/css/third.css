@@ -13,7 +13,7 @@ input {
   font-size: 16px;
 }
 input[type=text] {
-  background-color: #fcfcfcf6;
+  background-color: #fffffff6;
   width: 100%;
 }
 input[type=submit] {
@@ -23,6 +23,7 @@ input[type=submit] {
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
+  color: #0e0d0df6;
   border-bottom: none;
   border-top: none;
   z-index: 99;
@@ -83,10 +84,30 @@ background: rgb(255, 255, 255);
 #search_bar{
 
   
-  left:120px;
-  top:99px;
+  
+  top:27px;
 
 }
 .list-group-stocks{
   width: 15vw;
+}
+
+/* #rowChart{
+  position: relative;
+  right:180px;
+} */
+
+
+
+#cardBody{
+  color: #0e0d0df6;
+  /* border: 1px solid #d4d4d4; */
+  width: 16.2vw;
+  height:32.5vh;
+  position: relative;
+  top:36px;
+  left:16px;
+}
+#open,#PrevClose,#low,#high{
+  color: #943d3d;
 }
