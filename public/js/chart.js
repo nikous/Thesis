@@ -1,3 +1,5 @@
+
+
 let date_labels = [];
 let open_labels = [];
 let close_labels = [];
@@ -133,6 +135,32 @@ async function chartIt1Day(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
     await getDataReal(symbol);
+
+
+    let activeTooltip = null;
+
+    function showTooltipForPointEvenIfNotHoveringExactlyOverIt(chartInstance, evt) {
+        const helpers = Chart.helpers;
+        const eventPosition = helpers.getRelativePosition(evt, chartInstance.chart);
+
+        helpers.each(chartInstance.data.datasets, (dataset, datasetIndex) => {
+            if (chartInstance.isDatasetVisible(datasetIndex)) {
+                helpers.each(chartInstance.getDatasetMeta(datasetIndex).data, element => {
+                    if (element.inLabelRange(eventPosition.x, eventPosition.y)) {
+                        activeTooltip = element;
+                        return;
+                    }
+                });
+            }
+        });
+
+        if (activeTooltip) {
+            chartInstance.tooltipActive.push(activeTooltip);
+            chartInstance.tooltip.update(true);
+            chartInstance.render(0, true);
+        }
+    }
+
     let draw = Chart.controllers.line.prototype.draw;
     Chart.controllers.line = Chart.controllers.line.extend({
         draw: function () {
@@ -178,6 +206,7 @@ async function chartIt1Day(symbol, destroy) {
         options: {
             // responsive: true,
             // maintainAspectRatio: false,
+
             legend: {
                 display: false
             },
@@ -212,12 +241,16 @@ async function chartIt1Day(symbol, destroy) {
             },
 
         },
+
+
     });
+
 
 }
 async function chartIt3Days(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
+
     let draw = Chart.controllers.line.prototype.draw;
     Chart.controllers.line = Chart.controllers.line.extend({
         draw: function () {

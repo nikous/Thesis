@@ -19,6 +19,7 @@
     "ajax": "0.0.4",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.8.0",
+    "chartjs-plugin-annotation": "^0.5.7",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "easytimer.js": "^4.0.2",

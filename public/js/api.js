@@ -346,7 +346,7 @@ async function getDataReal(symbol) {
 
             var jq = 0;
 
-            for (var j = 3; j >= 0; j--) {
+            for (var j = 2; j >= 0; j--) {
 
                 for (var i = 0; i <= length; i++) {
 
