@@ -1,7 +1,9 @@
 <head>
 
-  <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
-  <link rel="stylesheet" type="text/css" href="/public/css/third.css" />
+  <link rel="stylesheet" type="text/css" href="/public/css/secondary.css">
+  </link>
+  <link rel="stylesheet" type="text/css" href="/public/css/third.css">
+  </link>
 
 
   <script type="text/javascript" src="/public/js/chart.js"></script>
@@ -11,8 +13,12 @@
 
 
 <body>
+  <div class="container-navbar">
 
-  <% include ./navbar %>
+    <div class="row-nav">
+      <% include ./navbar %>
+    </div>
+  </div>
 
   <div class="container-stock">
 
@@ -20,7 +26,7 @@
       <!-- Send name of stock from follow button to database -->
       <!-- value="<%= typeof stock != 'undefined' ? stock : '' %>" /> -->
 
-      <div class="col-sm">
+      <div class="col-sm col-xs col-md-9 col-lg-9">
 
         <%if (user) { %>
         <form id="send" action="javascript:void(0)">
@@ -32,7 +38,7 @@
 
         <%}%>
       </div>
-      <div class="col-sm"id="gettingValuesExample">
+      <div class="col-sm col-xs-4 col-md-3 col-lg-3"id="gettingValuesExample">
                   
        <span class="seconds"> </span>    
           
@@ -42,16 +48,16 @@
         
         
       </div>
-        <section id="tabs">
+       
 
 
             <div class="row" id="rowChart">
 
-              <div class="col-xs-6 ">
-
+              <div class="col-sm-12 col-xs-12 col-md-9 col-lg-9 ">
+                  <section id="tabs">
                 <nav>
 
-                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                  <div class="nav nav-tabs " id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day" role="tab"
                       aria-controls="nav-home" aria-selected="true">1Day</a>
                     <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days" role="tab"
@@ -68,12 +74,28 @@
                       aria-controls="nav-about" aria-selected="false">Max</a>
 
                   </div>
+                 
 
                 </nav>
-
-                <div class="tab-content " id="nav-tabContent">
-
-                  <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
+              </div>
+              <div class="col-sm col-xs col-md-3 col-lg-3" id="search_bar">
+            
+               
+                  <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-2" autocomplete="off">
+      
+                    <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
+                      placeholder="Search" aria-label="Search">
+      
+                    <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
+      
+                  </form>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                <div class="col-sm-11 col-xs-11 col-md-8 col-lg-9 tab-content " id="nav-tabContent">
+                    
+                    <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
                     aria-labelledby="nav-profile-tab">
 
                     <canvas id="myChart1Day">
@@ -145,48 +167,36 @@
                     </canvas>
 
                   </div>
-
+                </section>
                 </div>
-
-              </div>
-              <div class=col-xs-6>
-                <div class="row">
-              <div class="col-xs-12 col-md-12" id="search_bar">
-            
-               
-                <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-4" autocomplete="off">
+                  
+              
+                  <div class="col-sm-1 col-xs-1 col-md-4 col-lg-3" id="cardBody" >
+                    
+                    <h4  id="holder" >Microsoft Corp</h4>
+                      <h5  id="holderSymbol" >MSFT </h5><a id="diference"></a>
+                    
+            <div class="col-sm-1 col-xs-1 col-md-4 col-lg-3 card-body">
+           
+              <p class="card-text">Open:<a id="open"></a></p>
+              <p class="card-text">High:<a id="high"></a></p>
+              <p class="card-text">Low:<a id="low"></a></p>
+              <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
+            </div>
     
-                  <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
-                    placeholder="Search" aria-label="Search">
-    
-                  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
-    
-                </form>
-                </div>
-    
-              </div>
-              <div class="row">
-              <div class="col-xs-4" id="cardBody" >
-                
-                <h4  id="holder" >Microsoft Corporation</h4>
-                  <h5  id="holderSymbol" >MSFT </h5><a id="diference"></a>
-                
-        <div class="card-body">
+          </div>
        
-          <p class="card-text">Open:<a id="open"></a></p>
-          <p class="card-text">High:<a id="high"></a></p>
-          <p class="card-text">Low:<a id="low"></a></p>
-          <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
-        </div>
+                </div>
+              </div>
 
-      </div>
-    </div>
-  </div>
+              
+            
 
 
 
 
-  </section>
+
+
 
   </div>
 

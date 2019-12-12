@@ -305,12 +305,14 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     };
 
     async function reload() {
-        $('.nav-tabs a:first').tab('show');
+
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
 
 
         //Wait to refresh  div and then add the new charts
         sleep(1000).then(() => {
+
+            $('.nav-tabs a:first').tab('show');
 
             chartIt1Day(symbol, change);
             chartIt3Days(symbol, change);

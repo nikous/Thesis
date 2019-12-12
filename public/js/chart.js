@@ -45,6 +45,25 @@ async function chartIt(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
     await getData(symbol);
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
+
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
 
     const ctx = document.getElementById('myChart').getContext('2d');
     myChart = new Chart(ctx, {
@@ -67,16 +86,41 @@ async function chartIt(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
 
     });
@@ -86,8 +130,28 @@ async function chartIt(symbol, destroy) {
 
 async function chartIt1Day(symbol, destroy) {
 
+
     //ChartIt waits getData to complete and then starts to visualize data
     await getDataReal(symbol);
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
+
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
 
     const ctx = document.getElementById('myChart1Day').getContext('2d');
     const myChart1Day = new Chart(ctx, {
@@ -95,7 +159,7 @@ async function chartIt1Day(symbol, destroy) {
         data: {
             labels: date_labels_1Day_chart,
             datasets: [{
-                label: 'Chart',
+                label: 'close',
                 data: close_labels_1Day_chart,
                 fill: false,
                 backgroundColor:
@@ -104,22 +168,49 @@ async function chartIt1Day(symbol, destroy) {
                 borderColor:
                     'rgb(76, 114, 38)'
                 ,
+
                 borderWidth: 1,
                 pointRadius: 2,
-                lineTension: 0
+                lineTension: 0,
+
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        // autoSkip: true,
+                        // maxTicksLimit: 5,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
     });
 
@@ -127,6 +218,25 @@ async function chartIt1Day(symbol, destroy) {
 async function chartIt3Days(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
+
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
 
     const ctx = document.getElementById('myChart3Days').getContext('2d');
     const myChart3Days = new Chart(ctx, {
@@ -149,16 +259,42 @@ async function chartIt3Days(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        // autoSkip: true,
+                        // maxTicksLimit: 5,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
     });
 
@@ -167,6 +303,25 @@ async function chartIt1Month(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
     await getDataDaily(symbol);
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
+
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
 
     const ctx = document.getElementById('myChart1Month').getContext('2d');
     const myChart1Month = new Chart(ctx, {
@@ -189,16 +344,42 @@ async function chartIt1Month(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        // autoSkip: true,
+                        // maxTicksLimit: 5,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }],
+
+            },
+
         },
     });
 }
@@ -230,16 +411,41 @@ async function chartIt4Months(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 7,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
     });
 
@@ -248,7 +454,25 @@ async function chartIt4Months(symbol, destroy) {
 async function chartIt1Year(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
 
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
     const ctx = document.getElementById('myChart1Year').getContext('2d');
     const myChart1Year = new Chart(ctx, {
         type: 'line',
@@ -270,16 +494,41 @@ async function chartIt1Year(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
     });
 
@@ -288,7 +537,25 @@ async function chartIt1Year(symbol, destroy) {
 async function chartIt5Years(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data
+    let draw = Chart.controllers.line.prototype.draw;
+    Chart.controllers.line = Chart.controllers.line.extend({
+        draw: function () {
+            draw.apply(this, arguments);
+            let ctx = this.chart.chart.ctx;
+            let _stroke = ctx.stroke;
+            ctx.stroke = function () {
+                ctx.save();
 
+
+                ctx.shadowColor = 'rgb(76, 114, 38)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 4;
+                _stroke.apply(this, arguments)
+                ctx.restore();
+            }
+        }
+    });
     const ctx = document.getElementById('myChart5Years').getContext('2d');
     const myChart5Years = new Chart(ctx, {
         type: 'line',
@@ -310,16 +577,41 @@ async function chartIt5Years(symbol, destroy) {
             }]
         },
         options: {
+            // responsive: true,
+            // maintainAspectRatio: false,
             legend: {
                 display: false
             },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return tooltipItem.yLabel;
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        display: true,
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+
+                        maxRotation: 0,
+                        minRotation: 0,
+                        mirror: true,
+                        fontSize: 10,
+                        padding: 10,
+                        callback: function (label) {
+                            if (/\s/.test(label)) {
+                                return label.split(" ");
+                            } else {
+                                return label;
+                            }
+
+                        }
                     }
-                }
-            }
+
+                }]
+            },
+
         },
     });
 

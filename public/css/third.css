@@ -66,11 +66,42 @@ input[type=submit] {
 
 .tab-content{
 
-  position: relative;
-  left:60px;
-  height:50vh;
-  width: 50vw;
-  top:5px;
+ 
+  left:0px;
+ 
+  top:10px;
+}
+#nav-1Day,#nav-3Days,#nav-1Month,#nav-4Months,#nav-1Year,#nav-5Years,#nav-max{
+  width: 900px;
+  height:450px;
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #nav-1Day{
+    width: 100%;
+  }
+  .container-stock {
+    /* remember to set a width */
+    margin-left: 0%;
+  
+    } 
+    .tab-content{
+
+ position: relative;
+      right:20px;
+     
+      top:40px;
+    }
+    #search_bar{
+width:50%;
+      top:27px;
+    }
+    .seconds{
+  
+   
+  }
+
 }
 
 #tabs{
@@ -92,20 +123,19 @@ background: rgb(255, 255, 255);
 #tabs .nav-tabs .nav-link {
 
   border: 1px solid transparent;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
+  
   color: #943d3d;
   font-size: 15px;
 }
 
-#search_bar{
+ #search_bar{
 
   top:27px;
 }
 
 .list-group-stocks{
 
-  width: 15vw;
+  width: 20vw;
 }
 
 #cardBody{
@@ -130,11 +160,19 @@ background: rgb(255, 255, 255);
 }
 
 #gettingValuesExample{
-
-  overflow:auto;
+  min-height: 24px;
+ 
+  color: #943d3d;
 }
 
 .seconds{
+  
+    min-height: 24px;
+  content: "\200b";
+ 
+  float:left; 
+}
 
-  float:right; 
+.container-navbar,.row-nav{
+height:76px;
 }
