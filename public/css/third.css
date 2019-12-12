@@ -66,7 +66,7 @@ input[type=submit] {
 
 .tab-content{
 
- 
+ padding:0;
   left:0px;
  
   top:10px;
@@ -129,7 +129,7 @@ background: rgb(255, 255, 255);
 }
 
  #search_bar{
-
+  padding:0;
   top:27px;
 }
 
@@ -145,13 +145,16 @@ background: rgb(255, 255, 255);
 }
 
 #cardBody{
-
+  padding:0;
   color: #0e0d0df6;
   width: 16.2vw;
   height:32.5vh;
   position: relative;
   top:36px;
-  left:16px;
+
+}
+#classChart{
+  padding:0;
 }
 
 .card-text{
@@ -167,10 +170,14 @@ background: rgb(255, 255, 255);
 
 #gettingValuesExample{
   min-height: 24px;
- 
+  padding:0;
   color: #943d3d;
 }
-
+.row{  
+   
+   margin-left:0px;
+   margin-right:0px;
+}
 .seconds{
   
     min-height: 24px;
@@ -183,6 +190,3 @@ background: rgb(255, 255, 255);
 height:76px;
 }
 
-#rowChart{
-  
-}
