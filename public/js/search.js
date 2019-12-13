@@ -307,7 +307,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     async function reload() {
 
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
-
+        $("#stock").show();
 
         //Wait to refresh  div and then add the new charts
         sleep(1000).then(() => {
@@ -343,5 +343,13 @@ $('#send').submit(function (e) {
         dataType: 'text',
         type: 'post',
         cache: false,
+    });
+});
+
+$(document).ready(function () {
+    $(document).on('click', '#stock', function () {
+
+        $(this).hide();
+        $('.FollowStock').css('min-height', "72px");
     });
 });

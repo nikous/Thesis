@@ -189,4 +189,8 @@ background: rgb(255, 255, 255);
 .container-navbar,.row-nav{
 height:76px;
 }
-
+divs{
+  min-height: 74px;
+  padding:0;
+ 
+}
