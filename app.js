@@ -7,6 +7,8 @@ const passport = require('passport');
 const fetch = require('node-fetch');
 const app = express();
 
+// require('chartjs-plugin-crosshair');
+// app.use('chartjs-plugin-crosshair', express.static(__dirname + '/node_modules/chartjs-plugin-crosshair/dist/'));
 
 
 
@@ -107,7 +109,7 @@ app.get('/getAp/:symbol', async (request, response) => {
 app.get('/getAps/:symbol', async (request, response) => {
     const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
-    const api_url_Real = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=15min&outputsize=compact&apikey=' + api_key + '';
+    const api_url_Real = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=5min&outputsize=compact&apikey=' + api_key + '';
     const fetch_response_Real = await fetch(api_url_Real);
     const Realjson = await fetch_response_Real.json();
 
@@ -125,6 +127,6 @@ app.post('/getApi', (request, response) => {
     response.json(request.body);
 });
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 1100;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

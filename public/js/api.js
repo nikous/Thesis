@@ -30,6 +30,7 @@ var fiveYearclose_labels = [];
 var day = [];
 var high_labels_1Day = [];
 var low_labels_1Day = [];
+var colorStock;
 //GetData wait Ajax function to retrieve data from Api
 async function getData(symbol) {
 
@@ -264,13 +265,13 @@ async function getDataReal(symbol) {
         cache: false,
         success: function (data) {
 
-            const time = "Time Series (15min)";
+            const time = "Time Series (5min)";
             const symbol = data["Meta Data"]["2. Symbol"];
             const json_length = Object.keys(data[time]).length;
             var length = json_length - 1;
 
             //Fill arrays with data from servers json response
-            for (var date in data["Time Series (15min)"]) {
+            for (var date in data["Time Series (5min)"]) {
 
                 date_array_Real.push(date);
                 open_array_Real.push(data[time][date]["1. open"]);
@@ -307,7 +308,8 @@ async function getDataReal(symbol) {
             var curDay = day.getDate() - 1;
             var numDay = day.getDay();
             var numHour = day.getHours();
-            if (numHour > 16 && numDay != 6 && numDay != 7) {
+
+            if (numHour >= 16 && numDay != 6 && numDay != 0) {
                 curDay = curDay + 1;
 
             }
@@ -315,8 +317,13 @@ async function getDataReal(symbol) {
                 curDay = curDay - 2;
 
             }
-            if (numDay == 7) {
+
+            if (numDay == 0) {
                 curDay = curDay - 1;
+
+            }
+            if (numDay == 6) {
+                curDay = day.getDate();
 
             }
 
@@ -326,8 +333,6 @@ async function getDataReal(symbol) {
 
 
             }
-
-
 
             var ja = 0;
 
@@ -344,18 +349,37 @@ async function getDataReal(symbol) {
 
             }
 
-            var jq = 0;
+            var _day = 0;
+            var dateStock;
 
-            for (var j = 2; j >= 0; j--) {
+            if (numDay == 1 && numHour > 16) {
+                dateStock = 4;
+            }
+            else if (numDay == 2 && numHour <= 16) {
+                dateStock = 4;
+
+            }
+            else if (numDay == 2 && numHour > 16) {
+                dateStock = 5;
+
+            }
+            else if (numDay == 3 && numHour <= 16) {
+                dateStock = 5;
+
+            }
+            else {
+                dateStock = 2;
+            }
+
+            for (dateStock; dateStock >= 0; dateStock--) {
 
                 for (var i = 0; i <= length; i++) {
 
-                    if (date_labels_Real[i].endsWith((curDay - j), 10)) {
+                    if (date_labels_Real[i].endsWith((curDay - dateStock), 10)) {
 
-                        date_labels_3Days_chart[jq] = date_labels_Real[i];
-                        close_labels_3Days_chart[jq] = close_labels_Real[i];
-                        jq++;
-
+                        date_labels_3Days_chart[_day] = date_labels_Real[i];
+                        close_labels_3Days_chart[_day] = close_labels_Real[i];
+                        _day++;
                     }
                 }
             };
@@ -420,10 +444,12 @@ async function getDataReal(symbol) {
             if (close_array_Real[getIndex] >= close_array_Real[secIndex]) {
                 document.getElementById("diference").innerHTML = " +" + difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&#8593;";
                 document.getElementById("diference").style.color = "green";
+                colorStock = "green";
             }
             else {
                 document.getElementById("diference").innerHTML = difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&darr;";
                 document.getElementById("diference").style.color = "red";
+                colorStock = "red";
             }
 
 

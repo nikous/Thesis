@@ -97,15 +97,16 @@
                     
                     <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
                     aria-labelledby="nav-profile-tab">
-
+                   
                     <canvas id="myChart1Day">
-                      <script>
+                    </canvas>
+                    <script>
 
-                        $.when(chartIt1Day()).done(function () {
+                      $.when(chartIt1Day()).done(function () {
 
 
-                          chartIt3Days();
-                        });</script> </canvas>
+                        chartIt3Days();
+                      });</script> 
 
                   </div>
 
@@ -116,19 +117,20 @@
                   </div>
 
                   <div class="tab-pane fade "  id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
-
+                    
                     <canvas id="myChart1Month">
 
-                      <script>
-
-                        $.when(chartIt1Month()).done(function () {
-
-                          chartIt4Months();
-                        });
-
-                      </script>
-
+      
                     </canvas>
+                    <script>
+
+                      $.when(chartIt1Month()).done(function () {
+
+                        chartIt4Months();
+                      });
+
+                    </script>
+                  
 
                   </div>
 
@@ -153,19 +155,19 @@
 
                     <canvas id="myChart">
 
-                      <script>
-
-                        $.when(chartIt()).done(function () {
-
-                          chartIt1Year();
-                          chartIt5Years();
-
-                        });
-
-                      </script>
+                     
 
                     </canvas>
+                    <script>
 
+                      $.when(chartIt()).done(function () {
+
+                        chartIt1Year();
+                        chartIt5Years();
+
+                      });
+
+                    </script>
                   </div>
                 </section>
                 </div>

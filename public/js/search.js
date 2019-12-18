@@ -3,10 +3,14 @@ let id = [];
 let symbols = [];
 let define = [];
 
+
 async function searchStock() {
     const response = await fetch('../public/data/data_stock.csv');
+
+
     const data = await response.text();
     const rows = data.split('\n').slice(1);
+
 
     rows.forEach(elt => {
         const row = elt.split(',');
