@@ -47,7 +47,6 @@ async function getData(symbol) {
         cache: false,
         success: function (data) {
 
-            console.log(data);
             const time = "Weekly Time Series";
             const json_length = Object.keys(data[time]).length;
             var length = json_length - 1;
@@ -348,7 +347,9 @@ async function getDataReal(symbol) {
                 }
 
             }
-
+            console.log(numDay);
+            console.log(numHour);
+            console.log(curDay);
             var _day = 0;
             var dateStock;
 
@@ -383,6 +384,7 @@ async function getDataReal(symbol) {
                     }
                 }
             };
+            console.log(date_labels_3Days_chart);
 
             var getIndex = 0;
             var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00"));

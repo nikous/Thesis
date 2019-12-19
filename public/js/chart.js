@@ -271,50 +271,35 @@ async function chartIt1Day(symbol, destroy) {
     });
 
 };
+
 async function chartIt3Days(symbol, destroy) {
 
-    // ChartIt waits getData to complete and then starts to visualize data
+    //ChartIt waits getData to complete and then starts to visualize data
 
     const ctx = document.getElementById('myChart3Days').getContext('2d');
-
-    function generate(shift, label, color) {
-
-        var datas = [];
-
-        for (var i = 0; i <= date_labels_3Days_chart.length; i++) {
-
-            datas.push({ x: date_labels_3Days_chart[i], y: close_labels_3Days_chart[i] });
-        }
-
-        var dataset = {
-
-            backgroundColor: color,
-            borderColor: color,
-            showLine: true,
-            fill: false,
-            pointRadius: 0,
-            label: "close",
-            data: datas,
-            lineTension: 0,
-            interpolate: true,
-            xAxisID: 'x-axis-0',
-            borderWidth: 1,
-            shadowOffsetX: 3,
-            shadowOffsetY: 3,
-            shadowBlur: 10,
-            shadowColor: color,
-        };
-
-        return dataset;
-    }
-
     const myChart3Days = new Chart(ctx, {
-
         type: 'line',
-
         data: {
-
-            datasets: [generate(0, "close", colorStock)]
+            labels: date_labels_3Days_chart,
+            datasets: [{
+                label: 'Chart',
+                label: 'Close',
+                data: close_labels_3Days_chart,
+                fill: false,
+                backgroundColor:
+                    "green"
+                ,
+                borderColor:
+                    "green"
+                ,
+                borderWidth: 1,
+                pointRadius: 0,
+                lineTension: 0,
+                shadowOffsetX: 3,
+                shadowOffsetY: 3,
+                shadowBlur: 10,
+                shadowColor: "green",
+            }]
         },
 
         options: {
@@ -334,6 +319,7 @@ async function chartIt3Days(symbol, destroy) {
                     if (!tooltip) return;
                     // disable displaying the color box;
                     tooltip.displayColors = false;
+
                 },
 
                 callbacks: {
@@ -342,7 +328,6 @@ async function chartIt3Days(symbol, destroy) {
 
                         return a[0].xLabel;
                     },
-
                     label: function (i, d) {
 
                         return (
@@ -366,14 +351,7 @@ async function chartIt3Days(symbol, destroy) {
                     distribution: 'series',
                     position: 'bottom',
                     id: 'x-axis-0',
-                    time: {
-                        unit: 'minute',
-
-
-                    },
-
                     gridLines: {
-
                         display: false,
                         drawBorder: false
                     },
@@ -387,7 +365,7 @@ async function chartIt3Days(symbol, destroy) {
                     line: {
 
                         color: '#808080',  // crosshair line color
-                        width: 1       // crosshair line width
+                        width: 1      // crosshair line width
                     },
 
                     sync: {
@@ -398,13 +376,13 @@ async function chartIt3Days(symbol, destroy) {
                     zoom: {
 
                         enabled: false,                                      // enable zooming
+                        // reset zoom button class
                     },
                 }
             }
         },
     });
 }
-
 async function chartIt1Month(symbol, destroy) {
 
     //ChartIt waits getData to complete and then starts to visualize data

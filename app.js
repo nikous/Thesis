@@ -127,6 +127,6 @@ app.post('/getApi', (request, response) => {
     response.json(request.body);
 });
 
-const PORT = process.env.PORT || 1100;
+const PORT = process.env.PORT || 1200;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
