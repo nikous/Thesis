@@ -71,6 +71,12 @@ input[type=submit] {
  
   top:10px;
 }
+#nav-tabContents{
+  padding:0;
+  left:0px;
+ 
+  top:10px;
+}
 #nav-1Day,#nav-3Days,#nav-1Month,#nav-4Months,#nav-1Year,#nav-5Years,#nav-max{
   width: 900px;
   height:450px;
@@ -94,13 +100,11 @@ input[type=submit] {
       top:40px;
     }
     #search_bar{
-width:50%;
+      
+      width:50%;
       top:27px;
     }
-    .seconds{
-  
-   
-  }
+
 
 }
 
@@ -196,6 +200,12 @@ divs{
 }
 #myChart1Day{
   position: relative;
+}
+#header,#openCard,#lowCard{
+  width:100px;
+  padding:0;
+  position: relative;
+  left:25%;
 }
 
 /* #cursor{

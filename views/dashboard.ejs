@@ -2,10 +2,9 @@
     <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/third.css" />
 
-    <script type="text/javascript" src="/public/js/api.js"></script>
-    <script type="text/javascript" src="/public/js/chart.js"></script>
 
 </head>
+
 <div class="container-navbar">
 
     <div class="row-nav">
@@ -13,7 +12,13 @@
     </div>
 </div>
 <div class="container-dashboard">
+    <div class=row>
+        <div class="col-sm col-xs-4 col-md-3 col-lg-3" id="gettingValuesExample">
 
+            <span class="seconds"> </span>
+
+        </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-sm col-xs col-md-2 col-lg-2 list-container">
@@ -46,7 +51,7 @@
 
                 </nav>
 
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-content" id="nav-tabContent">
 
                     <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
                         aria-labelledby="nav-profile-tab">
@@ -54,9 +59,7 @@
                         <canvas id="myChart1Day">
                             <script>
 
-                                $.when(chartIt1Day()).done(function () {
-                                    chartIt3Days();
-                                });</script> </canvas>
+                            </script> </canvas>
 
                     </div>
 
@@ -72,9 +75,7 @@
 
                             <script>
 
-                                $.when(chartIt1Month()).done(function () {
-                                    chartIt4Months();
-                                });
+
 
                             </script>
 
@@ -105,10 +106,7 @@
 
                             <script>
 
-                                $.when(chartIt()).done(function () {
-                                    chartIt1Year();
-                                    chartIt5Years();
-                                });
+
 
                             </script>
 
@@ -121,5 +119,35 @@
 
         </section>
     </div>
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" id="cardBody">
+        <div class="row">
+            <div class="col-sm-4 col-xs-4 col-md-2 col-lg-2 card-body" id="header">
+
+                <h4 id="holder"> </h4>
+                <h5 id="holderSymbol"> </h5><a id="diference"></a>
+            </div>
+
+            <div class="col-sm-3 col-xs-3 col-md-2 col-lg-2 card-body" id="openCard">
+
+                <p class="card-text">Open:<a id="open"></a></p>
+                <p class="card-text">High:<a id="high"></a></p>
+            </div>
+            <div class="col-sm-3 col-xs-3 col-md-2 col-lg-2 card-body" id="lowCard">
+
+                <p class="card-text">Low:<a id="low"></a></p>
+                <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
+            </div>
+
+
+        </div>
+    </div>
 </div>
+<script type="text/javascript" src="/public/js/api.js"></script>
+<script type="text/javascript" src="/public/js/chart.js"></script>
+<script type="text/javascript" src="/public/js/dash-search.js"></script>
+<script> setTimer();</script>
+<script>DefineStock();</script>
+
+
+
 </div>

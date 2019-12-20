@@ -11,11 +11,6 @@
   margin-right: 1em !important;
 }
 
-.nav-link:hover {
-  background: #943d3d;
-  color: #1b0e02;
-}
-
 .header {
   background-image: url("/public/photos/stock.jpg");
   background-attachment: fixed;
@@ -49,12 +44,15 @@
   width: 100%;
   line-height: 1.5;
 }
-.description button {
+#DescBtn {
+  background: transparent;
   color: #943d3d;
   border-color: #943d3d;
 }
 
-.description button:hover {
+
+
+#DescBtn:hover {
   background: #943d3d;
   color: #1b0e02;
 }
@@ -105,10 +103,6 @@
   border-color: #000000;
 }
 
-.social-icons a:last-child {
-  margin-right: 0;
-}
-
 .social-icons a:hover {
   background-color: #943d3d;
 }
@@ -129,5 +123,5 @@
 .social-icons {
   position: absolute;
   bottom: 5%;
-  left: 82%;
+  
 }

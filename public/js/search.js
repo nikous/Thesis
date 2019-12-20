@@ -222,7 +222,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     //Take stock name from search input
     symbol = document.getElementById('myInput').value;
     console.log(symbol);
-    ;
+
     for (var i = 0; i <= symbols.length; i++) {
 
         if (symbols[i] == symbol) {

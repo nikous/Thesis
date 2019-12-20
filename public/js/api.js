@@ -6,7 +6,7 @@ var high_array = [];
 var low_array = [];
 var volume_array = [];
 var date_array = [];
-var symbol = 'MFST';
+var symbol = 'MSFT';
 
 var date_array_Daily = [];
 var open_array_Daily = [];
@@ -249,6 +249,7 @@ async function getDataDaily(symbol) {
 }
 //ONE DAY
 async function getDataReal(symbol) {
+    console.log(symbol);
 
     if (symbol == null) {
 
