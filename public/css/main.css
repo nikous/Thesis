@@ -80,7 +80,8 @@ body,html{
 
 
 body{
-  background:rgb(195, 198, 201);
+  background:rgb(195, 198, 201) url(../photos/background.svg) no-repeat;
+  background-position: top right;
   width:100%;
   display:grid;
   grid-template-columns:auto;
