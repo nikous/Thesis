@@ -16,6 +16,12 @@
   background: #070000;
 }
 
+.nav-link:hover{
+  color:  #8a3434 !important;
+}
+.navbar-brand:hover {
+  color:  #8a3434 !important;
+}
 /* .nav-link:hover {
   background: #67ad24;
   color: #1b0e02;

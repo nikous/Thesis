@@ -6,7 +6,7 @@ body,html{
 
 .nav-link,
 .navbar-brand {
-  color: #0f0000;
+  color: #fafafa;
   padding: 30px;
   height: 50px;
   line-height: 20px;
@@ -34,10 +34,10 @@ body,html{
 }
 
 .description h1 {
-  color: #0f0000;
+  color: #ffffff;
 }
 .description p {
-  color: #0f0000;
+  color: #ffffff;
   font-size: 20px;
   width: 100%;
   line-height: 1.5;
@@ -80,7 +80,7 @@ body,html{
 
 
 body{
-  background:rgb(195, 198, 201) url(../photos/background.svg) no-repeat;
+  background:rgb(195, 198, 201) url(../photos/Group\ 1.svg) no-repeat;
   background-position: top right;
   width:100%;
   display:grid;
