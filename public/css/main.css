@@ -18,7 +18,7 @@ body,html{
   color:  #8a3434 !important;
 }
 .nav-link {
-  margin-right: 2em !important;
+  margin-right: 3em !important;
 }
 .navbardiv{
   min-height: 76px;
@@ -104,7 +104,7 @@ svg{
 }
 
 svg #Browser{
-  animation-duration: 1.5s;
+  animation-duration: 1.8s;
   animation-name:animateBrowser;
   animation-iteration-count: infinite;
 animation-direction: alternate;
@@ -117,7 +117,7 @@ mix-blend-mode:normal;
     opacity:0;
   }
   to{
-    transform:translateX(170px) translateY(-160px);
+    transform:translateX(190px) translateY(-195px);
     opacity:1;  }
 }
 
