@@ -1,4 +1,4 @@
 
-$(document).ready(function () {
-  $(".header").height($(window).height());
-});
+// $(document).ready(function () {
+//   $(".homepage").height($(window).height());
+// });
