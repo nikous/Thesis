@@ -17,10 +17,10 @@
 }
 
 .nav-link:hover{
-  color:  #8a3434 !important;
+  color:#5B0005 !important;
 }
 .navbar-brand:hover {
-  color:  #8a3434 !important;
+  color: #5B0005 !important;
 }
 /* .nav-link:hover {
   background: #67ad24;
@@ -35,7 +35,7 @@
   padding: 2em;
 }
 .description p {
-  color: #1b0e02;
+  color: #000000;
   font-size: 20px;
   width: 70%;
   line-height: 1.5;
@@ -46,7 +46,7 @@
 }
 
 .dev-icons .list-inline-item i:hover {
-  color: #943d3d;
+  color: #5B0005;
 }
 
 .container-stock {
@@ -68,31 +68,31 @@
 }
 
 .list-group .badge {
-  background: #943d3d;
+  background: #5B0005;
 }
 .list-group .link:hover {
-  color: #943d3d;
+  color: #5B0005;
 }
 
 .list-group .link {
-  color: #1b0e02;
+  color: #000000;
 }
 
 
 .danger {
-  border-color: #943d3d;
-  color:#943d3d;
+  border-color: #5B0005;
+  color:#5B0005;
 }
 
 .danger:hover {
-  background:#943d3d;
+  background:#5B0005;
   color: white;
 }
 
 .buttonStock {
   display: inline-block;
   border-radius: 4px;
-  background-color: #943d3d;
+  background-color: #5B0005;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -130,4 +130,10 @@
   right: 0;
 }
 
+.container-navbar,.row-nav{
+  height:76px;
+  }
 
+#emptyContainer{
+  min-height: 60px;
+}

@@ -12,10 +12,10 @@ body,html{
   line-height: 20px;
 }
 .nav-link:hover{
-  color:  #8a3434 !important;
+  color:  #5B0005 !important;
 }
 .navbar-brand:hover {
-  color:  #8a3434 !important;
+  color: #5B0005 !important;
 }
 .nav-link {
   margin-right: 3em !important;
@@ -45,8 +45,8 @@ body,html{
 
 #DescBtn {
   background: transparent;
-  color: #1b0e02;
-  background: #8a3434;
+  color: #000000;
+  background: #5B0005;
 }
 
 #DescBtn:hover {
@@ -55,7 +55,7 @@ body,html{
 }
 
 .social-icons a:hover {
-  background-color: #8a3434;
+  background-color: #5B0005;
 }
 
 .social-icons a {

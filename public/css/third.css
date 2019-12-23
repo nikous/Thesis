@@ -22,7 +22,7 @@ input[type=text] {
 
 input[type=submit] {
 
-  background-color: #943d3d;
+  background-color: #5B0005;
   color: #fff;
 }
 
@@ -60,7 +60,7 @@ input[type=submit] {
 .autocomplete-active {
 
   /*when navigating through the items using the arrow keys:*/
-  background-color: #943d3d !important;
+  background-color: #5B0005 !important;
   color: #ffffff;
 }
 
@@ -116,7 +116,7 @@ background: rgb(255, 255, 255);
 
 #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
 
-  color:#943d3d;
+  color:#5B0005;
   background-color: transparent;
   border-color: transparent transparent #f3f3f3;
   border-bottom: 4px solid !important;
@@ -128,7 +128,7 @@ background: rgb(255, 255, 255);
 
   border: 1px solid transparent;
   
-  color: #943d3d;
+  color: #5B0005;
   font-size: 15px;
 }
 
@@ -169,13 +169,13 @@ background: rgb(255, 255, 255);
 
 #open,#PrevClose,#low,#high{
 
-  color: #943d3d;
+  color: #5B0005;
 }
 
 #gettingValuesExample{
   min-height: 24px;
   padding:0;
-  color: #943d3d;
+  color: #5B0005;
 }
 .row{  
    
@@ -190,9 +190,6 @@ background: rgb(255, 255, 255);
   float:left; 
 }
 
-.container-navbar,.row-nav{
-height:76px;
-}
 divs{
   min-height: 74px;
   padding:0;

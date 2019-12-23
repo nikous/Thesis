@@ -81,13 +81,21 @@ router.post('/getStock/:symbol', (req, res) => {
     const user = req.user._id;
     const symbol = req.params.symbol;
 
-    //Add Stock to users stock array 
-    // User.findOneAndUpdate({ _id: user }, { '$push': { stock: stock } }, (err, doc) => {
-    User.findOneAndUpdate({ _id: user }, { '$push': { stock: symbol } }, (err, doc) => {
-        if (err) {
-            console.log("Something wrong when updating data!");
+    User.findOne({ stock: symbol }).then(symbol => {
+        if (symbol) {
+            errors.push({ msg: 'Stock already exists' });
+
+        } else {
+            //Add Stock to users stock array 
+            // User.findOneAndUpdate({ _id: user }, { '$push': { stock: stock } }, (err, doc) => {
+            User.findOneAndUpdate({ _id: user }, { '$push': { stock: symbol } }, (err, doc) => {
+
+                if (err) {
+                    console.log("Something wrong when updating data!");
+                }
+                console.log(doc);
+            });
         }
-        console.log(doc);
     });
 });
 

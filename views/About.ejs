@@ -1,9 +1,19 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
 </head>
-<% include ./navbar %>
-<div class="spacer10"></div>
-<div class="container-fluid">
+<div class="container-navbar">
+
+    <div class="row-nav">
+        <% include ./navbar %>
+    </div>
+</div>
+<!-- <div class="spacer10"></div> -->
+<div class="container-fluid" id="aboutDesc">
+    <div class="row">
+        <div class="col-12" id="emptyContainer">
+
+        </div>
+    </div>
     <div class="row">
         <div class=" col-md-7 ">
             <p class="text">
@@ -25,7 +35,8 @@
                 close, per a CNBC survey.
             </p>
         </div>
-        <div class="spacer10"></div>
+    </div>
+    <div class="row">
         <div class="col-md-7">
             <div class="subheading mb-7">Programming Languages &amp; Tools</div>
             <ul class="list-inline dev-icons">
@@ -52,7 +63,7 @@
             <ul class="fa-ul mb-0">
                 <li>
                     <i class="fa-li fa fa-check"></i>
-                    Mobile-First, Responsive Design
+                    Desktop-First, Responsive Design
                 </li>
                 <li>
                     <i class="fa-li fa fa-check"></i>
