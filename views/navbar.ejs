@@ -1,41 +1,62 @@
 <div class="navbar navbar-expand-lg fixed-top ">
+
     <a class="navbar-brand" href="homepage">Logo</a>
+
     <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
+
     </button>
+
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
+
         <ul class="navbar-nav mr-auto "></ul>
+
         <ul class="navbar-nav">
 
             <li class="nav-item">
+
                 <a class="nav-link" href="about">How it works</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="stocks">Stocks</a>
+
             </li>
 
+            <li class="nav-item">
+
+                <a class="nav-link" href="stocks">Stocks</a>
+
+            </li>
 
             <%if (user) { %>
+
             <li class="nav-item dropdown">
+
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <%=user.name %></a>
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
                     <a class="dropdown-item" href="users/login">Profile</a>
+
                     <a class="dropdown-item" href="users/logout">Log out</a>
+
                 </div>
 
             </li>
+
             <% } else {%>
+
             <li class="nav-item">
+
                 <a class="nav-link" href="users/login">Login</a>
+
             </li>
+
             <%}%>
-                </a>
-                
-
-
+           
         </ul>
+
     </div>
+
 </div>

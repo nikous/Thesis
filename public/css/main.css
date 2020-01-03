@@ -1,30 +1,36 @@
-body,html{
-  height: 100vh;
-  margin:0;
- padding:0;
-}
 
+
+/* Set up color,hover width and height of navbar */
 .nav-link,
 .navbar-brand {
+
   color: #fafafa;
   padding: 30px;
   height: 50px;
   line-height: 20px;
 }
+
 .nav-link:hover{
+
   color:  #5B0005 !important;
 }
+
 .navbar-brand:hover {
+
   color: #5B0005 !important;
 }
+
 .nav-link {
+
   margin-right: 3em !important;
 }
+
 .navbardiv{
+
   min-height: 76px;
 }
 
-
+/* Position of the welcome text in homepage */
 .description {
 
   align-self:center;
@@ -34,31 +40,39 @@ body,html{
 }
 
 .description h1 {
+
   color: #ffffff;
 }
+
 .description p {
+
   color: #ffffff;
   font-size: 20px;
   width: 100%;
   line-height: 1.5;
 }
 
+/* Sign up Btn  */
 #DescBtn {
+
   background: transparent;
   color: #000000;
   background: #5B0005;
 }
 
 #DescBtn:hover {
-  background-color: #cc1e1e;
 
+  background-color: #cc1e1e;
 }
 
+/*social Icons at the bottom page of welcome page */
 .social-icons a:hover {
+
   background-color: #5B0005;
 }
 
 .social-icons a {
+
   display: inline-block;
   height: 3.5rem;
   width: 3.5rem;
@@ -70,53 +84,67 @@ body,html{
   line-height: 3.5rem;
   margin-right: 1rem;
 }
-#socialRow{
-  min-height: 56px;
 
+#socialRow{
+
+  min-height: 56px;
 }
 
-
-
-
-
+/* Add background svg to homepage */
 body{
+
   background:rgb(195, 198, 201) url(../photos/Group\ 1.svg) no-repeat;
   background-position: top right;
+  background-attachment: scroll;
+  height: 100vh;
   width:100%;
   display:grid;
   grid-template-columns:auto;
+  margin:0;
+  padding:0;
 }
+
 #svg{
+
   padding-right:0px;
 }
 
+/* Set svg to homepage at center  */
 svg{
+
   width: 400px;
   align-self:center;
   justify-self: center;
   margin-left:250px;
   margin-top:100px;
-
-
 }
+
 #rowHome{
+
   margin:0;
 }
 
+/* Animation to make arrow move  */
 svg #Browser{
+
   animation-duration: 1.8s;
   animation-name:animateBrowser;
   animation-iteration-count: infinite;
-animation-direction: alternate;
-mix-blend-mode:normal;
+  animation-direction: alternate;
+  mix-blend-mode:normal;
 }
 
+/* Where to move arrow  */
 @keyframes animateBrowser {
+
   from{
+
     transform:translateX(0px) translateY(0px);
     opacity:0;
   }
+
   to{
+
     transform:translateX(190px) translateY(-195px);
     opacity:1;  }
 }

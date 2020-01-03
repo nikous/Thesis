@@ -1,24 +1,38 @@
+// Web application framework for Node. js to bulit servers
 const express = require('express');
+
+// Require it to use ejs 
 const expressLayouts = require('express-ejs-layouts');
+
+// Mongoose provides a straight-forward, 
+// schema-based solution to model your application data.
 const mongoose = require('mongoose');
+
+// flash is a special area of the session used for storing messages
 const flash = require('connect-flash');
+
+// Require expres session to communicate data to middleware that's 
+// executed later, or to retrieve it later on, on subsequent requests.
 const session = require('express-session');
+
+// Require passport to authenitcate user to login 
 const passport = require('passport');
+
+// Require fetch to rovides a JavaScript
+// interface for accessing and manipulating 
+// parts of the HTTP pipeline, such as requests and responses
 const fetch = require('node-fetch');
+
+// Start express
 const app = express();
 
-// require('chartjs-plugin-crosshair');
-// app.use('chartjs-plugin-crosshair', express.static(__dirname + '/node_modules/chartjs-plugin-crosshair/dist/'));
-
-
-
-//Require .env to server
+// Require .env to server
 require('dotenv').config();
 
 // Passport Config
 require('./config/passport')(passport);
 
-//Passport middleware
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -27,72 +41,83 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
+
     .connect(
+
         db,
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
+
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-//EJS
+// EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-//Bodyparser
+// Bodyparser
 app.use(express.urlencoded({ extended: true }));
 
-//Express-session
+// Express-session
 app.use(
+
     session({
+
         secret: 'secret',
         resave: true,
         saveUninitialized: true
     })
 );
 
+// Use passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-//connect flash
+// Connect flash
 app.use(flash());
 
-//Global vars
+// Global vars
 app.use((req, res, next) => {
+
+    // Messages
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
+
     next();
 });
 
-//Routes
+// Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 
-//Middleware for my static files
+// Middleware for my static files
 app.use('/public', express.static('public'));
 
-//Middleware for my incoming json data
+// Middleware for my incoming json data
 app.use(express.json());
 
-//Take Stocks name from use call Api and send response to client
+// Take Stocks name from clinet, calls Api and send response to client
+// Weekly
 app.get('/getApi/:symbol', async (request, response) => {
-    const api_key = process.env.API_KEY;
+
+    const api_key = process.env.API_KEY;    // Takes api key from .env file
     const symbol = request.params.symbol;
     const api_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=' + symbol + '&apikey=' + api_key + '';
     const fetch_response = await fetch(api_url);
-    const json = await fetch_response.json();
+    const json = await fetch_response.json();       // Wait to fetch json from api
 
     console.log(request.params.symbol);
     console.log(api_url);
 
-
-    response.json(json);
-
+    response.json(json);    // Send response to client
     exports.symbol = request.params.symbol;
 });
 
+// Take Stocks name from clinet, calls Api and send response to client
+// Daily
 app.get('/getAp/:symbol', async (request, response) => {
+
     const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
     const api_url_daily = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&outputsize=compact&apikey=' + api_key + '';
@@ -103,10 +128,12 @@ app.get('/getAp/:symbol', async (request, response) => {
     console.log(api_url_daily);
 
     response.json(dailyjson);
-
 });
 
+// Take Stocks name from clinet, calls Api and send response to client
+// IntraDay
 app.get('/getAps/:symbol', async (request, response) => {
+
     const api_key = process.env.API_KEY;
     const symbol = request.params.symbol;
     const api_url_Real = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=5min&outputsize=compact&apikey=' + api_key + '';
@@ -117,16 +144,9 @@ app.get('/getAps/:symbol', async (request, response) => {
     console.log(api_url_Real);
 
     response.json(Realjson);
-
 });
 
-app.post('/getApi', (request, response) => {
-    console.log('I got a request');
-    console.log(request.body);
-    console.log(request.array);
-    response.json(request.body);
-});
-
+// Use port 1200 when run locally when run on heroku use their port
 const PORT = process.env.PORT || 1200;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

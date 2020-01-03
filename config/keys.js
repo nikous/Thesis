@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-//Pasword is in the .env file
+//Pasword to connect to mongodb is in the .env file
 pass = process.env.PASS;
 
 dbPassword = 'mongodb+srv://nickous:' + pass + '@database-keiop.mongodb.net/test?retryWrites=true&w=majority';

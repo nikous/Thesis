@@ -1,7 +1,8 @@
 
-
+/* Set up color,hover width and height of navbar */
 .nav-link,
 .navbar-brand {
+
   color: #fcfcfc;
   cursor: pointer;
   padding: 30px;
@@ -10,86 +11,66 @@
 }
 
 .nav-link {
+
   margin-right: 2em !important;
 }
+
 .navbar {
+
   background: #070000;
 }
 
+/* change color of links when hover */
 .nav-link:hover{
+
   color:#5B0005 !important;
 }
+
+/* hover logo */
 .navbar-brand:hover {
+
   color: #5B0005 !important;
 }
-/* .nav-link:hover {
-  background: #67ad24;
-  color: #1b0e02;
-} */
 
+/* Text in How it works page */
 .description {
+
   position: absolute;
   top: 15%;
   left: 15%;
   margin: auto;
   padding: 2em;
 }
+
 .description p {
+
   color: #000000;
   font-size: 20px;
   width: 70%;
   line-height: 1.5;
 }
 
+/* Icons of used tools in How it works page */
 .dev-icons {
+
   font-size: 3rem;
 }
 
 .dev-icons .list-inline-item i:hover {
+
   color: #5B0005;
 }
 
+/* Add margin-left to container at Stocks page */
 .container-stock {
-  /* remember to set a width */
+  
   margin-left: 2%;
-
   } 
-/* .container-stock .list-group {
-  margin-top: 26%;
-} */
-.spacer10 {
-  height: 110px;
-  width: 100%;
-  font-size: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  display: block;
-}
-
-.list-group .badge {
-  background: #5B0005;
-}
-.list-group .link:hover {
-  color: #5B0005;
-}
-
-.list-group .link {
-  color: #000000;
-}
 
 
-.danger {
-  border-color: #5B0005;
-  color:#5B0005;
-}
-
-.danger:hover {
-  background:#5B0005;
-  color: white;
-}
-
+/* Follow Stock btn at Stocks page */
 .buttonStock {
+
   display: inline-block;
   border-radius: 4px;
   background-color: #5B0005;
@@ -98,14 +79,15 @@
   text-align: center;
   font-size: 15px;
   padding: 20px;
- 
   width: 150px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
 }
 
+/* Create animation for Follow Stock btn */
 .buttonStock span {
+
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -113,6 +95,7 @@
 }
 
 .buttonStock span:after {
+
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -122,18 +105,24 @@
 }
 
 .buttonStock:hover span {
+
   padding-right: 25px;
 }
 
 .buttonStock:hover span:after {
+
   opacity: 1;
   right: 0;
 }
 
+/* Set height of navbars container  */
 .container-navbar,.row-nav{
+
   height:76px;
   }
 
+/* for counter in top of Stocks page */
 #emptyContainer{
+
   min-height: 60px;
 }

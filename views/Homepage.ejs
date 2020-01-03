@@ -1,30 +1,45 @@
 <head>
+
+
     <link rel="stylesheet" type="text/css" href="/public/css/main.css" />
 </head>
 
 <body>
+
+    <!-- Container for Dashboard -->
     <div class="col-12 navbardiv">
+
         <% include ./navbar %>
+
     </div>
+
+    <!-- Container for  Welcome text and Register btn -->
     <div class="homepage">
 
         <div class="row" id="rowHome">
+
             <div class=" description col-sm-4 col-xs-4 col-md-4 col-lg-4">
+
                 <h1>
                     Welcome to Nstocks
                 </h1>
 
                 <p>Sign up and track your stocks</p>
+
                 <a href="/users/register" class="btn" id="DescBtn">Sign Up</a>
+
             </div>
 
-
+            <!-- Container for  SVG file -->
             <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8" id="svg">
+
                 <% include ./svg %>
+
             </div>
 
         </div>
 
+        <!-- Container for  social icons which is fixed to bottom of page -->
         <div class="fixed-bottom row" id=socialRow>
 
             <div class="social-icons col-12  ">
@@ -32,12 +47,17 @@
                 <a href="https://github.com/nikous/thesis" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
+
                 <a href="https://www.facebook.com/papaoik" target="_blank">
                     <i class="fab fa-facebook-f"></i>
                 </a>
+
             </div>
+
         </div>
+
     </div>
+
     <script type="text/javascript" src="/public/js/main.js"></script>
 
 </body>

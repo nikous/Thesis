@@ -34,11 +34,6 @@ let close_labels_3Days_chart = [];
 let date_labels_1Month_chart = [];
 let close_labels_1Month_chart = [];
 
-let date_labels_1Year_chart = [];
-let close_labels_1Year_chart = [];
-
-let date_labels_5Years_chart = [];
-let close_labels_5Years_chart = [];
 
 async function chartIt(symbol, destroy) {
 
@@ -624,10 +619,10 @@ async function chartIt1Year(symbol, destroy) {
         type: 'line',
 
         data: {
-            labels: date_labels_1Year_chart,
+            labels: year_labels,
             datasets: [{
                 label: 'Close',
-                data: close_labels_1Year_chart,
+                data: Yearclose_labels,
                 fill: false,
                 backgroundColor:
                     'green'
@@ -737,10 +732,10 @@ async function chartIt5Years(symbol, destroy) {
         type: 'line',
 
         data: {
-            labels: date_labels_5Years_chart,
+            labels: fiveYear_labels,
             datasets: [{
                 label: 'Close',
-                data: close_labels_5Years_chart,
+                data: fiveYearclose_labels,
                 fill: false,
                 backgroundColor:
                     'green'
