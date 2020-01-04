@@ -126,3 +126,29 @@
 
   min-height: 60px;
 }
+
+/* Change btn of login btn */
+#loginBtn{
+  background-color: #5B0005;
+  border: none;
+}
+
+#loginBtn:hover {
+
+  background-color: #cc1e1e;
+}
+
+/* Change btn of register */
+#registerBtn{
+  background-color: #5B0005;
+  border: none;
+}
+
+#registerBtn:hover {
+
+  background-color: #cc1e1e;
+}
+
+#loginText{
+  color: #5B0005;
+}

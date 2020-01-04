@@ -1,5 +1,6 @@
 <head>
 
+  <!-------------------------Add css to ejs file------------------------>
   <link rel="stylesheet" type="text/css" href="/public/css/secondary.css">
   </link>
 
@@ -119,7 +120,7 @@
 
                 <div class="row" id="chartContent">
 
-                <!-- -------------------Charts-------------------->
+                <!-- -------------------------Charts-------------------------------->
                 <div class="col-sm-11 col-xs-11 col-md-8 col-lg-9 tab-content " id="nav-tabContent">
                     
                     <!-- Chart 1 Day -->
@@ -130,6 +131,8 @@
 
                       <script>
 
+                        // Wait for fuction chartIt1Day done first because it makes the Api call
+                        // then call the function chartIt3Days
                         $.when(chartIt1Day()).done(function () { chartIt3Days(); });
 
                       </script> 
@@ -152,6 +155,8 @@
                       
                       <script>
 
+                        // Wait for fuction chartIt1Month done first because it makes the Api call
+                        // then call the chartIt4Months 
                         $.when(chartIt1Month()).done(function () { chartIt4Months(); });
 
                       </script>
@@ -188,8 +193,10 @@
                      
                      <script>
 
+                      // Wait for fuction chartIt done first because it makes the Api call
                       $.when(chartIt()).done(function () {
 
+                        // Then call the other chart functions 
                         chartIt1Year();
                         chartIt5Years();
 
@@ -242,7 +249,10 @@
 
   <script type="text/javascript" src="/public/js/search.js"></script>
   
+  <!-- start function when user writing to search input to find symbols in csv file -->
   <script> searchStock();</script>
+
+  <!-- When opening stocks page start countdown for next Search -->
   <script> setTimer();</script>
 
 </body>

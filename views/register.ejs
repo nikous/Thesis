@@ -1,3 +1,9 @@
+<head>
+
+    <!-------------------------Add css to ejs file--------------------------->
+    <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
+
+</head>
 <div class="row mt-5">
 
     <div class="col-md-6 m-auto">
@@ -58,7 +64,7 @@
                 </div>
 
                 <!-- Submit btn -->
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block" id="registerBtn">
 
                     Register
 
@@ -66,9 +72,10 @@
 
             </form>
 
+            <!-- If you dont have acoount go to Login page  -->
             <p class="lead mt-4">Have An Account?
 
-                <a href="/users/login">Login</a>
+                <a href="/users/login" id="loginText">Login</a>
 
             </p>
 

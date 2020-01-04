@@ -14,7 +14,7 @@ const brotliSettings = {
 };
 
 // Choose files from these folders to  compress
-var dirs = ['public/css', 'routes', 'views', 'models', 'config', 'public/js'];
+var dirs = ['../thesis', 'public/css', 'routes', 'views', 'models', 'config', 'public/js'];
 
 // For  each dir if file ends to .js, .css, .ejs, .html compress them
 dirs.forEach(dir => {

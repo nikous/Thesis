@@ -1,18 +1,19 @@
 
+//Arrays for symbols and definition of stocks 
 let id = [];
 let symbols = [];
 let define = [];
 
-
+// Search stocks name to csv file
 async function searchStock() {
-    const response = await fetch('../public/data/data_stock.csv');
 
+    const response = await fetch('../public/data/data_stock.csv');  // Fetch csv file 
+    const data = await response.text(); // Response data 
+    const rows = data.split('\n').slice(1); // Split to rows csv file
 
-    const data = await response.text();
-    const rows = data.split('\n').slice(1);
-
-
+    // Push each row to an array ,Stock symbol array and Definition of the stock array
     rows.forEach(elt => {
+
         const row = elt.split(',');
         const id = row[0];
         const def = row[1];
@@ -20,17 +21,22 @@ async function searchStock() {
         define.push(row[1]);
     });
 
+    // Autocomplete function ,Starts when writing on search input
     autocomplete(document.getElementById("myInput"), symbols, rows, define);
 };
 
 
 function autocomplete(inp, arr, arr1, arr2) {
+
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
+
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
+
         var a, b, i, c, val = this.value;
+
         /*close any already open lists of autocompleted values*/
         closeAllLists();
 
@@ -40,9 +46,7 @@ function autocomplete(inp, arr, arr1, arr2) {
 
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
-
         a.setAttribute("id", this.id + "autocomplete-list");
-
         a.setAttribute("class", "autocomplete-items");
 
         /*append the DIV element as a child of the autocomplete container:*/
@@ -52,17 +56,13 @@ function autocomplete(inp, arr, arr1, arr2) {
         for (i = 0; i < arr.length; i++) {
 
             /*check if the item starts with the same letters as the text field value:*/
-
             if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-
-
 
                 /*create a DIV element for each matching element:*/
                 b = document.createElement("DIV");
 
                 /*make the matching letters bold:*/
                 b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-
                 b.innerHTML += arr1[i].substr(val.length);
 
                 /*insert a input field that will hold the current array item's value:*/
@@ -77,7 +77,6 @@ function autocomplete(inp, arr, arr1, arr2) {
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
-
                 });
 
                 a.appendChild(b);
@@ -90,7 +89,6 @@ function autocomplete(inp, arr, arr1, arr2) {
 
                 /*make the matching letters bold:*/
                 c.innerHTML = "<strong>" + arr2[i].substr(0, val.length) + "</strong>";
-
                 c.innerHTML += arr2[i].substr(val.length);
 
                 /*insert a input field that will hold the current array item's value:*/
@@ -100,19 +98,16 @@ function autocomplete(inp, arr, arr1, arr2) {
                 c.addEventListener("click", function (e) {
 
                     /*insert the value for the autocomplete text field:*/
-
                     inp.value = this.getElementsByTagName("input")[0].value;
+
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
-
                     closeAllLists();
                 });
 
                 a.appendChild(c);
             }
-
         }
-
     });
 
     /*execute a function presses a key on the keyboard:*/
@@ -151,8 +146,8 @@ function autocomplete(inp, arr, arr1, arr2) {
                 if (x) x[currentFocus].click();
             }
         }
-
     });
+
     function addActive(x) {
 
         /*a function to classify an item as "active":*/
@@ -166,17 +161,17 @@ function autocomplete(inp, arr, arr1, arr2) {
 
         /*add class "autocomplete-active":*/
         x[currentFocus].classList.add("autocomplete-active");
-
     }
+
     function removeActive(x) {
 
         /*a function to remove the "active" class from all autocomplete items:*/
         for (var i = 0; i < x.length; i++) {
 
             x[i].classList.remove("autocomplete-active");
-
         }
     }
+
     function closeAllLists(elmnt) {
 
         /*close all autocomplete lists in the document,
@@ -189,40 +184,49 @@ function autocomplete(inp, arr, arr1, arr2) {
 
                 x[i].parentNode.removeChild(x[i]);
             }
-
         }
-
     }
-
 };
+
+// Timer 
 function setTimer() {
+
     var timer = new Timer();
+
+    // Start countdown for 1 minute
     timer.start({ countdown: true, startValues: { seconds: 60 } });
+
+    // Show timer in the page 
     timer.addEventListener('secondsUpdated', function (e) {
+
         $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
     });
 
+    // If the countdown doesn't finish disable search btn
     if (timer.getTimeValues().seconds == 00) {
+
         document.getElementById("suButton").disabled = true;
     }
+
+    // When countdown finish enable search btn 
     timer.addEventListener('targetAchieved', function (e) {
+
         document.getElementById("suButton").disabled = false;
         $('#gettingValuesExample .seconds').html('');
     });
-
 };
 
-
-
-/*execute function when someone clicks in the document:*/
+// Execute function when someone clicks in the document
 document.getElementById('suButton').addEventListener("click", function (e) {
-    var number;
 
-    setTimer();
-    //Take stock name from search input
+    var number; // Counter
+
+    setTimer(); // Start Timer when click search---> Countdown 1min 
+
+    // Take stock name from search input
     symbol = document.getElementById('myInput').value;
-    console.log(symbol);
 
+    // Search where is symbol in the array and take the  number 
     for (var i = 0; i <= symbols.length; i++) {
 
         if (symbols[i] == symbol) {
@@ -231,11 +235,10 @@ document.getElementById('suButton').addEventListener("click", function (e) {
         };
     };
 
-    //if change true update chart
-    var change = true;
-    var stock = symbol;
+    var change = true;  // If change true update chart
+    var stock = symbol; // Stocks symbol
 
-    //Reset arrays 
+    // Reset arrays 
     open_array = [];
     close_array = [];
     high_array = [];
@@ -290,34 +293,35 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     date_labels_4Months_chart = [];
     close_labels_4Months_chart = [];
 
-    date_labels_1Year_chart = [];
-    close_labels_1Year_chart = [];
+    fiveYear_labels = [];
+    fiveYearclose_labels = [];
 
-    date_labels_5Years_chart = [];
-    close_labels_5Years_chart = [];
+    year_labels = [];
+    Yearclose_labels = [];
 
-
-
-    //Reload charts with new Data
+    // Refresh charts with new Data
     reload();
 
-    //sleep function
+    // Sleep function
     function sleep(ms) {
 
         return new Promise(resolve => setTimeout(resolve, ms));
-
     };
 
+    // Refresh function
     async function reload() {
 
+        // Refresh tabs and stock  without refreshing the page using jquery
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
         $("#stock").show();
 
-        //Wait to refresh  div and then add the new charts
+        // Wait to refresh  div and then add the new charts
         sleep(1000).then(() => {
 
+            // When click search go back to the first Tab
             $('.nav-tabs a:first').tab('show');
 
+            // Refresh charts without refreshing the page 
             chartIt1Day(symbol, change);
             chartIt3Days(symbol, change);
             chartIt1Month(symbol, change);
@@ -326,23 +330,23 @@ document.getElementById('suButton').addEventListener("click", function (e) {
             chartIt1Year(symbol, change);
             chartIt5Years(symbol, change);
 
+            // Refresh cardBody without refreshing the page
             document.getElementById("holder").innerHTML = define[number];
             document.getElementById("holderSymbol").innerHTML = symbol;
 
-
-
         });
-
     };
-
-
-    // $("#cardBody").attr("value", function (i, origValue) { return stock; })
 }, { passive: true });
 
-//send stock to database and stops form to reload the page
+// Send stock to database and stops form to reload the page
 $('#send').submit(function (e) {
+
+    // Stop form from refreshing page
     e.preventDefault();
+
+    // Send stock to server
     $.ajax({
+
         url: '/getStock/' + symbol + '',
         dataType: 'text',
         type: 'post',
@@ -350,7 +354,9 @@ $('#send').submit(function (e) {
     });
 });
 
+// When click Follow stock hide btn 
 $(document).ready(function () {
+
     $(document).on('click', '#stock', function () {
 
         $(this).hide();

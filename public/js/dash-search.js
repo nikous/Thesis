@@ -1,24 +1,30 @@
+// Arrays of followed stocks ,definition and symbol of stocks 
 let followed_stocks = [];
 let id = [];
 let symbols = [];
 let define = [];
 var symbolStock;
 
+// Set timer to start countdown until next search 
 function setTimer() {
 
     var timer = new Timer();
 
+    // Start countdown for 1 minute
     timer.start({ countdown: true, startValues: { seconds: 60 } });
     timer.addEventListener('secondsUpdated', function (e) {
 
+        // Add timer to Userpage 
         $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
     });
 
+    // Disable clicking stocks on list at userpage until countdown finish
     if (timer.getTimeValues().seconds == 00) {
 
         document.getElementById("listStocks").disabled = true;
     }
 
+    // Enable clicking stocks on list at userpage when countdown finish
     timer.addEventListener('targetAchieved', function (e) {
 
         document.getElementById("listStocks").disabled = false;
@@ -26,12 +32,14 @@ function setTimer() {
     });
 };
 
+// Find Definition and symbol of the stock which clicked at list on userpage
 async function DefineStock() {
 
-    const response = await fetch('../public/data/data_stock.csv');
+    const response = await fetch('../public/data/data_stock.csv');  // Wait to fetch data 
     const data = await response.text();
-    const rows = data.split('\n').slice(1);
+    const rows = data.split('\n').slice(1); //Split csv to rows
 
+    // For each row split them to two arrays symbols and define 
     rows.forEach(elt => {
 
         const row = elt.split(',');
@@ -42,7 +50,7 @@ async function DefineStock() {
         define.push(row[1]);
     });
 }
-
+// Get user data from server
 $.ajax({
 
     url: '/getUser',
@@ -51,8 +59,9 @@ $.ajax({
     cache: false,
     success: function (data) {
 
-        var place;
+        var place; // Counter 
 
+        // Put User's stocks to the list on userpage
         for (var Userstocks in data["stock"]) {
 
             if (data["stock"][Userstocks] != "null") {
@@ -60,6 +69,8 @@ $.ajax({
                 followed_stocks.push(data["stock"][Userstocks]);
             }
         }
+
+        // Find stocks symbol 
         for (var i = 0; i <= symbols.length; i++) {
 
             if (symbols[i] == followed_stocks[0]) {
@@ -68,11 +79,14 @@ $.ajax({
             };
         };
 
-        var change = true;
+        var change = true; // If charts change 
 
+        // Put stocks symbol and definition to cardBody at userpage
         document.getElementById("holder").innerHTML = define[place];
         document.getElementById("holderSymbol").innerHTML = followed_stocks[0];
 
+        // When go to userpage show charts from the first stock at list 
+        // Wait first to call the chart1Day,chart1Month and chartIt because they have the Api calls
         $.when(chartIt1Day(followed_stocks[0], change)).done(function () {
 
             chartIt3Days(followed_stocks[0], change);
@@ -89,7 +103,7 @@ $.ajax({
             chartIt5Years(followed_stocks[0], change);
         });
 
-        console.log(followed_stocks);
+        // Create elements at list. Add stock which user follows 
         for (var i = 0; i < followed_stocks.length; i++) {
 
             var x = document.createElement("LI");
@@ -99,22 +113,21 @@ $.ajax({
             x.id = followed_stocks[i];
             document.getElementById("listStocks").appendChild(x);
             document.getElementById(x.id).className = "list-group-item list-group-item-action d-flex justify-content-between align-items-center";
-
         }
     }
 });
 
 
-
+// When clicking a stock at list search for the stock and visualize it with the charts 
 document.getElementById("listStocks").addEventListener("click", function (e) {
 
     // e.target is our targetted element.
-    // try doing console.log(e.target.nodeName), it will result LI
     if (e.target && e.target.nodeName == "LI") {
 
         symbolStock = e.target.id;
     }
 
+    // Clear arrays to use them again 
     var change = true;
     open_array = [];
     close_array = [];
@@ -176,14 +189,14 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
     date_labels_5Years_chart = [];
     close_labels_5Years_chart = [];
 
-    //Reload charts with new Data
-    const findSymbol = symbols.indexOf(symbolStock);
-    var number = findSymbol;
+    // Reload charts with new Data
+    const findSymbol = symbols.indexOf(symbolStock);     // Find the index of the symbol in symbols array 
+    var number = findSymbol;    // Index of current symbol in symbols array
 
-    reload();
-    setTimer();
+    reload();   // Refresh charts with new data 
+    setTimer(); // Start counter after clicking a stock at list ---> 1 min
 
-    //sleep function
+    // Sleep function
     function sleep(ms) {
 
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -191,15 +204,16 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
 
     async function reload() {
 
+        // Reload nav-tab container
         $("#nav-tabContent").load(window.location.href + " #nav-tabContent");
-        $("#stock").show();
 
         //Wait to refresh  div and then add the new charts
         sleep(1000).then(() => {
 
+            // Go to the first tab after searching stock
             $('.nav-tabs a:first').tab('show');
-            console.log(symbolStock);
 
+            // Call the chart functions
             chartIt1Day(symbolStock, change);
             chartIt3Days(symbolStock, change);
             chartIt1Month(symbolStock, change);
@@ -208,7 +222,7 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
             chartIt1Year(symbolStock, change);
             chartIt5Years(symbolStock, change);
 
-
+            // Add new data at CardBody for the new stock which user clicked at list 
             document.getElementById("holder").innerHTML = define[number];
             document.getElementById("holderSymbol").innerHTML = symbolStock;
         });

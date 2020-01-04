@@ -6,7 +6,7 @@ var high_array = [];
 var low_array = [];
 var volume_array = [];
 var date_array = [];
-var symbol = 'MSFT';
+var symbol = 'MFST';
 
 var date_array_Daily = [];
 var open_array_Daily = [];
@@ -27,35 +27,12 @@ var Yearclose_labels = [];
 
 var fiveYear_labels = [];
 var fiveYearclose_labels = [];
-
+var day = [];
 var high_labels_1Day = [];
 var low_labels_1Day = [];
-var day = [];
 var colorStock;
 
-var today = new Date();              // Date
-var yearly = today.getFullYear();    // Current Year 
-var dAte = new Date();               // Current Day
-var thisMonth = dAte.getMonth() + 1; //Current Month
-var thisDate = dAte.getDate();       //Current Date
-var prevMonths = thisMonth - 1;      //Previous Month
-var prevDate = thisDate - 1;         //Previous Date
-var curDay = dAte.getDate() - 1;
-var numDay = dAte.getDay();
-var numHour = dAte.getHours();
-
-var Years = 0; // Counter
-var CounterDay = 0; // Counter
-
-//Change date from d to dd 
-if (thisDate < 10) {
-
-    thisDate = '0' + thisDate;
-    prevDate = '0' + prevDate;
-
-}
-
-// Function getData wait Ajax function to retrieve data from Api
+//GetData wait Ajax function to retrieve data from weekly Api
 async function getData(symbol) {
 
     if (symbol == null) {
@@ -63,20 +40,35 @@ async function getData(symbol) {
         symbol = 'MSFT';
     }
 
-    // Send stocks name to server and waits to Retrieve data from Api 
+    // Send stocks name to server and Retrieves data from Api 
     await $.ajax({
 
-        url: '/getApi/' + symbol + '',    // Stocks symbol
+        url: '/getApi/' + symbol + '',
         dataType: 'json',
         type: 'get',
         cache: false,
         success: function (data) {
 
             const time = "Weekly Time Series";
-            const json_length = Object.keys(data[time]).length;    // Length of json from Api call
-            var length = json_length - 1;   // Length of the arrays
+            const json_length = Object.keys(data[time]).length; // Length of json 
 
-            // Fill arrays with data from servers json response
+            var length = json_length - 1;   // Length of arrays
+            var today = new Date();         // Current Date
+            var counter = 0;                // Counter
+            var curMonth = today.getMonth() + 1;  // Current Month 
+            var prvMonth = today.getMonth();
+
+            if (curMonth < 10) {    //Add 0 before month if <10 
+
+                curMonth = '0' + curMonth;
+            }
+
+            if (prvMonth < 10) {    //Add 0 before month if <10 
+
+                prvMonth = '0' + prvMonth;
+            }
+
+            //Fill arrays with data from servers json response
             for (var date in data["Weekly Time Series"]) {
 
                 date_array.push(date);
@@ -87,43 +79,69 @@ async function getData(symbol) {
                 volume_array.push(data[time][date]["5. volume"]);
             };
 
-            // Fill in reverse arrays 
-            date_labels = date_array.reverse();
-            open_labels = open_array.reverse();
-            close_labels = close_array.reverse();
-            low_labels = low_array.reverse();
-            high_labels = high_array.reverse();
-            volume_labels = volume_array.reverse();
+            //Fill in reverse arrays to visualize stocks data
+            for (var i = 0; i <= length; i++) {
 
-            // Find current year in json andd put them to an array 
-            for (var i = 0; i <= length; i++) { // problem
+                if (i == 0) {
 
-                if (date_labels[i].includes(yearly)) {
+                    date_labels[0] = date_array[json_length - 1];
+                    open_labels[0] = open_array[json_length - 1];
+                    close_labels[0] = close_array[json_length - 1];
+                    low_labels[0] = low_array[json_length - 1];
+                    high_labels[0] = high_array[json_length - 1];
+                    volume_labels[0] = volume_array[json_length - 1];
+                }
 
-                    year_labels[Years] = date_labels[i];
-                    Yearclose_labels[Years] = close_labels[i]
-                    Years++;
+                else {
+
+                    date_labels[i] = date_array[length - i];
+                    open_labels[i] = open_array[length - i];
+                    close_labels[i] = close_array[length - i];
+                    low_labels[i] = low_array[length - i];
+                    high_labels[i] = high_array[length - i];
+                    volume_labels[i] = volume_array[length - i];
                 }
             };
 
-            Years = 0;
+            // Find index of the current month in current  year ---> END
+            var endMonth = date_labels.findIndex(element => element.includes(today.getFullYear()) && element.endsWith(curMonth, 7));
 
-            // Find last 5 years from json and put it to an array
+            // If month doesn't exist go to previous month 
+            if (endMonth == -1) {
+
+                // Find index of previous month in current year ---> END
+                endMonth = date_labels.findIndex(element => element.includes(today.getFullYear()) && element.endsWith(prvMonth, 7));
+            }
+
+            // Find index of current month in previous year ---> START
+            var startMonth = date_labels.findIndex(element => element.includes(today.getFullYear() - 1) && element.endsWith(curMonth, 7));
+
+            // Fill array from START index to END index 
+            for (var i = startMonth; i <= endMonth; i++) {
+
+                year_labels[counter] = date_labels[i];
+                Yearclose_labels[counter] = close_labels[i]
+                counter++;
+            }
+
+            counter = 0 // set counter to 0
+
+            // Fill the array with data for 5 year 
             for (var j = 5; j >= 0; j--) {
 
                 for (var i = 0; i <= length; i++) {
 
-                    if (date_labels[i].includes(dAte.getFullYear() - j)) { // If includes year(2020-2015) push it to the array
+                    //if date includes year(2020) or previous 5 years push to the array
+                    if (date_labels[i].includes(today.getFullYear() - j)) {
 
-                        fiveYear_labels[Years] = date_labels[i];
-                        fiveYearclose_labels[Years] = close_labels[i]
-                        Years++;
+                        fiveYear_labels[counter] = date_labels[i];
+                        fiveYearclose_labels[counter] = close_labels[i]
+                        counter++;
                     }
                 }
             };
         },
 
-        // If problem with Api call throw error
         error: function (xhr, status, errorThrown) {
 
             console.log('Error happens. Try again.');
@@ -132,7 +150,7 @@ async function getData(symbol) {
     });
 };
 
-//Function getDataDaily wait Ajax function to retrieve data from Api
+//GetDataDaily wait Ajax function to retrieve data from daily Api
 async function getDataDaily(symbol) {
 
     if (symbol == null) {
@@ -140,19 +158,30 @@ async function getDataDaily(symbol) {
         symbol = 'MSFT';
     }
 
-    // Send stocks name to server and waits to Retrieve data from Api 
+    // Send stocks name to server and Retrieves data from Api 
     await $.ajax({
 
-        url: '/getAp/' + symbol + '',    // Stocks symbol
+        url: '/getAp/' + symbol + '',
         dataType: 'json',
         type: 'get',
         cache: false,
         success: function (data) {
 
             const time = "Time Series (Daily)";
-            const symbol = data["Meta Data"]["2. Symbol"];
-            const json_length = Object.keys(data[time]).length; // Length of json from Api call
-            var length = json_length - 1;   // Length of the arrays
+            const json_length = Object.keys(data[time]).length; // Length of json 
+            var length = json_length - 1;                       // Length of arrays
+
+            var month = new Date();                 // Current date
+            var thisMonth = month.getMonth() + 1;   // Current month
+            var thisDate = month.getDate();         // Current day
+            var prevDate = thisDate - 1;            // Previous day
+            var counter = 0;
+
+            if (thisDate < 10) {    //Add 0 before day if <10 
+
+                thisDate = '0' + thisDate;
+                prevDate = '0' + prevDate;
+            }
 
             //Fill arrays with data from servers json response
             for (var date in data["Time Series (Daily)"]) {
@@ -166,30 +195,45 @@ async function getDataDaily(symbol) {
             };
 
             //Fill in reverse arrays to visualize stocks data
-            date_labels_Daily = date_array_Daily.reverse();
-            open_labels_Daily = open_array_Daily.reverse();
-            close_labels_Daily = close_array_Daily.reverse();
-            low_labels_Daily = low_array_Daily.reverse();
-            high_labels_Daily = high_array_Daily.reverse();
-            volume_labels_Daily = volume_array_Daily.reverse();
+            for (var i = 0; i <= length; i++) {
 
-            CounterDay = 0;
+                if (i == 0) {
+
+                    date_labels_Daily[0] = date_array_Daily[json_length - 1];
+                    open_labels_Daily[0] = open_array_Daily[json_length - 1];
+                    close_labels_Daily[0] = close_array_Daily[json_length - 1];
+                    low_labels_Daily[0] = low_array_Daily[json_length - 1];
+                    high_labels_Daily[0] = high_array_Daily[json_length - 1];
+                    volume_labels_Daily[0] = volume_array_Daily[json_length - 1];
+                }
+
+                else {
+
+                    date_labels_Daily[i] = date_array_Daily[length - i];
+                    open_labels_Daily[i] = open_array_Daily[length - i];
+                    close_labels_Daily[i] = close_array_Daily[length - i];
+                    low_labels_Daily[i] = low_array_Daily[length - i];
+                    high_labels_Daily[i] = high_array_Daily[length - i];
+                    volume_labels_Daily[i] = volume_array_Daily[length - i];
+                }
+            };
+
+            // Fill array with data for 1Months
             for (var i = 80; i <= length; i++) {
 
-                date_labels_1Month_chart[CounterDay] = date_labels_Daily[i];
-                close_labels_1Month_chart[CounterDay] = close_labels_Daily[i];
-                CounterDay++;
+                date_labels_1Month_chart[counter] = date_labels_Daily[i];
+                close_labels_1Month_chart[counter] = close_labels_Daily[i];
+                counter++;
             }
 
+            // Fill array with data for 4 Months
             for (var i = 0; i <= length; i++) {
 
                 date_labels_4Months_chart[i] = date_labels_Daily[i];
                 close_labels_4Months_chart[i] = close_labels_Daily[i];
             }
-
         },
 
-        // If problem with Api call throw error
         error: function (xhr, status, errorThrown) {
 
             console.log('Error happens. Try again.');
@@ -197,8 +241,7 @@ async function getDataDaily(symbol) {
         }
     });
 }
-
-//Function getDataReal wait Ajax function to retrieve data from Api
+//GetDataReal wait Ajax function to retrieve data from intraday Api
 async function getDataReal(symbol) {
 
     if (symbol == null) {
@@ -206,7 +249,7 @@ async function getDataReal(symbol) {
         symbol = 'MSFT';
     }
 
-    // Send stocks name to server and waits to Retrieve data from Api 
+    // Send stocks name to server and Retrieves data from Api 
     await $.ajax({
 
         url: '/getAps/' + symbol + '',
@@ -216,8 +259,15 @@ async function getDataReal(symbol) {
         success: function (data) {
 
             const time = "Time Series (5min)";
-            const json_length = Object.keys(data[time]).length; // Length of json from Api call
-            var length = json_length - 1;   // Length of the arrays
+            const json_length = Object.keys(data[time]).length; // Length of json
+            var length = json_length - 1;                       // Length of arrays
+            var day = new Date();                               // Current date                      
+            var curDay = day.getDate() - 1;                     // Current Day
+            var numDay = day.getDay();                          // Number of day in the week 
+            var numHour = day.getHours();                       // Current Hour
+            var curMin = day.getMinutes();                      // Current Minutes
+            var counter = 0;                                    // Counter
+            var dateStock = 0;                                  // Counter for 3days
 
             //Fill arrays with data from servers json response
             for (var date in data["Time Series (5min)"]) {
@@ -230,7 +280,7 @@ async function getDataReal(symbol) {
                 volume_array_Real.push(data[time][date]["5. volume"]);
             };
 
-            // Fill in reverse arrays to visualize stocks data
+            //Fill in reverse arrays to visualize stock's data
             for (var i = 0; i <= length; i++) {
 
                 if (i == 0) {
@@ -254,119 +304,96 @@ async function getDataReal(symbol) {
                 }
             };
 
-            // If its after 4 and not Sunday or Saturday change numday 
-            if (numHour >= 16 && numDay != 6 && numDay != 0) {
+            // If its a day of the week except saturday and sunday and the hour is bigger than 16:35
+            if (numHour >= 16 && curMin >= 35 && numDay != 6 && numDay != 0) {
 
                 curDay = curDay + 1;
             }
 
-            // If its Monday before Stock Market opens go back to Friday
-            if (numDay == 1 && numHour <= 16) {
+            // If its Monday and hour<16:35 go to friday
+            if (numDay == 1 && numHour <= 16 && curMin >= 35) {
 
                 curDay = curDay - 2;
             }
 
-            // If its Sunday go back to Friday
+            // If Sunday go to friday
             if (numDay == 0) {
 
                 curDay = curDay - 1;
             }
 
-            // If its Saturday go to Friday
-            if (numDay == 6) {
-
-                curDay = day.getDate();
-            }
-
-            //If curDay is smaller than 10 add 0 next to number
+            // If date of the month is smaller than 10 add a 0. 3-->03
             if (curDay < 10) {
 
                 curDay = '0' + curDay;
             }
 
-            // If date from json ends with the current date choose them and pass them to the chart arrays
+            // Fill array with data for 1 Day
             for (var i = 0; i <= length; i++) {
 
                 if (date_labels_Real[i].endsWith(curDay, 10)) {
 
-                    high_labels_1Day[CounterDay] = high_labels_Real[i];
-                    low_labels_1Day[CounterDay] = low_labels_Real[i];
-                    date_labels_1Day_chart[CounterDay] = date_labels_Real[i];
-                    close_labels_1Day_chart[CounterDay] = close_labels_Real[i];
-                    CounterDay++;
+                    high_labels_1Day[counter] = high_labels_Real[i];
+                    low_labels_1Day[counter] = low_labels_Real[i];
+                    date_labels_1Day_chart[counter] = date_labels_Real[i];
+                    close_labels_1Day_chart[counter] = close_labels_Real[i];
+                    counter++;
                 }
             }
 
-            var _day = 0; // Counter 
-            var dateStock; // Counter for 3 Days
-
-            // If it sunday go back to thursay
-            if (numDay == 1 && numHour > 16) {
+            // If it's Monday and hour is bigge than 16:35 so data for Monday,friday thursday
+            if (numDay == 1 && numHour >= 16 && curMin >= 35) {
 
                 dateStock = 4;
             }
 
-            // If its Monday and before opens StockMarket go back to thursday
-            else if (numDay == 2 && numHour <= 16) {
+            // If it's Tuesday and before 16:35 show data for Monday,Friday,Thursday
+            else if (numDay == 2 && numHour <= 16 && curMin >= 35) {
 
                 dateStock = 4;
             }
 
-            // If its Monday and StockMarket opens go back thursday
-            else if (numDay == 2 && numHour > 16) {
-
-                dateStock = 5;
-            }
-
-            // If its Thueday and stockMarket is closed go back to thursday
-            else if (numDay == 3 && numHour <= 16) {
+            // If it's Tuesday and after 16:35 show data for Tuesday,Monday,Friday
+            else if (numDay == 2 && numHour > 16 && curMin >= 35) {
 
                 dateStock = 4;
             }
 
-            // If its Thuesday and StockMarket opens go back friday 
-            else if (numDay == 3 && numHour > 16) {
+            // If it's Wednesday and before 16:35 show data for Tuesday,Monday,Friday
+            else if (numDay == 3 && numHour <= 16 && curMin >= 35) {
 
-                dateStock = 5;
+                dateStock = 4;
             }
 
-            // If its thursday and stockMarket is closed go back to friday
-            else if (numDay == 4 && numHour <= 16) {
-
-                dateStock = 5;
-            }
-
-            // If its thursday and StockMarket opens go back Monday
-            else if (numDay == 4 && numHour > 16) {
-
-                dateStock = 3;
-            }
-
-            // Else go back two days
+            // Else show current day if it's after 16:35 and the previous 2 days if it's before 16:35
+            //Show the previous 3 days
             else {
 
                 dateStock = 2;
             }
 
-            // Find data from the array for the 3 days
+            counter = 0;  // Set counter to 0
+
+            // Fill array with data for 3 Days 
             for (dateStock; dateStock >= 0; dateStock--) {
 
                 for (var i = 0; i <= length; i++) {
 
+                    // If date ends with current date or previous 2 days add to array
                     if (date_labels_Real[i].endsWith((curDay - dateStock), 10)) {
 
-                        date_labels_3Days_chart[_day] = date_labels_Real[i];
-                        close_labels_3Days_chart[_day] = close_labels_Real[i];
-                        _day++;
+                        date_labels_3Days_chart[counter] = date_labels_Real[i];
+                        close_labels_3Days_chart[counter] = close_labels_Real[i];
+                        counter++;
                     }
                 }
             };
 
-            var getIndex = 0;
-            var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00")); // End
-            var openIndex = date_array_Real.findIndex(element => element.endsWith("09:45:00")); // Start
+            var getIndex = 0;   // Counter
+            var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00")); // End hour
+            var openIndex = date_array_Real.findIndex(element => element.endsWith("09:45:00")); // Start hour
 
-            // If end = 0 seach where is the time Stock Market Close
+            // If end hour is same with index search for the other end hour and track it's place in the array
             if (secIndex == getIndex) {
 
                 for (i = 1; i <= length; i++) {
@@ -374,13 +401,12 @@ async function getDataReal(symbol) {
                     if (date_array_Real[i].endsWith("16:00:00")) {
 
                         secIndex = i;
-
                         break;
                     }
                 }
             }
 
-            // Find max value of Close
+            // Function to find max of array 
             function indexOfMax(arr) {
 
                 if (arr.length === 0) {
@@ -403,7 +429,7 @@ async function getDataReal(symbol) {
                 return maxIndex;
             }
 
-            // Find minimum value of close
+            // Function to find minimum of array 
             function indexOfMin(arr) {
 
                 if (arr.length === 0) {
@@ -426,17 +452,19 @@ async function getDataReal(symbol) {
                 return minIndex;
             }
 
-            // Find Percentage Change in Stock Price
+            // Difference for current close and previous close 
             var difference = close_array_Real[getIndex] - close_array_Real[secIndex];
+
+            // Percentage Change in Stock Price
             var percentage = ((difference / close_array_Real[secIndex]) * 100);
 
-            // Add values to elements open,high,low,Previous Close on ejs Stocks page
+            // Add open,high,low,previous close to cardBody at stocks and userpage
             document.getElementById("open").innerHTML = " " + open_array_Real[openIndex];
             document.getElementById("high").innerHTML = " " + high_labels_1Day[indexOfMax(close_labels_1Day_chart)];
             document.getElementById("low").innerHTML = " " + low_labels_1Day[indexOfMin(close_labels_1Day_chart)];
             document.getElementById("PrevClose").innerHTML = " " + close_array_Real[secIndex];
 
-            // If Stocks value increased add + symbol and add green color to chart and text
+            // If Percentage Change is increased add + symbol ,green color and up arrow
             if (close_array_Real[getIndex] >= close_array_Real[secIndex]) {
 
                 document.getElementById("diference").innerHTML = " +" + difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&#8593;";
@@ -444,7 +472,7 @@ async function getDataReal(symbol) {
                 colorStock = "green";
             }
 
-            // If Stocks value decreased add red color to chart and text
+            // If Percentage Change is decreased red color and down arrow
             else {
 
                 document.getElementById("diference").innerHTML = difference.toFixed(2) + "&ensp;(" + percentage.toFixed(2) + "%)&nbsp;" + "&darr;";
@@ -453,7 +481,6 @@ async function getDataReal(symbol) {
             }
         },
 
-        // If problem with Api call throw error
         error: function (xhr, status, errorThrown) {
 
             console.log('Error happens. Try again.');
