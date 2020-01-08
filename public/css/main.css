@@ -69,7 +69,8 @@
 
 #DescBtn:hover {
 
-  background-color: #cc1e1e;
+  color:  #ffffff;
+  background-color:#5B0005;
 }
 
 /*social Icons at the bottom page of welcome page */
@@ -157,3 +158,12 @@ svg #Browser{
     opacity:1;  }
 }
 
+#profileBtn:hover{
+  color: #000000;
+  background-color:#5B0005;
+}
+
+#logoutBtn:hover{
+  color: #000000;
+  background-color:#5B0005;
+}

@@ -108,18 +108,18 @@ router.post('/getStock/:symbol', (req, res) => {
     // Find user in database by id 
     const user = req.user._id;
     const symbol = req.params.symbol;
-
+    
     // Find Stock if its already at users database
-    User.findOne({ stock: symbol }).then(symbol => {
+    User.findOne({ stock: symbol }).then(result => {
+         
+        if (result) {
 
-        if (symbol) {
-
-            errors.push({ msg: 'Stock already exists' });
-
-        } else {
+            console.log("already exist");
+        }
+        else {
 
             // If not exist add Stock to users stock array 
-            User.findOneAndUpdate({ _id: user }, { '$push': { stock: symbol } }, (err, doc) => {
+            User.findOneAndUpdate({ _id: user }, { '$push': { stock: req.params.symbol } }, (err, doc) => {
 
                 if (err) {
 
@@ -129,7 +129,7 @@ router.post('/getStock/:symbol', (req, res) => {
                 console.log(doc);
             });
         }
-    });
+     });
 });
 
 //Login handle 

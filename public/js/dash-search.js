@@ -50,6 +50,7 @@ async function DefineStock() {
         define.push(row[1]);
     });
 }
+
 // Get user data from server
 $.ajax({
 
@@ -59,7 +60,7 @@ $.ajax({
     cache: false,
     success: function (data) {
 
-        var place; // Counter 
+        var place=0; // Counter 
 
         // Put User's stocks to the list on userpage
         for (var Userstocks in data["stock"]) {
@@ -116,7 +117,6 @@ $.ajax({
         }
     }
 });
-
 
 // When clicking a stock at list search for the stock and visualize it with the charts 
 document.getElementById("listStocks").addEventListener("click", function (e) {

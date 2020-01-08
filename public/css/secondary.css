@@ -138,26 +138,67 @@
 
 /* Change btn of login btn */
 #loginBtn{
+  color:#000000;
   background-color: #5B0005;
   border: none;
 }
 
 #loginBtn:hover {
 
-  background-color: #cc1e1e;
+  color: #ffffff;
+  background-color:#5B0005;
 }
 
 /* Change btn of register */
 #registerBtn{
+
+  
   background-color: #5B0005;
   border: none;
 }
 
 #registerBtn:hover {
 
-  background-color: #cc1e1e;
+  color: #ffffff;
+  background-color:#5B0005;
 }
 
 #loginText{
+
   color: #5B0005;
 }
+
+.list-group-item-action{
+
+  color: #000000;
+  /* background-color:#5B0005; */
+}
+
+.list-group-item-action:hover{
+
+  color: #ffffff;
+  background-color:#5B0005;
+}
+
+#profileBtn:hover{
+
+  color: #ffffff;
+  background-color:#5B0005;
+}
+
+#logoutBtn:hover{
+
+  color: #ffffff;
+  background-color:#5B0005;
+}
+
+#loginBtn:focus{
+
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
+.form-control:focus {
+        border-color: #5B0005;
+        box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+    } 

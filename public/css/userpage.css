@@ -1,0 +1,160 @@
+body{
+
+    height: 100vh;
+  }
+
+  /* TABS container */
+.tab-content{
+
+    padding:0;
+     left:0px;
+     top:10px;
+   }
+   
+   #nav-tabContents{
+   
+     padding:0;
+     left:0px;
+     top:10px;
+   }
+   
+/* Fix dimensions of charts at Stocks and Userpage page */
+#nav-1Day,#nav-3Days,#nav-1Month,#nav-4Months,#nav-1Year,#nav-5Years,#nav-max{
+  
+    width: 700px;
+    height:300px;
+  }
+
+  /* Fix dimensions of cardbody at Userpage page 
+when width is 577px and less */
+  @media only screen and (max-width: 577px) {
+
+    #open,#PrevClose,#low,#high{
+
+      margin-left:10px;
+    }
+
+    #openCard,#lowCard{
+
+      width:100px;
+      margin-left:10px;
+    }
+  }
+
+/* Fix dimensions of charts at Userpage page 
+when width is 1268px and less */
+@media only screen and (max-width: 1268px) {
+
+    #nav-1Day,#nav-3Days,#nav-1Month,#nav-4Months,#nav-1Year,#nav-5Years,#nav-max{
+     
+      width: 100%;
+      height:200%;
+    }
+
+  
+      /* Position of Tabs */
+    .tab-content {
+  
+      position: relative;
+      right:0px;
+      top:40px;
+      }
+
+      #cardBody2{
+ 
+        padding:0;
+        color: #0e0d0df6;
+        width: 16.2vw;
+        height:15.5vh;
+        position: relative;
+        top:36px;
+        margin-top:15%;
+      }
+  }
+  
+  /* Customize tab bar on Stocks page */
+#tabs{
+
+    background: rgb(255, 255, 255);
+      color: rgb(255, 250, 250);
+    }
+    
+    #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    
+      color:#5B0005;
+      background-color: transparent;
+      border-color: transparent transparent #f3f3f3;
+      border-bottom: 4px solid !important;
+      font-size: 70px;
+      font-weight: bold;
+    }
+    
+    #tabs .nav-tabs .nav-link {
+    
+      border: 1px solid transparent;  
+      color: #5B0005;
+      font-size: 15px;
+    }
+    
+    /* list in Userpage position and scroll property */
+    .list-group-stocks{
+    
+      padding-left: 5px;
+      overflow-y: scroll;
+      position: relative;
+      top:6%;
+    }
+
+    /* Set row to margin 0 */
+.row{  
+   
+    margin-left:0px;
+    margin-right:0px;
+ }
+ 
+ /* Counter for next search */
+ .seconds{
+   
+   min-height: 24px;
+   content: "\200b";
+   float:left; 
+ }
+ 
+ 
+ #myChart1Day{
+ 
+   position: relative;
+ }
+ 
+ #cardBody2{
+ 
+   padding:0;
+   color: #0e0d0df6;
+   width: 16.2vw;
+   height:15.5vh;
+   position: relative;
+   top:36px;
+   margin-top:2%;
+ }
+ 
+ .card-text{
+
+    position: relative;
+    right:21px;
+  }
+
+  #header,#openCard,#lowCard{
+
+    width:100px;
+    padding:0;
+    position: relative;
+    left:19%;
+  }
+  
+  #open,#PrevClose,#low,#high{
+
+    color: #5B0005;
+  }
+  .seconds{
+    color:#5B0005;
+  }

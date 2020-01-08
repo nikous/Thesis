@@ -305,7 +305,7 @@ async function getDataReal(symbol) {
             };
 
             // If its a day of the week except saturday and sunday and the hour is bigger than 16:35
-            if (numHour >= 16 && curMin >= 35 && numDay != 6 && numDay != 0) {
+            if (numHour >= 16 &&  numDay != 6 && numDay != 0) {
 
                 curDay = curDay + 1;
             }
@@ -342,25 +342,25 @@ async function getDataReal(symbol) {
             }
 
             // If it's Monday and hour is bigge than 16:35 so data for Monday,friday thursday
-            if (numDay == 1 && numHour >= 16 && curMin >= 35) {
+            if (numDay == 1 && numHour >= 16 ) {
 
                 dateStock = 4;
             }
 
             // If it's Tuesday and before 16:35 show data for Monday,Friday,Thursday
-            else if (numDay == 2 && numHour <= 16 && curMin >= 35) {
+            else if (numDay == 2 && numHour <= 16  ) {
 
                 dateStock = 4;
             }
 
             // If it's Tuesday and after 16:35 show data for Tuesday,Monday,Friday
-            else if (numDay == 2 && numHour > 16 && curMin >= 35) {
+            else if (numDay == 2 && numHour > 16  ) {
 
                 dateStock = 4;
             }
 
             // If it's Wednesday and before 16:35 show data for Tuesday,Monday,Friday
-            else if (numDay == 3 && numHour <= 16 && curMin >= 35) {
+            else if (numDay == 3 && numHour <= 16 ) {
 
                 dateStock = 4;
             }
