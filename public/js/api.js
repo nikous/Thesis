@@ -374,13 +374,29 @@ async function getDataReal(symbol) {
 
             counter = 0;  // Set counter to 0
 
+            var aDays;  // current Day - days to find data for the last 2Days
+
             // Fill array with data for 3 Days 
             for (dateStock; dateStock >= 0; dateStock--) {
+
+                //Add 0 before number if tis <10 1 --> 01
+                if (dateStock < 10) {           
+
+                   dateStock = '0' + dateStock;
+                }
+            
+                aDays= curDay - dateStock;
+
+                //Add 0 before number if tis <10 1 --> 01
+                if(aDays<10){
+
+                    aDays = '0' + aDays;
+                }
 
                 for (var i = 0; i <= length; i++) {
 
                     // If date ends with current date or previous 2 days add to array
-                    if (date_labels_Real[i].endsWith((curDay - dateStock), 10)) {
+                    if (date_labels_Real[i].endsWith((aDays), 10)) {
 
                         date_labels_3Days_chart[counter] = date_labels_Real[i];
                         close_labels_3Days_chart[counter] = close_labels_Real[i];
@@ -388,7 +404,7 @@ async function getDataReal(symbol) {
                     }
                 }
             };
-
+            
             var getIndex = 0;   // Counter
             var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00")); // End hour
             var openIndex = date_array_Real.findIndex(element => element.endsWith("09:45:00")); // Start hour

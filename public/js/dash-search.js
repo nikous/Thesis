@@ -70,7 +70,9 @@ $.ajax({
                 followed_stocks.push(data["stock"][Userstocks]);
             }
         }
-
+  
+        console.log(symbols);
+        
         // Find stocks symbol 
         for (var i = 0; i <= symbols.length; i++) {
 

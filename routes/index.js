@@ -112,7 +112,7 @@ router.post('/getStock/:symbol', (req, res) => {
     // Find Stock if its already at users database
     User.findOne({ stock: symbol }).then(result => {
          
-        if (result) {
+        if (result==false) {
 
             console.log("already exist");
         }
