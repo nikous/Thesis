@@ -226,6 +226,12 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     // Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
+    // If search doesn't have input make symbol MSFT
+    if (symbol == '') {
+
+        symbol = 'MSFT'
+    }
+
     // Search where is symbol in the array and take the  number 
     for (var i = 0; i <= symbols.length; i++) {
 

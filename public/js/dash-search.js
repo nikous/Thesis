@@ -60,7 +60,7 @@ $.ajax({
     cache: false,
     success: function (data) {
 
-        var place=0; // Counter 
+        var place = 0; // Counter 
 
         // Put User's stocks to the list on userpage
         for (var Userstocks in data["stock"]) {
@@ -70,22 +70,38 @@ $.ajax({
                 followed_stocks.push(data["stock"][Userstocks]);
             }
         }
-  
-        console.log(symbols);
-        
-        // Find stocks symbol 
-        for (var i = 0; i <= symbols.length; i++) {
 
-            if (symbols[i] == followed_stocks[0]) {
+        // Wait promise  to fill the arrays 
+        const wait = new Promise(function (resolve, reject) {
 
-                place = i;
-            };
-        };
+            setTimeout(function () {
+
+                // Find the in which place in the array is the definition of the symbol
+                for (var i = 0; i <= symbols.length; i++) {
+
+                    if (symbols[i] == followed_stocks[0]) {
+
+                        place = i;
+                    };
+                };
+
+                resolve('foo');
+            }, 100);
+        });
 
         var change = true; // If charts change 
 
-        // Put stocks symbol and definition to cardBody at userpage
-        document.getElementById("holder").innerHTML = define[place];
+        // When promise is done fill the element at html
+        wait.then(function (value) {
+
+            if (value == 'foo') {
+
+                // Put stocks definition to cardBody at userpage
+                document.getElementById("holder").innerHTML = define[place];
+            }
+        });
+
+        // Put stocks symbol to cardBody at userpage
         document.getElementById("holderSymbol").innerHTML = followed_stocks[0];
 
         // When go to userpage show charts from the first stock at list 

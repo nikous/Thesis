@@ -103,6 +103,8 @@ when width is 1268px and less */
       overflow-y: scroll;
       position: relative;
       top:6%;
+      margin-bottom: 0;
+      height: 344px;
     }
 
     /* Set row to margin 0 */
@@ -156,5 +158,16 @@ when width is 1268px and less */
     color: #5B0005;
   }
   .seconds{
+
     color:#5B0005;
   }
+
+  #max{
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+
+ #subBtn:focus {
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+} 

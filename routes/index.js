@@ -108,17 +108,19 @@ router.post('/getStock/:symbol', (req, res) => {
     // Find user in database by id 
     const user = req.user._id;
     const symbol = req.params.symbol;
-    
-    // Find Stock if its already at users database
-    User.findOne({ stock: symbol }).then(result => {
-         
-        if (result==false) {
+
+    //Find if user has already follwed stock 
+    User.findOne({ _id: user, stock: symbol }).then(result => {
+
+        if (result) {
+
 
             console.log("already exist");
         }
+
         else {
 
-            // If not exist add Stock to users stock array 
+            // If not,follow the stock 
             User.findOneAndUpdate({ _id: user }, { '$push': { stock: req.params.symbol } }, (err, doc) => {
 
                 if (err) {
@@ -129,7 +131,7 @@ router.post('/getStock/:symbol', (req, res) => {
                 console.log(doc);
             });
         }
-     });
+    });
 });
 
 //Login handle 

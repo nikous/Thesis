@@ -202,3 +202,8 @@
         border-color: #5B0005;
         box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
     } 
+
+    #suButton:focus {
+      border-color: #5B0005;
+      box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+  } 
