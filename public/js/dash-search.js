@@ -88,7 +88,7 @@ $.ajax({
                 };
 
                 resolve('foo');
-            }, 100);
+            }, 1000);
         });
 
         var change = true; // If charts change 
