@@ -167,3 +167,8 @@ svg #Browser{
   color: #000000;
   background-color:#5B0005;
 }
+
+#DescBtn:focus {
+  border-color: none;
+  box-shadow: none;
+} 

@@ -6,7 +6,7 @@ var high_array = [];
 var low_array = [];
 var volume_array = [];
 var date_array = [];
-var symbol = 'MFST';
+var symbol = 'MSFT';
 
 var date_array_Daily = [];
 var open_array_Daily = [];
@@ -305,7 +305,7 @@ async function getDataReal(symbol) {
             };
 
             // If its a day of the week except saturday and sunday and the hour is bigger than 16:35
-            if (numHour >= 16 &&  numDay != 6 && numDay != 0) {
+            if (numHour >= 16 && numDay != 6 && numDay != 0) {
 
                 curDay = curDay + 1;
             }
@@ -342,25 +342,25 @@ async function getDataReal(symbol) {
             }
 
             // If it's Monday and hour is bigge than 16:35 so data for Monday,friday thursday
-            if (numDay == 1 && numHour >= 16 ) {
+            if (numDay == 1 && numHour >= 16) {
 
                 dateStock = 4;
             }
 
             // If it's Tuesday and before 16:35 show data for Monday,Friday,Thursday
-            else if (numDay == 2 && numHour <= 16  ) {
+            else if (numDay == 2 && numHour <= 16) {
 
                 dateStock = 4;
             }
 
             // If it's Tuesday and after 16:35 show data for Tuesday,Monday,Friday
-            else if (numDay == 2 && numHour > 16  ) {
+            else if (numDay == 2 && numHour > 16) {
 
                 dateStock = 4;
             }
 
             // If it's Wednesday and before 16:35 show data for Tuesday,Monday,Friday
-            else if (numDay == 3 && numHour <= 16 ) {
+            else if (numDay == 3 && numHour <= 16) {
 
                 dateStock = 4;
             }
@@ -380,15 +380,15 @@ async function getDataReal(symbol) {
             for (dateStock; dateStock >= 0; dateStock--) {
 
                 //Add 0 before number if tis <10 1 --> 01
-                if (dateStock < 10) {           
+                if (dateStock < 10) {
 
-                   dateStock = '0' + dateStock;
+                    dateStock = '0' + dateStock;
                 }
-            
-                aDays= curDay - dateStock;
+
+                aDays = curDay - dateStock;
 
                 //Add 0 before number if tis <10 1 --> 01
-                if(aDays<10){
+                if (aDays < 10) {
 
                     aDays = '0' + aDays;
                 }
@@ -404,7 +404,7 @@ async function getDataReal(symbol) {
                     }
                 }
             };
-            
+
             var getIndex = 0;   // Counter
             var secIndex = date_array_Real.findIndex(element => element.endsWith("16:00:00")); // End hour
             var openIndex = date_array_Real.findIndex(element => element.endsWith("09:45:00")); // Start hour

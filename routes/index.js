@@ -6,7 +6,6 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
 const User = require('../models/User'); // Require User Schema
 
-
 mongoose.set('useFindAndModify', false);
 
 // Require symbol from app.js
@@ -144,7 +143,6 @@ router.post('/login', (req, res, next) => {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true,
-
     })(req, res, next);
 
 });

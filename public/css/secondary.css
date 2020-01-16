@@ -198,6 +198,12 @@
   box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
 }
 
+#registerBtn:focus{
+
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
 .form-control:focus {
         border-color: #5B0005;
         box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);

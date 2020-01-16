@@ -90,6 +90,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use('/', require('./routes/StockValue.js'));
 
 // Middleware for my static files
 app.use('/public', express.static('public'));
@@ -145,6 +146,7 @@ app.get('/getAps/:symbol', async (request, response) => {
 
     response.json(Realjson);
 });
+
 
 // Use port 1200 when run locally when run on heroku use their port
 const PORT = process.env.PORT || 1200;

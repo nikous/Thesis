@@ -7,6 +7,9 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 // Load User model
 const User = require('../models/User');
 
+// Load Stock model
+const Stock = require('../models/StockValue');
+
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
@@ -18,6 +21,7 @@ router.post('/register', (req, res) => {
 
     const { name, email, password, password2 } = req.body;
     const { stock } = { stock: 'TSLA' };
+
     let errors = [];
 
     // Conditions to Regiter client 
@@ -67,10 +71,11 @@ router.post('/register', (req, res) => {
 
                 // Make new User
                 const newUser = new User({
+
                     name,
                     email,
                     password,
-                    stock
+                    stock,
                 });
 
                 // encrypt password and save User to database

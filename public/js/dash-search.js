@@ -5,6 +5,8 @@ let symbols = [];
 let define = [];
 var symbolStock;
 
+
+
 // Set timer to start countdown until next search 
 function setTimer() {
 
@@ -247,3 +249,29 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
     };
 });
 
+document.getElementById('subBtn').addEventListener("click", function (e) {
+
+    // Take values from inputs in Userpage
+    min = document.getElementById('min').value;
+    max = document.getElementById('max').value;
+
+    if (symbolStock == undefined) {
+
+        symbolStock = 'TSLA'
+
+    }
+    if (min == '') {
+        min = null;
+    }
+    if (max == '') {
+        max = null;
+    }
+    // Send symbol min max to database
+    $.ajax({
+
+        url: '/getValue/' + symbolStock + '/' + min + '/' + max + '',
+        dataType: 'text',
+        type: 'post',
+        cache: false,
+    });
+});
