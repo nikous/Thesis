@@ -72,12 +72,14 @@ router.post('/getValue/:symbol/:min/:max', (req, res) => {
 });
 
 
-var minutes = 10, the_interval = minutes * 60 * 1000; //Define in how many minutes you want interval to run 
+var minutes = 1, the_interval = minutes * 60 * 1000; //Define in how many minutes you want interval to run 
 var close_array_Real = [];
 var userEmail;  //Define user to send email
 
 // Loop running every 5 minutes and call Apis
 setInterval(function () {
+
+    Stock.findOneAndDelete({ max: { '$exists': false }, min: { '$exists': false } }).then(result => { });
 
     // Find in DB the reminders for stock price and put it to an array
     Stock.find({}).then(result => {
@@ -151,12 +153,22 @@ setInterval(function () {
         }
 
         // Find where to send the email
-        function findEmail(i) {
+        function findEmail(i, text) {
 
             return new Promise(function (resolve) {
 
                 //Find the User 
                 User.find({ _id: result[i]['id'] }).then(user => {
+
+                    User.findOneAndUpdate({ _id: result[i]['id'] }, { '$push': { notification: text } }, (err, doc) => {
+
+                        if (err) {
+
+                            console.log("Something wrong when updating data!");
+                        }
+
+                        console.log(doc);
+                    })
 
                     user = JSON.parse(JSON.stringify(user));
                     userEmail = user[0]['email'];
@@ -167,7 +179,7 @@ setInterval(function () {
                         from: 'nickzte@gmail.com',
                         to: userEmail,
                         subject: 'Sending Email using Node.js',
-                        text: 'Your stock is bigger than your max'
+                        text: text
                     };
 
                     // Send email
@@ -189,7 +201,8 @@ setInterval(function () {
                 if (close_array_Real[length] >= result[i]['max']) {
 
                     console.log("H metoxh perase to max");
-                    await findEmail(i);
+                    const text = result[i]['stockName'] + " value got higher than " + result[i]['max'];
+                    await findEmail(i, text);
 
                     //Delete max
                     Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { max: "" } }, (err, doc) => {
@@ -207,7 +220,8 @@ setInterval(function () {
                 if (close_array_Real[length] <= result[i]['min']) {
 
                     console.log("H metoxh epese katw apoto min");
-                    await findEmail(i);
+                    const text = result[i]['stockName'] + " value got lower than " + result[i]['min'];
+                    await findEmail(i, text);
 
                     //Delete Min
                     Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { min: "" } }, (err, doc) => {
@@ -228,5 +242,23 @@ setInterval(function () {
 
     console.log("I am doing my 5 minutes check");
 }, the_interval);
+router.post('/deleteNotif/:target', (req, res) => {
+    const target = req.params.target;
+    const user = req.user._id;
 
+    //Delete notification
+    User.findOneAndUpdate({ _id: user }, { '$unset': { ["notification." + target + ""]: "" } }).then(user => {
+
+        User.findOneAndUpdate({ _id: user }, { '$pull': { "notification": null } }, (err, doc) => {
+
+            if (err) {
+
+                console.log("Something wrong when updating data!");
+            }
+
+            console.log(doc);
+        });
+    });
+
+});
 module.exports = router;

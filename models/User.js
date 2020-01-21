@@ -31,6 +31,12 @@ const UserSchema = new mongoose.Schema({
 
         type: Array,
         required: true
+    },
+
+    notification: {
+
+        type: Array,
+        required: false
     }
 });
 

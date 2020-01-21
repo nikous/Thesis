@@ -1,13 +1,12 @@
-<div class="navbar navbar-expand-lg fixed-top ">
+<div class="navbar navbar-expand-lg fixed-top " id="navBarRefresh">
 
     <!-- Add logo to page -->
     <div class="navbar-brand"><a href="homepage"> <img src="../public/photos/logo2svg.svg" width="100px"></a>
     </div>
 
     <!-- Add button to nav bar when collapse -->
-    <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-       
-    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
@@ -43,9 +42,9 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
 
-                    <%=user.name %></a>
+                    <%=user.name %><% if(user.notification[0]) {%><span class="dot" id="dot"></span><%}%></a>
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" id="droDownMenu" style="max-width: 158px; border: solid 1px black; font-family: monospace;">
 
                     <!-- Button to go to userpage -->
                     <a class="dropdown-item" id="profileBtn" href="users/login">Profile</a>
@@ -53,22 +52,56 @@
                     <!-- Button to Log out -->
                     <a class="dropdown-item" id="logoutBtn" href="users/logout">Log out</a>
 
-                </div>
+                    <% if(user.notification[0]) {%>
 
-            </li>
 
-            <% } else {%>
+                    <% for(var i=0; i < user.notification.length; i++) { %>
 
-            <li class="nav-item">
 
-                <!-- Button to Log in  -->
-                <a class="nav-link" href="users/login">Login</a>
+                    <a style="max-width: 158px; border-top: solid 1px black; font-family: monospace;"
+                        class="dropdown-item notification" id="notification<%=i%>" href="#"><button type="button"
+                            class="close" id="<%=i%>" data-dismiss="modal" aria-label="Close"
+                            onclick="document.getElementById('notification<%=i%>').style.display='none'">
+                            <span class="closeSpan" id="<%=i%>" aria-hidden="true">&times;</span>
+                            </span></button>
+                        <p style=" 
+                        white-space: normal;
+                        margin:0;
+                         height:autopx;
+                         max-width: 108px;
+                         overflow-wrap: break-word;
+                         word-wrap: break-word;
+                         hyphens: auto;
+                         ">
+                            <%=user.notification[i] %></p>
+                    </a>
 
-            </li>
+                    <% } %>
 
-            <%}%>
+                    <% } else { %>
+
+
+
+                    <% } %>
+
+    </div>
+
+    </li>
+
+    <% } else {%>
+
+    <li class="nav-item">
+
+        <!-- Button to Log in  -->
+        <a class="nav-link" href="users/login">Login</a>
+
+    </li>
+
+    <%}%>
            
         </ul>
+
+        <script type="text/javascript" src="/public/js/navBar.js"></script>
 
     </div>
 

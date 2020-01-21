@@ -87,7 +87,7 @@
   color: #FFFFFF;
   text-align: center;
   font-size: 15px;
-  padding: 20px;
+  padding: 6px;
   width: 150px;
   transition: all 0.5s;
   cursor: pointer;
@@ -207,9 +207,113 @@
 .form-control:focus {
         border-color: #5B0005;
         box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
-    } 
+} 
 
-    #suButton:focus {
+#suButton:focus {
       border-color: #5B0005;
       box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
-  } 
+} 
+
+  .dot {
+    position: relative;
+    top:-9px;
+    height: 10px;
+    width: 10px;
+    background-color:#5B0005;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dropdown-menu{
+
+    right:-130%;
+  }
+
+  .notification:hover{
+    color: #ffffff;
+    background-color:#5B0005;
+  }
+  
+  .close{
+  margin-right:-21px;
+  
+  }
+    #notification:hover{
+  
+      color: #ffffff;
+      background-color:#5B0005;
+    }
+  
+    .dropdown-menu.show {
+      left:-40.099%;
+      margin-top: 12%;
+     
+  }
+
+  @media only screen and (min-width: 492px)and (max-width: 770px){
+    .buttonStock {
+     
+      text-align: center;
+      font-size: 15px;
+      padding: 3px;
+     
+      cursor: pointer;
+      margin: 0px;
+
+    }
+    #cardBody {
+      padding: 0;
+      color: #0e0d0df6;
+      width: 16.2vw;
+      height: 32.5vh;
+      position: relative;
+      margin-left: 5%;
+  }
+  }
+
+  #search_bar{
+    padding:0;
+    width:50%;
+    top:27px 
+    }
+
+    #cardBody{
+
+      padding:0;
+      color: #0e0d0df6;
+      width: 16.2vw;
+      height:32.5vh;
+      position: relative;
+      top:36px;
+    }
+
+  @media only screen  and (min-width: 771px) and (max-width: 1085px){
+
+    .buttonStock {
+     
+      text-align: center;
+      font-size: 15px;
+      padding: 5px;
+     
+      cursor: pointer;
+      margin: 0px;
+
+    }
+
+   #search_bar {
+    
+    top: 67px;
+    }
+
+    #cardBody{
+
+      padding:0;
+      color: #0e0d0df6;
+      width: 16.2vw;
+      height:32.5vh;
+      position: relative;
+      top:66px;
+      margin-left: 10px;
+    }
+ 
+  }

@@ -78,7 +78,7 @@ $.ajax({
 
             setTimeout(function () {
 
-                // Find the in which place in the array is the definition of the symbol
+                // Find in which place in the array is the definition of the symbol
                 for (var i = 0; i <= symbols.length; i++) {
 
                     if (symbols[i] == followed_stocks[0]) {
