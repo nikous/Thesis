@@ -72,7 +72,7 @@ router.post('/getValue/:symbol/:min/:max', (req, res) => {
 });
 
 
-var minutes = 1, the_interval = minutes * 60 * 1000; //Define in how many minutes you want interval to run 
+var minutes = 5, the_interval = minutes * 60 * 1000; //Define in how many minutes you want interval to run 
 var close_array_Real = [];
 var userEmail;  //Define user to send email
 
@@ -201,7 +201,7 @@ setInterval(function () {
                 if (close_array_Real[length] >= result[i]['max']) {
 
                     console.log("H metoxh perase to max");
-                    const text = result[i]['stockName'] + " value got higher than " + result[i]['max'];
+                    const text = result[i]['stockName'] + " value got lower than " + result[i]['max'];
                     await findEmail(i, text);
 
                     //Delete max
@@ -220,7 +220,7 @@ setInterval(function () {
                 if (close_array_Real[length] <= result[i]['min']) {
 
                     console.log("H metoxh epese katw apoto min");
-                    const text = result[i]['stockName'] + " value got lower than " + result[i]['min'];
+                    const text = result[i]['stockName'] + " value got higher than " + result[i]['min'];
                     await findEmail(i, text);
 
                     //Delete Min

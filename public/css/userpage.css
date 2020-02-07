@@ -108,7 +108,14 @@ when width is 1268px and less */
      max-height: 350px;
       overflow-y: scroll;
     } 
-
+    .nav-fill .nav-item {
+      flex:0;
+    }
+#nav-tab{
+  margin-bottom:20px;
+}
+    .nav-tabs {
+      border-bottom: 0;}
     /* Set row to margin 0 */
 .row{  
    
@@ -148,7 +155,8 @@ when width is 1268px and less */
   }
 
   #header,#openCard,#lowCard{
-
+    margin-top: 20px;
+    text-align: center;
     width:100px;
     padding:0;
     position: relative;
@@ -207,7 +215,7 @@ margin-right:-21px;
   }
 
   .dropdown-menu.show {
-    left:-40.099%;
-   margin-top:12%;
+    
+   margin-top:4%;
    
 }
