@@ -39,10 +39,12 @@ app.use(passport.session());
 // DB Config
 const db = require('./config/keys').mongoURI;
 
+const PORT = process.env.PORT || 1200;
+
 const MongoClient = require('mongodb').MongoClient;
 var http = require('http').createServer(app);
-http.listen(1200, function () {
-    console.log('listening on *:1200');
+http.listen(PORT, function () {
+    console.log(`Server started on port ${PORT}`);
 });
 const io = require('socket.io')(http);
 
