@@ -4,35 +4,34 @@ let id = [];
 let symbols = [];
 let define = [];
 var symbolStock;
-
-
+var symbolStocks;
 
 // Set timer to start countdown until next search 
-function setTimer() {
+// function setTimer() {
 
-    var timer = new Timer();
+//     var timer = new Timer();
 
-    // Start countdown for 1 minute
-    timer.start({ countdown: true, startValues: { seconds: 60 } });
-    timer.addEventListener('secondsUpdated', function (e) {
+//     // Start countdown for 1 minute
+//     timer.start({ countdown: true, startValues: { seconds: 60 } });
+//     timer.addEventListener('secondsUpdated', function (e) {
 
-        // Add timer to Userpage 
-        $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
-    });
+//         // Add timer to Userpage 
+//         $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
+//     });
 
-    // Disable clicking stocks on list at userpage until countdown finish
-    if (timer.getTimeValues().seconds == 00) {
+//     // Disable clicking stocks on list at userpage until countdown finish
+//     if (timer.getTimeValues().seconds == 00) {
 
-        document.getElementById("listStocks").disabled = true;
-    }
+//         document.getElementById("listStocks").disabled = true;
+//     }
 
-    // Enable clicking stocks on list at userpage when countdown finish
-    timer.addEventListener('targetAchieved', function (e) {
+//     // Enable clicking stocks on list at userpage when countdown finish
+//     timer.addEventListener('targetAchieved', function (e) {
 
-        document.getElementById("listStocks").disabled = false;
-        $('#gettingValuesExample .seconds').html('');
-    });
-};
+//         document.getElementById("listStocks").disabled = false;
+//         $('#gettingValuesExample .seconds').html('');
+//     });
+// };
 
 // Find Definition and symbol of the stock which clicked at list on userpage
 async function DefineStock() {
@@ -130,10 +129,48 @@ $.ajax({
             var x = document.createElement("LI");
             var t = document.createTextNode(followed_stocks[i]);
 
+
             x.appendChild(t);
             x.id = followed_stocks[i];
             document.getElementById("listStocks").appendChild(x);
-            document.getElementById(x.id).className = "list-group-item list-group-item-action d-flex justify-content-between align-items-center";
+            document.getElementById(x.id).className = "list-group-item list-group-item-action";
+
+            var DeleteStock = document.createElement('i');
+            DeleteStock.className = "fa fa-minus";
+            DeleteStock.id = followed_stocks[i] + "s";
+            DeleteStock.onclick = function (e) {
+                event.stopPropagation();
+                var target = $(this).closest('li').attr('id');
+                console.log(target);
+                $(this).parent().fadeTo(1000, 0.01, function () {
+                    $(this).slideUp(150, function () {
+                        $(this).remove();
+                    });
+
+                    $.ajax({
+
+                        url: '/deleteStock/' + target + '',
+                        dataType: 'text',
+                        type: 'post',
+                        cache: false,
+                        success: function (result) {
+                            console.log(result);
+                            if (result.status == 200) {
+                                console.log("Status:200");
+                            }
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+
+                    });
+
+                });
+
+
+            };
+
+            x.appendChild(DeleteStock);
         }
     }
 });
@@ -214,7 +251,7 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
     var number = findSymbol;    // Index of current symbol in symbols array
 
     reload();   // Refresh charts with new data 
-    setTimer(); // Start counter after clicking a stock at list ---> 1 min
+    // setTimer(); // Start counter after clicking a stock at list ---> 1 min
 
     // Sleep function
     function sleep(ms) {
@@ -254,12 +291,13 @@ document.getElementById('subBtn').addEventListener("click", function (e) {
     // Take values from inputs in Userpage
     min = document.getElementById('min').value;
     max = document.getElementById('max').value;
-
+    console.log(symbolStock);
     if (symbolStock == undefined) {
 
-        symbolStock = 'TSLA'
+        symbolStock = followed_stocks[0];
 
     }
+    console.log(symbolStock);
     if (min == '') {
         min = null;
     }
@@ -270,8 +308,51 @@ document.getElementById('subBtn').addEventListener("click", function (e) {
     $.ajax({
 
         url: '/getValue/' + symbolStock + '/' + min + '/' + max + '',
-        dataType: 'text',
+        datatype: "json",
         type: 'post',
         cache: false,
+        timeout: 1000000,
+        success: function (result) {
+            console.log(result);
+            if (result.status == 200) {
+                console.log("Status:200");
+            }
+        },
+        error: function (result) {
+            console.log(result);
+        }
     });
 });
+
+
+document.getElementById("listStocks").addEventListener("mouseover", function (e) {
+
+    // e.target is our targetted element.
+    if (e.target && e.target.nodeName == "LI") {
+
+        symbolStocks = e.target.id;
+        var s = "s";
+        $("#" + symbolStocks + "" + s + "").addClass('showFa');
+
+        document.getElementById(symbolStocks + s).addEventListener("mouseover", function (e) {
+
+            $("#" + symbolStocks + "" + s + "").addClass('showFa');
+        });
+    }
+});
+
+document.getElementById("listStocks").addEventListener("mouseout", function (e) {
+
+    // e.target is our targetted element.
+    if (e.target && e.target.nodeName == "LI") {
+
+        var s = "s";
+        symbolStocks = e.target.id;
+        $("#" + symbolStocks + "" + s + "").removeClass('showFa');
+        document.getElementById(symbolStocks + s).addEventListener("mouseout", function (e) {
+
+            $("#" + symbolStocks + "" + s + "").removeClass('showFa');
+        });
+    }
+});
+

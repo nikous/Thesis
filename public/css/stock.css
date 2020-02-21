@@ -1,0 +1,624 @@
+html{
+    overflow: hidden;
+}
+
+.fixed-top {
+    position: absolute!important;}
+
+body{
+    height: 100vh;
+}
+.wraper{
+    display: flex;
+    height:100vh;
+    flex-direction: column;
+}
+
+.container-navbar{
+    width: 100%;
+    height:10%;
+    background-color:black;
+    position: normal!important;
+}
+
+.container-stock{
+    
+    width: 100%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1{
+    width: 100%;
+    height:10%;
+    background-color:#ffffff;
+}
+
+.row2{
+    width: 100%;
+    height:90%; 
+    background-color:#ffffff;
+    display: flex;
+}
+
+#holder{
+    font-size: 30px;
+    line-height: 10px;;
+    font-weight: 300;
+}
+
+#holderSymbol{
+    font-size: 20px;
+    line-height: 5px;
+    font-weight: 300;
+}
+
+.col-labels{
+    line-height: 10vh;
+    font-family: muli,sans-serif;
+font-weight: 600;
+font-style: normal;
+    
+    margin:20px;
+    min-width: 20%; 
+    height:90%;
+    color: #ffffff;
+    background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal;
+    background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005),
+    linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)),
+    linear-gradient(141deg,#6e0909,#a5a5a5),
+    linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5),
+    linear-gradient(42deg,rgba(0,190,213,0),rgba(1, 37, 41, 0.85) 95%,rgba(1, 14, 15, 0.87) 87%,#00bed5),
+    linear-gradient(126deg,rgba(0,190,213,0),#000607),
+    linear-gradient(#a8140e,#700808);
+
+    -webkit-box-shadow: 3px 1px 12px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 3px 1px 12px 0px rgba(0,0,0,1);
+    box-shadow: 3px 1px 12px 0px rgba(0,0,0,1);
+}
+.col-chart{
+    
+    margin-left:20px;
+    width: 60%; 
+    background-color:#fcfcfc;
+    display: flex;
+    flex-direction: row;
+}
+
+.col-search{
+margin-top:40px;
+/* flex-grow: 1; */
+background-color:#ffffff;
+min-width: 50px;
+height: 300px;
+background-color: transparent;
+}
+.holder{
+    text-align: center;
+}
+.description{
+    margin-left:10px;
+}
+
+#searchbtn{
+    display:flex;
+    flex-direction: row;
+}
+
+.btn{
+    border-radius: 5px;
+    background-color:#5B0005;
+    font-size: 15px;
+}
+.navbar-chart{
+    width:100%;
+    height: auto;
+}
+
+.tab-content{
+    margin-top: 40px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    
+    background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal;
+    background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005),
+    linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)),
+    linear-gradient(141deg,#6e0909,#a5a5a5),
+    linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5),
+    linear-gradient(42deg,rgba(0,190,213,0),rgba(1, 37, 41, 0.85) 95%,rgba(0,190,213,0.87) 87%,#00bed5),
+    linear-gradient(126deg,rgba(0,190,213,0),#000607),
+    linear-gradient(#a8140e,#700808);
+    color:white;
+    border-radius: 5px;
+   
+    font-family: muli,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nav-item {
+
+    font-family: muli,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+.form-control {
+
+    border-radius: 0!important;
+}
+
+.nav-link.active:hover{
+    
+   
+    color:white!important;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.nav-link{
+
+    color: #fcfcfc;
+    cursor: pointer;
+    padding: 20px;
+    height: 50px;
+    line-height: 20px;
+  }
+
+.nav-item{
+    color:black;
+}
+
+.nav-link {
+
+    margin-right: 2em !important;
+  }
+
+  .nav-link:hover{
+
+    color:#5B0005 !important;
+  }
+  
+  /* hover logo */
+  .navbar-brand:hover {
+  
+    color: #5B0005 !important;
+  }
+
+  .autocomplete {
+
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block; 
+  }
+  
+  /* Customize search bar at Stocks Page */
+  input {
+  
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  input[type=text] {
+  
+    background-color: #fffffff6;
+    width: 100%;
+  }
+  
+  input[type=submit] {
+  
+    background-color: #5B0005;
+    color: #fff;
+  }
+  .input-group{
+      position:relative;
+  }
+
+  #suButton{
+    position: absolute;
+    
+    top: 2.5px;
+    right: 12px;
+     width:40px!important;
+      height:40px!important;
+     background-color: transparent;
+     z-index: 10;
+     outline: 0 !important;
+     border-color:#f1f3f6;
+     box-shadow:#f1f3f6!important;
+     border-width: 0px!important;
+    border-style:none!important;
+  }
+  
+  /* Customize the container opens down the search bar */
+  .Inactive{
+      opacity:0;
+      visibility: hidden;
+  }
+  .autocomplete-items {
+  
+    position: relative;
+    border: none;
+    color: #0e0d0df6;
+    z-index: 99;
+    margin-top:10px;
+
+    /*position the autocomplete items to be the same width as the container:*/
+
+    
+   
+    height:300px;
+    width: 210px;
+    overflow-x: hidden!important;
+    overflow-y: scroll;
+  }
+
+  .autocomplete-items::-webkit-scrollbar {
+    width: 1em;
+    height: 2em!important;
+  }
+   
+  .autocomplete-items::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  .autocomplete-items::-webkit-scrollbar-thumb {
+    background-color: rgb(78, 13, 13);
+    outline: 1px solid slategrey;
+  }
+
+  
+  .autocomplete-items div {
+  
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  
+  .autocomplete-items div:hover {
+  
+    /*when hovering an item:*/
+    background-color: #5B0005 !important;
+    color: #ffffff;
+  }
+  
+  .autocomplete-active {
+  
+    /*when navigating through the items using the arrow keys:*/
+    background-color: #5B0005 !important;
+    color: #ffffff;
+  }
+  
+  
+
+
+
+
+
+ /* #searchbtn{
+    position: relative;
+   
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: black;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+} */
+
+.ButtonToSearch{
+    width: 50px;
+    height:45px;
+    margin-left: 12px;
+
+}
+
+#myInput{
+width:190px;
+height:45px;
+font-family: muli,sans-serif;  
+font-weight: 400;
+border-radius: 5px!important;
+background:#f1f3f6;
+border-color:#f1f3f6!important;
+box-shadow: 
+inset 0 0 15px rgba(55, 84, 170,0),
+inset 0 0 20px rgba(255, 255, 255,0),
+7px 7px 15px rgba(55, 84, 170,.15),
+-7px -7px 20px rgba(255, 255, 255,1),
+inset 0px 0px 4px rgba(255, 255, 255,.2);
+}
+
+#searchbtn:focus {border-color: #dedede!important;
+    -webkit-box-shadow: 5px;
+    box-shadow: 
+    inset 7px 7px 15px rgba(55, 84, 170,.15),
+    inset -7px -7px 20px rgba(255, 255, 255,1),
+    0px 0px 4px rgba(255, 255, 255,.2)!important;
+        -moz-box-shadow: 5px;
+        box-shadow: 
+        inset 7px 7px 15px rgba(55, 84, 170,.15),
+        inset -7px -7px 20px rgba(255, 255, 255,1),
+        0px 0px 4px rgba(255, 255, 255,.2)!important;
+        background:#f1f3f6!important;
+        border-radius: 5px;
+        box-shadow: 
+        inset 7px 7px 15px rgba(55, 84, 170,.15),
+        inset -7px -7px 20px rgba(255, 255, 255,1),
+        0px 0px 4px rgba(255, 255, 255,.2)!important;
+    }
+/* 
+#searchbtn{
+border-radius: 5px!important;
+background:#f1f3f6;
+border-color:#f1f3f6!important;
+box-shadow: 
+inset 0 0 15px rgba(55, 84, 170,0),
+inset 0 0 20px rgba(255, 255, 255,0),
+7px 7px 15px rgba(55, 84, 170,.15),
+-7px -7px 20px rgba(255, 255, 255,1),
+inset 0px 0px 4px rgba(255, 255, 255,.2);
+} */
+/* .fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+#searchbtn:hover{
+    width: 200px;
+    cursor: pointer;
+}
+
+#searchbtn:hover input{
+    display: block;
+}
+
+#searchbtn:hover .fa{
+    background: #07051a;
+    color: white;
+} */
+.dropdown-item{
+    font-family: muli,sans-serif;  
+    font-weight: 400;
+}
+.dropdown-item:hover {
+
+background-color: #5B0005;
+color:#FFFFFF;
+}
+
+/* Follow Stock btn at Stocks page */
+.buttonStock {
+    font-family: muli,sans-serif; 
+    font-weight: 600;
+    display: inline-block;
+    border-radius: 10px;
+    background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal!important;
+    background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005), linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)), linear-gradient(141deg,#6e0909,#a5a5a5), linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5), linear-gradient(42deg,rgba(0,190,213,0),rgba(1, 37, 41, 0.85) 95%,rgba(0,190,213,0.87) 87%,#00bed5), linear-gradient(126deg,rgba(0,190,213,0),#000607), linear-gradient(#a8140e,#700808)!important;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 6px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+
+    margin-top: 15px;
+  }
+  
+  /* Create animation for Follow Stock btn */
+  .buttonStock span {
+  
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .buttonStock span:after {
+  
+    content: '\002B';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .buttonStock:hover span {
+  
+    padding-right: 25px;
+  }
+  
+  .buttonStock:hover span:after {
+  
+    opacity: 1;
+    right: 0;
+  }
+  
+@media  screen and (max-height: 650px){
+
+    .tab-content{
+        margin-top: 10px!important;
+    }
+}
+@media  screen and (max-width: 575px){
+    .col-search{
+width: 150px!important;}}
+
+@media  screen and (max-width: 429px){
+    .col-search{
+       left:45%!important;}
+}
+  
+@media  screen and (max-width: 1316px){
+
+    .col-search {
+        margin-top: 0!important;
+        position: absolute;
+        /* flex-grow: 1; */
+        left: 65%;
+        
+        top: 15%;
+        /* z-index: 100; */
+        /* background-color: #ffffff; */
+        width: 50px;
+    }
+ 
+}
+
+@media  screen and (max-width: 398px){
+    .row1{
+        margin-bottom:80px!important;
+    }
+    .col-search{
+        top:18%!important;
+        left:4%!important;
+    }
+}
+
+@media  screen and (max-width: 861px){
+
+    .description{
+        padding-top:20px;
+        font-size: 17px;
+    }
+ 
+   .row2{
+        padding-top: 20px;
+        width: 100%;
+        height:90%;
+        display: flex;
+        flex-direction: column;
+    }
+    .col-labels{
+        line-height: initial;
+    }
+
+    .col-chart{
+        width: 90%;
+        
+    }
+
+    .canvades{
+        width:80vw!important;
+    }
+
+    html{
+        overflow:visible!important;
+    }
+
+    
+
+}
+
+@media  screen and (max-width: 1312px){
+
+    .row2{
+        padding-top:20px;
+    }
+}
+
+@media  screen and (max-width: 426px){
+
+
+    .nav-link {
+        margin-right: 0em !important;
+    
+        padding: 7px;
+        height: 30px;
+        line-height: 20px;
+    
+    }  
+
+    .canvades {
+        width: 90vw!important;
+        height: 250px;
+    }
+   #searchbtn{ left: 20%;}
+}
+
+
+.navbar-collapse{
+    background:black!important;
+  }
+
+  @media  screen and (min-width: 2560px){
+
+    .fixed-top {
+       
+        padding-top: 30px!important;
+    }
+    #logo{
+        width: 180px;
+    }
+    .nav-link {
+      
+        font-size: 30px;
+    }
+
+    .col-labels {
+   
+        font-size: 30px;
+    }
+
+    #holder {
+        padding-top: 15px;
+        font-size: 60px;
+    }
+    #holderSymbol {
+        font-size: 40px;
+        padding-top: 29px;
+        font-weight: 300;
+    }
+
+ 
+  }
+
+  @media (min-width: 576px){
+.form-inline .input-group, .form-inline .custom-select {
+    width: 220px!important;
+}}
+
+.dot {
+    position: relative;
+    top:-9px;
+    height: 10px;
+    width: 10px;
+    background-color:#5B0005;
+    border-radius: 50%;
+    display: inline-block;
+  }

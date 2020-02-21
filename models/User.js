@@ -30,14 +30,19 @@ const UserSchema = new mongoose.Schema({
     stock: {
 
         type: Array,
-        required: true
+        required: false
     },
 
     notification: {
 
         type: Array,
-        required: false
-    }
+        required: true
+    },
+    dot: {
+
+        type: Number,
+        required: true
+    },
 });
 
 // Exports UserSchema so we can use it 

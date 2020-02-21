@@ -1,251 +1,245 @@
 <head>
 
   <!-------------------------Add css to ejs file------------------------>
-  <link rel="stylesheet" type="text/css" href="/public/css/secondary.css">
+
+  <link rel="stylesheet" type="text/css" href="/public/css/stock.css">
   </link>
 
-  <link rel="stylesheet" type="text/css" href="/public/css/third.css">
-  </link>
+  <link rel="stylesheet" href="https://use.typekit.net/awb6ikl.css">
 
   <script type="text/javascript" src="/public/js/chart.js"></script>
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   <script type="text/javascript" src="/public/js/api.js"></script>
+
 
 </head>
 
 <body>
-  <!-- Container for navbar-->
-  <div class="container-navbar">
+  <div class="wraper">
+    <!-- Container for navbar-->
+    <div class="container-navbar">
 
-    <div class="row-nav">
+      <div class="row-nav">
 
-      <% include ./navbar %>
-
-    </div>
-
-  </div>
-
-  <!-- Container for chart,serach ,follow btn and card body-->
-  <div class="container-stock">
-
-    <div class="row">
-
-      <!-- Follow btn -->
-      <div class="col-sm col-xs col-md-9 col-lg-9 FollowStock">
-
-        <%if (user) { %>
-
-        <form id="send" action="javascript:void(0)">
-
-          <!-- Send stock name to server -->
-          <button type="submit" name="stock" id="stock" class="buttonStock" style="vertical-align:middle"
-            value="stock :">
-
-            <span>Follow Stock </span>
-
-          </button>
-
-
-        </form>
-
-        <%}%>
+        <% include ./navbar %>
 
       </div>
 
+    </div>
+
+    <!-- Container for chart,serach ,follow btn and card body-->
+    <div class="container-stock">
+
+      <div class="row1">
+
+        <!-- Follow btn -->
+        <div class="FollowStock">
+
+          <%if (user) { %>
+
+          <form id="send" action="javascript:void(0)">
+
+            <!-- Send stock name to server -->
+            <button type="submit" name="stock" id="stock" class="buttonStock" style="vertical-align:middle"
+              value="stock :">
+
+              <span>Follow Stock </span>
+
+            </button>
+
+
+          </form>
+
+          <%}%>
+
+        </div>
+
       <!-- Container for counter -->
-      <div class="col-sm col-xs-4 col-md-3 col-lg-3"id="gettingValuesExample">
+      <div class="span"id="gettingValuesExample">
                   
-       <span class="seconds"> </span>    
+       <!-- <span class="seconds"> </span>     -->
           
       </div>
        
-      </div>
-
-            <!-- Container for Graphs -->
-            <div class="row" id="rowChart">
-
-              <div class="col-sm-12 col-xs-12 col-md-9 col-lg-9 " id="classChart">
-
-                  <!-- Container for tabs -->
-                  <section id="tabs">
-
-                <nav>
-
-                  <div class="nav nav-tabs " id="nav-tab" role="tablist">
-
-                    <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day" role="tab"
-                      aria-controls="nav-home" aria-selected="true">1Day</a>
-                   
-                    <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days" role="tab"
-                      aria-controls="nav-profile " aria-selected="false">2Days</a>
-                   
-                    <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month" role="tab"
-                      aria-controls="nav-contact" aria-selected="false">1Month</a>
-                   
-                    <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months" role="tab"
-                      aria-controls="nav-about" aria-selected="false">5Months</a>
-                    
-                    <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab" href="#nav-1Year" role="tab"
-                      aria-controls="nav-about" aria-selected="false">1Year</a>
-                    
-                    <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab" href="#nav-5Years" role="tab"
-                      aria-controls="nav-about" aria-selected="false">5Years</a>
-                    
-                    <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max" role="tab"
-                      aria-controls="nav-about" aria-selected="false">Max</a>
-
-                  </div>
-                 
-                </nav>
-
-              </div>
-
-              <!-- Conainer for search bar -->
-              <div class="col-sm col-xs col-md-3 col-lg-3" id="search_bar">
-            
-                  <!--Form to send stocks name to server  -->
-                  <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-2" autocomplete="off">
-      
-                    <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
-                      placeholder="Search" aria-label="Search">
-
-                    <!--Btn for submiting stock   -->
-                    <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button>
-      
-                  </form>
-
-                  </div>
-                  
-                </div>
-
-                <div class="row" id="chartContent">
-
-                <!-- -------------------------Charts-------------------------------->
-                <div class="col-sm-11 col-xs-11 col-md-8 col-lg-9 tab-content " id="nav-tabContent">
-                    
-                    <!-- Chart 1 Day -->
-                    <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
-                    aria-labelledby="nav-profile-tab">
-                   
-                    <canvas id="myChart1Day">
-
-                      <script>
-
-                        // Wait for fuction chartIt1Day done first because it makes the Api call
-                        // then call the function chartIt3Days
-                        $.when(chartIt1Day()).done(function () { chartIt3Days(); });
-
-                      </script> 
-
-                    </canvas>
-                    
-                  </div>
-
-                  <!-- Chart 3 Days -->
-                  <div class="tab-pane fade " id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-                    <canvas id="myChart3Days"> </canvas>
-
-                  </div>
-
-                  <!-- Chart 1 Month -->
-                  <div class="tab-pane fade "  id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
-                    
-                    <canvas id="myChart1Month">
-                      
-                      <script>
-
-                        // Wait for fuction chartIt1Month done first because it makes the Api call
-                        // then call the chartIt4Months 
-                        $.when(chartIt1Month()).done(function () { chartIt4Months(); });
-
-                      </script>
-      
-                    </canvas>
-                    
-                  </div>
-
-                  <!-- Chart 4 Months -->
-                  <div class="tab-pane fade" id="nav-4Months" role="tabpanel" aria-labelledby="nav-about-tab">
-
-                    <canvas id="myChart4Months"></canvas>
-
-                  </div>
-
-                   <!-- Chart 1 year-->
-                  <div class="tab-pane fade" id="nav-1Year" role="tabpanel" aria-labelledby="nav-about-tab">
-
-                    <canvas id="myChart1Year"> </canvas>
-
-                  </div>
-
-                  <!-- Chart 5 years -->
-                  <div class="tab-pane fade" id="nav-5Years" role="tabpanel" aria-labelledby="nav-about-tab">
-                   
-                    <canvas id="myChart5Years"> </canvas>
-
-                  </div>
-
-                  <!-- Chart Max -->
-                  <div class="tab-pane fade " id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
-
-                    <canvas id="myChart">
-                     
-                     <script>
-
-                      // Wait for fuction chartIt done first because it makes the Api call
-                      $.when(chartIt()).done(function () {
-
-                        // Then call the other chart functions 
-                        chartIt1Year();
-                        chartIt5Years();
-
-                      });
-
-                    </script>
-
-                    </canvas>
-                  
-                  </div>
-
-                </section>
-                
-                </div>
-
-             <!-- Card body with the data of the stock -->
-             <div class="col-sm-1 col-xs-1 col-md-4 col-lg-3" id="cardBody" >
-                    
-               <!--Stocks name   -->
-               <h4  id="holder" >Microsoft Corp</h4>
-
-               <!-- Stocks symbol -->
-               <h5  id="holderSymbol" >MSFT </h5><a id="diference"></a>
-                    
-            <div class="col-sm-1 col-xs-1 col-md-4 col-lg-3 card-body">
-           
-              <!-- Open -->
-              <p class="card-text">Open:<a id="open"></a></p>
-               
-              <!-- High -->
-              <p class="card-text">High:<a id="high"></a></p>
-
-              <!-- Low -->
-              <p class="card-text">Low:<a id="low"></a></p>
-
-              <!-- Prev Close -->
-              <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
-
-            </div>
-
-        </div> 
-
-       </div>
-
     </div>
 
-  </div>
+            <!-- Container for Graphs -->
+    <div class="row2" id="rowChart">
+      <div class="col-chart">
+        <div class="navbar-chart">
+        <section id="tabs">
 
- </div>
+          <nav>
+
+            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+
+              <a class="nav-item nav-link active" id="nav-1Day-tab" data-toggle="tab" href="#nav-1Day" role="tab"
+                aria-controls="nav-home" aria-selected="true">1Day</a>
+             
+              <a class="nav-item nav-link" id="nav-3Days-tab" data-toggle="tab" href="#nav-3Days" role="tab"
+                aria-controls="nav-profile " aria-selected="false">2Days</a>
+             
+              <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab" href="#nav-1Month" role="tab"
+                aria-controls="nav-contact" aria-selected="false">1Month</a>
+             
+              <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab" href="#nav-4Months" role="tab"
+                aria-controls="nav-about" aria-selected="false">5Months</a>
+              
+              <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab" href="#nav-1Year" role="tab"
+                aria-controls="nav-about" aria-selected="false">1Year</a>
+              
+              <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab" href="#nav-5Years" role="tab"
+                aria-controls="nav-about" aria-selected="false">5Years</a>
+              
+              <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max" role="tab"
+                aria-controls="nav-about" aria-selected="false">Max</a>
+
+            </div>
+           
+          </nav>
+
+          <div class="tab-content " id="nav-tabContent">
+                    
+            <!-- Chart 1 Day -->
+            <div class="tab-pane fade show active" id="nav-1Day" role="tabpanel"
+            aria-labelledby="nav-profile-tab">
+           
+            <canvas id="myChart1Day"class="canvades">
+
+              <script>
+
+                // Wait for fuction chartIt1Day done first because it makes the Api call
+                // then call the function chartIt3Days
+                $.when(chartIt1Day()).done(function () { chartIt3Days(); });
+
+              </script> 
+
+            </canvas>
+            
+          </div>
+
+          <!-- Chart 3 Days -->
+          <div class="tab-pane fade " id="nav-3Days" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            <canvas id="myChart3Days" class="canvades"> </canvas>
+
+          </div>
+
+          <!-- Chart 1 Month -->
+          <div class="tab-pane fade "  id="nav-1Month" role="tabpanel" aria-labelledby="nav-about-tab">
+            
+            <canvas id="myChart1Month"class="canvades">
+              
+              <script>
+
+                // Wait for fuction chartIt1Month done first because it makes the Api call
+                // then call the chartIt4Months 
+                $.when(chartIt1Month()).done(function () { chartIt4Months(); });
+
+              </script>
+
+            </canvas>
+            
+          </div>
+
+          <!-- Chart 4 Months -->
+          <div class="tab-pane fade" id="nav-4Months" role="tabpanel" aria-labelledby="nav-about-tab">
+
+            <canvas id="myChart4Months"class="canvades"></canvas>
+
+          </div>
+
+           <!-- Chart 1 year-->
+          <div class="tab-pane fade" id="nav-1Year" role="tabpanel" aria-labelledby="nav-about-tab">
+
+            <canvas id="myChart1Year"class="canvades"> </canvas>
+
+          </div>
+
+          <!-- Chart 5 years -->
+          <div class="tab-pane fade" id="nav-5Years" role="tabpanel" aria-labelledby="nav-about-tab">
+           
+            <canvas id="myChart5Years"class="canvades"> </canvas>
+
+          </div>
+
+          <!-- Chart Max -->
+          <div class="tab-pane fade " id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+
+            <canvas id="myChart"class="canvades">
+             
+             <script>
+
+              // Wait for fuction chartIt done first because it makes the Api call
+              $.when(chartIt()).done(function () {
+
+                // Then call the other chart functions 
+                chartIt1Year();
+                chartIt5Years();
+
+              });
+
+            </script>
+
+            </canvas>
+          
+          </div>
+
+
+        </section>
+      </div>
+
+
+      </div>
+      <div class="col-labels">
+
+        <div class="holder">
+           <!--Stocks name   -->
+           <p  id="holder" style="margin-top:20px;">Microsoft Corp</p>
+
+           <!-- Stocks symbol -->
+           <p  id="holderSymbol" >MSFT </p><a id="diference"></a>
+                
+          </div>
+       <div class="description">
+          <!-- Open -->
+          <p class="card-text">Open:<a id="open"></a></p>
+           
+          <!-- High -->
+          <p class="card-text">High:<a id="high"></a></p>
+
+          <!-- Low -->
+          <p class="card-text">Low:<a id="low"></a></p>
+
+          <!-- Prev Close -->
+          <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
+
+                <!-- Price to Book ratio -->
+          <!-- <p class="card-text">Price to Book:<a id="PriceToBook"></a></p> -->
+
+        </div>
+
+      </div>
+
+      <div class="col-search" id="search_bar">
+ 
+          <!--Form to send stocks name to server  -->
+          <form action="javascript:void(0)" class="form-inline md-form mr-auto mb-2" autocomplete="off">
+            <div class="input-group">
+            <input id="myInput" type="text" name="Stocks" class="form-control mr-sm-2" type="text"
+              placeholder="Search" aria-label="Search">
+              <button id="suButton" type="submit" ><i class="fa fa-search"></i></button>
+              <div>
+              <!--Btn for submiting stock   -->
+            <!-- <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button> -->
+
+          </form>
+       <div id="myInputautocomplete-list"></div>
+       <div class="Inactive"></div>
+    </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>
   
@@ -255,6 +249,23 @@
   <!-- When opening stocks page start countdown for next Search -->
   <script> setTimer();</script>
 
+  <script> 
+
+    var ro = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        const cr = entry.contentRect;
+        console.log(cr.width);
+        if (cr.width <= 70) {
+
+          $('#myInputautocomplete-list').addClass('Inactive');
+        }
+      }
+    });
+    ro.observe(document.querySelector('#myInputautocomplete-list'));
+
+  </script> 
+
+</div>
 </body>
 
 </html>

@@ -1,50 +1,122 @@
-<div class="navbar navbar-expand-lg fixed-top " id="navBarRefresh">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <style>
+        .navbar {
+            font-family: muli, sans-serif !important;
+            font-weight: 600 !important;
+            font-style: normal !important;
+        }
 
-    <!-- Add logo to page -->
-    <div class="navbar-brand"><a href="homepage"> <img src="../public/photos/logo2svg.svg" width="100px"></a>
-    </div>
+        .nav-link:hover {
+            color: #000000 !important;
+        }
 
-    <!-- Add button to nav bar when collapse -->
-    <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        .nav-item .nav-link:hover {
+            color: #ffffff !important;
+        }
 
-        <span class="navbar-toggler-icon"></span>
+        .notification {
+            max-width: 158px;
+            border-top: solid 1px black;
+            font-family: monospace;
+        }
 
-    </button>
+        .notification-text {
+            white-space: normal;
+            margin: 0;
+            height: autopx;
+            max-width: 108px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
 
-    <!-- DropDown menu when nav bar collapse -->
-    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+        .dot {
+            position: relative;
+            top: -9px;
+            height: 10px;
+            width: 10px;
+            background-color: #5B0005;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0;
+            visibility: hidden;
+        }
 
-        <ul class="navbar-nav mr-auto "></ul>
+        .dot.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
 
-        <!-- Button to go to About page -->
-        <ul class="navbar-nav">
+        .dropdown-item.notification:hover {
+            color: white;
+        }
+    </style>
+</head>
 
-            <li class="nav-item">
+<body>
 
-                <a class="nav-link" href="about">How it works</a>
 
-            </li>
 
-            <!-- Button to go to Stocks Page -->
-            <li class="nav-item">
+    <div class="navbar navbar-expand-lg fixed-top " id="navBarRefresh">
 
-                <a class="nav-link" href="stocks">Stocks</a>
+        <!-- Add logo to page -->
+        <div class="navbar-brand"><a href="homepage"> <img src="../public/photos/logo2svg.svg" width="100px "
+                    id="logo"></a>
+        </div>
 
-            </li>
+        <!-- Add button to nav bar when collapse -->
+        <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 
-            <!-- If user is loged in shiw profile and log out else show only Log in -->
-            <%if (user) { %>
+            <span class="navbar-toggler-icon"></span>
 
-            <li class="nav-item dropdown">
+        </button>
 
-                <!-- Button If logged in show user names -->
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+        <!-- DropDown menu when nav bar collapse -->
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
 
-                    <%=user.name %><% if(user.notification[0]) {%><span class="dot" id="dot"></span><%}%></a>
+            <ul class="navbar-nav mr-auto "></ul>
 
-                <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" id="droDownMenu" style="max-width: 158px; border: solid 1px black; font-family: monospace;">
+            <!-- Button to go to About page -->
+            <ul class="navbar-nav" id="messages">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="about">How it works</a>
+
+                </li>
+
+                <!-- Button to go to Stocks Page -->
+                <li class="nav-item">
+
+                    <a class="nav-link" href="stocks">Stocks</a>
+
+                </li>
+
+                <!-- If user is loged in shiw profile and log out else show only Log in -->
+                <%if (user) { %>
+
+                <% if(user.dot==1) { %>
+
+                <%}%>
+
+    <li class="nav-item dropdown">
+
+        <!-- Button If logged in show user names -->
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style=" font-family: muli,sans-serif;font-weight:600;">
+
+            <%=user.name %>
+
+                <% if(user.dot==1) { %>
+                <span class="dot show" id="dot"></span></a>
+                <%}%>
+            <%if(user.dot==0) {%>
+                <span class="dot" id="dot"></span></a>
+                <%}%>
+                <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" id="droDownMenu"
+                    style="max-width: 158px; border: solid 1px black; font-family: monospace;">
 
                     <!-- Button to go to userpage -->
                     <a class="dropdown-item" id="profileBtn" href="users/login">Profile</a>
@@ -52,57 +124,52 @@
                     <!-- Button to Log out -->
                     <a class="dropdown-item" id="logoutBtn" href="users/logout">Log out</a>
 
-                    <% if(user.notification[0]) {%>
+                    <% if(user.notification[1]) {%>
 
 
-                    <% for(var i=0; i < user.notification.length; i++) { %>
+                <% for(var i=1; i < user.notification.length; i++) { %>
 
 
-                    <a style="max-width: 158px; border-top: solid 1px black; font-family: monospace;"
-                        class="dropdown-item notification" id="notification<%=i%>" href="#"><button type="button"
-                            class="close" id="<%=i%>" data-dismiss="modal" aria-label="Close"
-                            onclick="document.getElementById('notification<%=i%>').style.display='none'">
-                            <span class="closeSpan" id="<%=i%>" aria-hidden="true">&times;</span>
-                            </span></button>
-                        <p style=" 
-                        white-space: normal;
-                        margin:0;
-                         height:autopx;
-                         max-width: 108px;
-                         overflow-wrap: break-word;
-                         word-wrap: break-word;
-                         hyphens: auto;
-                         ">
-                            <%=user.notification[i] %></p>
-                    </a>
+                <a class=" dropdown-item notification" id="notifications.<%=i%>"><button class="close "
+                        id="notification.<%=i%>">
+                        <span class="closeSpans" id="<%=i%>">&times;</span>
+                    </button>
+                    <p class="notification-text">
+                        <%=user.notification[i] %></p>
+                </a>
 
-                    <% } %>
+                <% } %>
 
-                    <% } else { %>
+                <% } else { %>
 
 
 
-                    <% } %>
+                <% } %>
 
-    </div>
+        </div>
 
-    </li>
+        </li>
 
-    <% } else {%>
+        <% } else {%>
 
-    <li class="nav-item">
+        <li class="nav-item">
 
-        <!-- Button to Log in  -->
-        <a class="nav-link" href="users/login">Login</a>
+            <!-- Button to Log in  -->
+            <a class="nav-link" href="users/login">Login</a>
 
-    </li>
+        </li>
 
-    <%}%>
+        <%}%>
            
         </ul>
 
         <script type="text/javascript" src="/public/js/navBar.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+       
+
+ 
 
     </div>
 
 </div>
+</body>

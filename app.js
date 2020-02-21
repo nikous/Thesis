@@ -39,6 +39,48 @@ app.use(passport.session());
 // DB Config
 const db = require('./config/keys').mongoURI;
 
+const MongoClient = require('mongodb').MongoClient;
+var http = require('http').createServer(app);
+http.listen(1200, function () {
+    console.log('listening on *:1200');
+});
+const io = require('socket.io')(http);
+
+
+// change based on your mongodb connection instance
+
+// MongoClient.connect(db,
+//     { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(client => {
+
+//         const db = client.db("test");
+//         const collection = db.collection("users");
+
+//         const changeStream = collection.watch();
+//         changeStream.on("change", function (change) {
+//             io.emit('new-notification', change);
+//             // console.log(change);
+//         });
+//     });
+
+
+io.on('connection', function (socket) {
+    console.log('a user connected');
+    socket.on('disconnect', function () {
+        console.log('user disconnected');
+    });
+    socket.on('new-notification', function (msg) {
+        io.emit('new-notification', msg);
+    });
+
+});
+
+
+// io.on('new-notification', function (msg) {
+//     console.log('notification------------------------------> : ' + msg);
+// });
+
+const User = require('./models/User');
 // Connect to MongoDB
 mongoose
 
@@ -48,12 +90,30 @@ mongoose
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
 
-    .then(() => console.log('MongoDB Connected'))
+    .then(() => {
+        console.log('MongoDB Connected')
+
+        const notification = mongoose.model('User');
+
+        // Create a change stream. The 'change' event gets emitted when there's a
+        // change in the database
+        // notification.watch({}).
+        notification.watch({ 'fullDocument': 'updateLookup' }).
+            on('change', function (change) {
+                io.emit('new-notification', change);
+                // console.log(change);
+                console.log(new Date(), change);
+            });
+
+
+        // data => console.log(new Date(), data)
+    })
     .catch(err => console.log(err));
 
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+
 
 // Bodyparser
 app.use(express.urlencoded({ extended: true }));
@@ -147,8 +207,24 @@ app.get('/getAps/:symbol', async (request, response) => {
     response.json(Realjson);
 });
 
+// app.get('/getApiPriceToBook/:symbol', async (request, response) => {
+
+//     const api_key = process.env.API_KEY_INTRI;    // Takes api key from .env file
+//     const symbol = request.params.symbol;
+//     const api_url = 'https://api-v2.intrinio.com/companies/' + symbol + '/historical_data/pricetobook?api_key=' + api_key + '';
+//     const fetch_response = await fetch(api_url);
+//     const json = await fetch_response.json();       // Wait to fetch json from api
+
+//     console.log(request.params.symbol);
+//     console.log(api_url);
+
+//     response.json(json);    // Send response to client
+//     exports.symbol = request.params.symbol;
+// });
 
 // Use port 1200 when run locally when run on heroku use their port
-const PORT = process.env.PORT || 1200;
+// const PORT = process.env.PORT || 1200;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+
+// app.listen(PORT, console.log(`Server started on port ${PORT}`));

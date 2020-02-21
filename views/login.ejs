@@ -1,7 +1,8 @@
 <head>
 
     <!-------------------------Add css to ejs file--------------------------->
-    <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
 
 </head>
 
@@ -11,7 +12,7 @@
 
         <div class="modal-header primary-color white-text">
 
-            <h4 class="title"> Login</h4>
+            <p class="title"> Login</p>
 
         </div>
 
@@ -23,13 +24,9 @@
             <!-- Send email password to server to login -->
             <form action="/users/login " method="POST">
 
-                <div class="input-group Email mb-3">
+                <div class="input-group Email mb-3" id="ema">
 
-                    <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-
-                    </div>
 
                     <!-- Field for email-->
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
@@ -38,13 +35,9 @@
                 </div>
 
                 <!-- Field for password-->
-                <div class="input-group Password mb-3">
+                <div class="input-group Password mb-3" id="pass">
 
-                    <div class="input-group-prepend">
 
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-
-                    </div>
 
                     <input type="password" class="form-control" id="password" name="password"
                         aria-describedby="PasswordHelp" placeholder="Enter password"

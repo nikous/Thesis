@@ -20,8 +20,8 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 router.post('/register', (req, res) => {
 
     const { name, email, password, password2 } = req.body;
-    const { stock } = { stock: 'TSLA' };
-
+    const notification = 'Start';
+    const dot = 0;
     let errors = [];
 
     // Conditions to Regiter client 
@@ -75,7 +75,8 @@ router.post('/register', (req, res) => {
                     name,
                     email,
                     password,
-                    stock,
+                    notification,
+                    dot
                 });
 
                 // encrypt password and save User to database

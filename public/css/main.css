@@ -1,5 +1,6 @@
-
-
+body{
+  overflow: hidden;
+}
 /* Set up color,hover width and height of navbar */
 .nav-link{
 
@@ -64,19 +65,21 @@
 
   background: transparent;
   color: #000000;
-  background: #5B0005;
+  background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal!important;
+    background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005), linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)), linear-gradient(141deg,#6e0909,#a5a5a5), linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5), linear-gradient(42deg,rgba(0,190,213,0),rgba(0, 0, 0, 0.85) 95%,rgb(39, 5, 3) 87%,#000000), linear-gradient(126deg,rgba(0,190,213,0),#000607), linear-gradient(#000000,#700808)!important;
 }
 
 #DescBtn:hover {
 
   color:  #ffffff;
-  background-color:#5B0005;
+  background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal!important;
+  background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005), linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)), linear-gradient(141deg,#6e0909,#a5a5a5), linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5), linear-gradient(42deg,rgba(0,190,213,0),rgba(0, 0, 0, 0.85) 95%,rgb(39, 5, 3) 87%,#000000), linear-gradient(126deg,rgba(0,190,213,0),#000607), linear-gradient(#000000,#700808)!important;
 }
 
 /*social Icons at the bottom page of welcome page */
 .social-icons a:hover {
 
-  background-color: #5B0005;
+ 
 }
 
 .social-icons a {
@@ -84,11 +87,11 @@
   display: inline-block;
   height: 3.5rem;
   width: 3.5rem;
-  background-color: #01060c;
+ 
   color: #fff !important;
   border-radius: 100%;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 3.5rem;
   margin-right: 1rem;
 }
@@ -107,6 +110,7 @@ body{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: center;
   width: 100vw;
   height: 100vh;
   display:grid;
@@ -129,10 +133,17 @@ svg{
   margin-left:250px;
   margin-top:100px;
 }
-
+@media (max-width:991px) {
+  .navbar-nav  {
+    background-color:black;
+  }
+}
 
 #rowHome{
-
+  font-family: muli,sans-serif;
+  font-weight: 600;
+  
+  font-style: normal;
   margin:0;
 }
 
@@ -234,4 +245,16 @@ margin-right:-21px;
     margin-left: 100px;
   }
 
+}
+
+#facebook:hover{
+  position: relative;
+  top:-10px;
+  
+}
+
+#github:hover{
+  position: relative;
+  top:-10px;
+  
 }

@@ -107,9 +107,9 @@ router.post('/getStock/:symbol', (req, res) => {
     // Find user in database by id 
     const user = req.user._id;
     const symbol = req.params.symbol;
-
     //Find if user has already follwed stock 
     User.findOne({ _id: user, stock: symbol }).then(result => {
+
 
         if (result) {
 
@@ -119,7 +119,7 @@ router.post('/getStock/:symbol', (req, res) => {
 
         else {
 
-            // If not,follow the stock 
+            // Add stock to database
             User.findOneAndUpdate({ _id: user }, { '$push': { stock: req.params.symbol } }, (err, doc) => {
 
                 if (err) {
@@ -128,7 +128,7 @@ router.post('/getStock/:symbol', (req, res) => {
                 }
 
                 console.log(doc);
-            });
+            })
         }
     });
 });
@@ -161,6 +161,15 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 
         user: req.user
     })
+
+});
+
+router.get('/getDBdata/:an', ensureAuthenticated, async (request, response) => {
+    const an = await request.user;
+
+    console.log("O user einaii:", an);
+    response.json(an);
+
 });
 
 module.exports = router;
