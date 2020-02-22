@@ -287,7 +287,7 @@ document.getElementById("listStocks").addEventListener("click", function (e) {
 });
 
 document.getElementById('subBtn').addEventListener("click", function (e) {
-    alert("yes");
+
     // Take values from inputs in Userpage
     min = document.getElementById('min').value;
     max = document.getElementById('max').value;
