@@ -251,6 +251,13 @@ background-color: transparent;
       opacity:0;
       visibility: hidden;
   }
+
+  #navbarNavDropdown {
+    position: relative !important;
+    top: -8px !important;
+    opacity: 0.95 !important;
+}
+
   .autocomplete-items {
   
     position: relative;
@@ -260,8 +267,6 @@ background-color: transparent;
     margin-top:10px;
 
     /*position the autocomplete items to be the same width as the container:*/
-
-    
    
     height:300px;
     width: 210px;
@@ -507,6 +512,11 @@ width: 150px!important;}}
     .col-search{
         top:18%!important;
         left:4%!important;
+    }
+
+
+    #form-search{
+        padding-top:25px!important;  
     }
 }
 

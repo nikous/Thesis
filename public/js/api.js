@@ -322,7 +322,7 @@ async function getDataReal(symbol) {
                     volume_labels_Real[i] = volume_array_Real[length - i];
                 }
             };
-
+            console.log(numDay);
             // If its a day of the week except saturday, sunday and the hour is bigger than 16:35
             if ((numHour == 16 && curMin >= 35) && (numDay != 6 || numDay != 0)) {
 
@@ -343,6 +343,11 @@ async function getDataReal(symbol) {
 
             // If Sunday go to friday
             if (numDay == 0) {
+
+                curDay = curDay - 2;
+            }
+
+            if (numDay == 6) {
 
                 curDay = curDay - 1;
             }

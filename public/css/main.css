@@ -226,7 +226,7 @@ margin-right:-21px;
     display: inline-block;
     height: 2.5rem;
     width: 2.5rem;
-    background-color: #01060c;
+
     color: #fff !important;
     border-radius: 100%;
     text-align: center;
@@ -234,6 +234,7 @@ margin-right:-21px;
     line-height: 2.5rem;
     margin-right: 1rem;
 
+  
   }
 }
 
