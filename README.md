@@ -2,7 +2,8 @@
 
 # Nstocks Web application 
 
-The web application is live at [Heroku](https://nick-thesis.herokuapp.com)
+You can see a hosted version of Nstocks on [Heroku](https://nick-thesis.herokuapp.com)
+
 
 
 ## Table of contents
