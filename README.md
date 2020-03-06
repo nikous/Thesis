@@ -9,6 +9,7 @@ You can see a hosted version of Nstocks on [Heroku](https://nick-thesis.herokuap
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
+* [Technologies](#technologies)
 * [Requirements](#Requirements)
 * [Setup](#setup)
 * [Compress](#compress)
@@ -26,7 +27,11 @@ puts them to arrays and visualize them with charts for 1 Day,2 Days, 1 Month, 5 
 Client and server communicate with Ajax.The web app is online using heroku and github.
 
 ## Screenshots
+
+
 ### Homepage
+
+
 <img align="center"  src="https://i.imgur.com/NoReWqx.png">
 
 ### How it works
@@ -42,6 +47,23 @@ In Stocks page you can search and track the stocks you are looking for
 
 If you register and login you can have access to Profile page where users can have their favorite stocks and also users can set upper and lower bounds for the stocks prices
 <img align="center"  src="https://i.imgur.com/p2Wo0im.png">
+
+## Technologies
+
+
+* [NodeJS](https://github.com/nodejs)
+* [Express](https://github.com/expressjs/express)
+* [MongoDB](https://github.com/mongodb/mongo)
+* [Mongoose](https://github.com/Automattic/mongoose)
+* [Socket.io](https://github.com/socketio/socket.io)
+* [Passport](https://github.com/jaredhanson/passport)
+* [Chartjs](https://github.com/chartjs)
+* [Ejs](https://github.com/mde/ejs)
+* [bcrypt.js](https://github.com/dcodeIO/bcrypt.js/blob/master/README.md)
+* [nodemailer](https://github.com/nodemailer/nodemailer)
+* [dotenv](https://github.com/motdotla/dotenv)
+
+
 
 ## Requirements
 
