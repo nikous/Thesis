@@ -10,6 +10,7 @@ The web application is live at [Heroku](https://nick-thesis.herokuapp.com)
 * [Screenshots](#screenshots)
 * [Requirements](#Requirements)
 * [Setup](#setup)
+* [Compress](#compress)
 * [Deploy to Heroku](#deploy-to-heroku)
 * [Contact](#contact)
 
@@ -110,6 +111,14 @@ To start the express server, run the following
 npm run dev
 ```
 Open http://localhost:1200 and take a look around.
+
+## Compress
+
+You can compress your files with brotli and zlib using the following command 
+
+```bash
+node compress
+```
 
 ## Deploy to Heroku
 
