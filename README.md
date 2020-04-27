@@ -84,9 +84,9 @@ npm install
 
 
 ```bash
-API_KEY = <Add your api-key from Alphavantage>
+API_KEY = < Add your api-key from Alphavantage >
 PASS = < MongoDB password >
-EMAIL = < Password for the email you use to send the notification emails>
+EMAIL = < Password for the email you use to send the notification emails >
 ```
 
 * Then  change the link to mongoDB database:

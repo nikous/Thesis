@@ -6,7 +6,7 @@ var high_array = [];
 var low_array = [];
 var volume_array = [];
 var date_array = [];
-var symbol = 'MSFT';
+var symbol = 'IBM';
 
 var date_array_Daily = [];
 var open_array_Daily = [];
@@ -38,7 +38,7 @@ async function getData(symbol) {
 
     if (symbol == null) {
 
-        symbol = 'MSFT';
+        symbol = 'IBM';
     }
 
     // Send stocks name to server and Retrieves data from Api 
@@ -156,7 +156,7 @@ async function getDataDaily(symbol) {
 
     if (symbol == null) {
 
-        symbol = 'MSFT';
+        symbol = 'IBM';
     }
 
     // Send stocks name to server and Retrieves data from Api 
@@ -247,26 +247,9 @@ async function getDataReal(symbol) {
 
     if (symbol == null) {
 
-        symbol = 'MSFT';
+        symbol = 'IBM';
     }
 
-    // await $.ajax({
-
-    //     url: '/getApiPriceToBook/' + symbol + '',
-    //     dataType: 'json',
-    //     type: 'get',
-    //     cache: false,
-    //     success: function (data) {
-
-    //         const json_lengths = Object.keys(data["historical_data"]).length; // Length of json
-    //         var lengths = json_lengths - 1;
-    //         for (var date in data["historical_data"]) {
-    //             pricetoBook.push(data["historical_data"][date]["value"]);
-
-    //         }
-
-    //     }
-    // })
 
     // Send stocks name to server and Retrieves data from Api 
     await $.ajax({
@@ -287,7 +270,7 @@ async function getDataReal(symbol) {
             var curMin = day.getMinutes();                      // Current Minutes
             var counter = 0;                                    // Counter
             var dateStock = 0;                                  // Counter for 3days
-
+            console.log(data);
             //Fill arrays with data from servers json response
             for (var date in data["Time Series (5min)"]) {
 
@@ -323,6 +306,10 @@ async function getDataReal(symbol) {
                 }
             };
             console.log(numDay);
+            console.log(curDay)
+            console.log(numHour)
+            console.log(curMin)
+
             // If its a day of the week except saturday, sunday and the hour is bigger than 16:35
             if ((numHour == 16 && curMin >= 35) && (numDay != 6 || numDay != 0)) {
 
@@ -357,7 +344,7 @@ async function getDataReal(symbol) {
 
                 curDay = '0' + curDay;
             }
-
+            console.log("TO curDay is ", curDay)
             // Fill array with data for 1 Day
             for (var i = 0; i <= length; i++) {
 
@@ -509,7 +496,6 @@ async function getDataReal(symbol) {
             document.getElementById("high").innerHTML = " " + high_labels_1Day[indexOfMax(close_labels_1Day_chart)];
             document.getElementById("low").innerHTML = " " + low_labels_1Day[indexOfMin(close_labels_1Day_chart)];
             document.getElementById("PrevClose").innerHTML = " " + close_array_Real[secIndex];
-            // document.getElementById("PriceToBook").innerHTML = " " + pricetoBook[0];
 
 
             // If Percentage Change is increased add + symbol ,green color and up arrow
@@ -537,13 +523,3 @@ async function getDataReal(symbol) {
     });
 }
 
-// async function getDataPriceToBook(symbol) {
-
-//     if (symbol == null) {
-
-//         symbol = 'MSFT';
-//     }
-
-//     // Send stocks name to server and Retrieves data from Api 
-
-// }

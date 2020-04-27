@@ -226,10 +226,10 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     // Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
-    // If search doesn't have input make symbol MSFT
+    // If search doesn't have input make symbol IBM
     if (symbol == '') {
 
-        symbol = 'MSFT'
+        symbol = 'IBM'
     }
 
     // Search where is symbol in the array and take the  number 
@@ -344,7 +344,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     };
 }, { passive: true });
 
-// Send stock to database and stops form to reload the page
+// Send stock to server and stops form to reload the page
 $('#send').submit(function (e) {
 
     // Stop form from refreshing page

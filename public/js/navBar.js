@@ -1,29 +1,30 @@
+if (document.getElementById("navbarDropdownMenuLink")) {
+    document.getElementById("navbarDropdownMenuLink").addEventListener("click", function (e) {
 
-document.getElementById("navbarDropdownMenuLink").addEventListener("click", function (e) {
+        console.log("yes");
+        $("#dot").removeClass("show");
+        const target = 0;
+        $.ajax({
 
-    console.log("yes");
-    $("#dot").removeClass("show");
-    const target = 0;
-    $.ajax({
-
-        url: '/deleteDot/' + target + '',
-        dataType: 'number',
-        type: 'post',
-        cache: false,
-        timeout: 1000000,
-        success: function (result) {
-            console.log(result);
-            if (result.status == 200) {
-                console.log("Status:200");
+            url: '/deleteDot/' + target + '',
+            dataType: 'number',
+            type: 'post',
+            cache: false,
+            timeout: 1000000,
+            success: function (result) {
+                console.log(result);
+                if (result.status == 200) {
+                    console.log("Status:200");
+                }
+            },
+            error: function (result) {
+                console.log(result);
             }
-        },
-        error: function (result) {
-            console.log(result);
-        }
-    });
+        });
 
 
-})
+    })
+}
 
 $(document).ready(function () {
     $("span").click(function (event) {

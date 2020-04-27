@@ -105,7 +105,6 @@ body{
     font-size: 1.5vw;
     position: relative;
     left: 18vw;
-    top: -4.7vw;
 }
 .col-labels{
 margin-left:160px;
@@ -528,7 +527,7 @@ color:#FFFFFF;
         font-size: 2.5vw;
         position: relative;
         left: 29vw;
-        top: -9vw;
+        top: -4.8vw;
     }
     .list-container{
         width:100%!important;

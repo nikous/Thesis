@@ -44,8 +44,9 @@ body{
 
 #holder{
     font-size: 30px;
-    line-height: 10px;;
     font-weight: 300;
+    line-height: 23px;
+    overflow-wrap: break-word;
 }
 
 #holderSymbol{
@@ -96,6 +97,7 @@ background-color: transparent;
 }
 .holder{
     text-align: center;
+    width:100%;
 }
 .description{
     margin-left:10px;
