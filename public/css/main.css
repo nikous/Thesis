@@ -10,6 +10,11 @@ body{
   line-height: 20px; 
 }
 
+.dropdown-menu.show {
+
+  margin-left: -32%;
+}
+
 /* Add logo properties to Homepage */
 .navbar-brand {
 

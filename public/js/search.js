@@ -226,7 +226,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     // Take stock name from search input
     symbol = document.getElementById('myInput').value;
 
-    // If search doesn't have input make symbol IBM
+    // If search doesn't have input make symbol MSFT
     if (symbol == '') {
 
         symbol = 'IBM'
@@ -344,7 +344,7 @@ document.getElementById('suButton').addEventListener("click", function (e) {
     };
 }, { passive: true });
 
-// Send stock to server and stops form to reload the page
+// Send stock to database and stops form to reload the page
 $('#send').submit(function (e) {
 
     // Stop form from refreshing page

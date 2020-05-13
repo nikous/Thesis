@@ -1,30 +1,29 @@
-if (document.getElementById("navbarDropdownMenuLink")) {
-    document.getElementById("navbarDropdownMenuLink").addEventListener("click", function (e) {
 
-        console.log("yes");
-        $("#dot").removeClass("show");
-        const target = 0;
-        $.ajax({
+document.getElementById("navbarDropdownMenuLink").addEventListener("click", function (e) {
 
-            url: '/deleteDot/' + target + '',
-            dataType: 'number',
-            type: 'post',
-            cache: false,
-            timeout: 1000000,
-            success: function (result) {
-                console.log(result);
-                if (result.status == 200) {
-                    console.log("Status:200");
-                }
-            },
-            error: function (result) {
-                console.log(result);
+    console.log("yes");
+    $("#dot").removeClass("show");
+    const target = 0;
+    $.ajax({
+
+        url: '/deleteDot/' + target + '',
+        dataType: 'number',
+        type: 'post',
+        cache: false,
+        timeout: 1000000,
+        success: function (result) {
+            console.log(result);
+            if (result.status == 200) {
+                console.log("Status:200");
             }
-        });
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    });
 
 
-    })
-}
+})
 
 $(document).ready(function () {
     $("span").click(function (event) {
@@ -189,8 +188,8 @@ socket.on('new-notification', async function (msg) {
                 if (msg["updateDescription"]["removedFields"].length == 0 && Array.isArray(msg["updateDescription"]["updatedFields"]["notification"]) == true) {
 
                     if (msg["fullDocument"]["notification"].length > 1) {
+
                         $("#dot").addClass("show");
-                        console.log("1");
                         var element = document.createElement("a");
                         var text = document.createElement("p");
                         var btn = document.createElement("button");

@@ -6,6 +6,33 @@ let define = [];
 var symbolStock;
 var symbolStocks;
 
+// Set timer to start countdown until next search 
+// function setTimer() {
+
+//     var timer = new Timer();
+
+//     // Start countdown for 1 minute
+//     timer.start({ countdown: true, startValues: { seconds: 60 } });
+//     timer.addEventListener('secondsUpdated', function (e) {
+
+//         // Add timer to Userpage 
+//         $('#gettingValuesExample .seconds').html(timer.getTimeValues().toString() + " until next search" + "&ensp;");
+//     });
+
+//     // Disable clicking stocks on list at userpage until countdown finish
+//     if (timer.getTimeValues().seconds == 00) {
+
+//         document.getElementById("listStocks").disabled = true;
+//     }
+
+//     // Enable clicking stocks on list at userpage when countdown finish
+//     timer.addEventListener('targetAchieved', function (e) {
+
+//         document.getElementById("listStocks").disabled = false;
+//         $('#gettingValuesExample .seconds').html('');
+//     });
+// };
+
 // Find Definition and symbol of the stock which clicked at list on userpage
 async function DefineStock() {
 
@@ -22,7 +49,6 @@ async function DefineStock() {
 
         symbols.push(row[0]);
         define.push(row[1]);
-
     });
 }
 
@@ -70,23 +96,14 @@ $.ajax({
         wait.then(function (value) {
 
             if (value == 'foo') {
-                if (define[place] === undefined) {
-                    // Put stocks definition to cardBody at userpage
-                    document.getElementById("holder").innerHTML = "International Business Machines";
-                }
-                else {
-                    document.getElementById("holder").innerHTML = define[place];
-                }
 
+                // Put stocks definition to cardBody at userpage
+                document.getElementById("holder").innerHTML = define[place];
             }
         });
-        if (followed_stocks[0] === undefined) {
-            // Put stocks symbol to cardBody at userpage
-            document.getElementById("holderSymbol").innerHTML = "IBM";
-        }
-        else {
-            document.getElementById("holderSymbol").innerHTML = followed_stocks[0];
-        }
+
+        // Put stocks symbol to cardBody at userpage
+        document.getElementById("holderSymbol").innerHTML = followed_stocks[0];
 
         // When go to userpage show charts from the first stock at list 
         // Wait first to call the chart1Day,chart1Month and chartIt because they have the Api calls

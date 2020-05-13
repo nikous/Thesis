@@ -17,6 +17,11 @@
 .navbar-brand {
 margin-bottom:8px;
 }
+
+.dropdown-menu.show {
+
+  margin-left: -32%;
+}
 /* Add logo Properties to other pages exept homepage */
 .navbar-brand {
 

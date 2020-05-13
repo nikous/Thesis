@@ -8,20 +8,20 @@ const brotliSettings = {
 
     extension: 'br',
     skipLarger: true,
-    mode: 1, // 0 = generic, 1 = text, 2 = font (WOFF2)
+    mode: 0, // 0 = generic, 1 = text, 2 = font (WOFF2)
     quality: 10, // 0 - 11,
     lgwin: 12 // default
 };
 
 // Choose files from these folders to  compress
-var dirs = ['../thesis', 'public/css', 'routes', 'views', 'models', 'config', 'public/js','public/photos','public/data'];
+var dirs = ['../thesis', 'public/css', 'routes', 'views', 'models', 'config', 'public/js', 'public/data'];
 
 // For  each dir if file ends to .js, .css, .ejs, .html compress them
 dirs.forEach(dir => {
 
     fs.readdirSync(dir).forEach(file => {
 
-        if (file.endsWith('.js') || file.endsWith('.css') || file.endsWith('.html') || file.endsWith('.ejs') || file.endsWith('.svg')|| file.endsWith('.csv')) {
+        if (file.endsWith('.js') || file.endsWith('.css') || file.endsWith('.html') || file.endsWith('.ejs') || file.endsWith('.svg') || file.endsWith('.csv')) {
 
             // brotli
             const result = brotli.compress(fs.readFileSync(dir + '/' + file), brotliSettings);
