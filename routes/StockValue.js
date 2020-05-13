@@ -98,193 +98,193 @@ setInterval(function () {
     var StartHour = StartDate.getHours();
     var StartMin = StartDate.getMinutes();
 
-    // if (StartDay != 6 || StartDay != 0) {
+    if (StartDay != 6 || StartDay != 0) {
 
 
-    //     if (StartHour >= 16 && StartHour <= 23) {
+        if (StartHour >= 16 && StartHour <= 23) {
 
-    //         if (((StartHour == 16 && StartMin >= 35) || (StartHour >= 17 && StartHour <= 22) || (StartHour == 23 && StartMin == 0))) {
+            if (((StartHour == 16 && StartMin >= 35) || (StartHour >= 17 && StartHour <= 22) || (StartHour == 23 && StartMin == 0))) {
 
-    Stock.findOneAndDelete({ max: { '$exists': false }, min: { '$exists': false } }).then(result => { });
+                Stock.findOneAndDelete({ max: { '$exists': false }, min: { '$exists': false } }).then(result => { });
 
-    // Find in DB the reminders for stock price and put it to an array
-    Stock.find({}).then(result => {
+                // Find in DB the reminders for stock price and put it to an array
+                Stock.find({}).then(result => {
 
-        result = JSON.parse(JSON.stringify(result));
-        const name = 'stockName';
-        const time = "Time Series (5min)";
-        var length;
+                    result = JSON.parse(JSON.stringify(result));
+                    const name = 'stockName';
+                    const time = "Time Series (5min)";
+                    var length;
 
-        // Function to make HTTP request on server to call Api 
-        function HTTPget(i) {
+                    // Function to make HTTP request on server to call Api 
+                    function HTTPget(i) {
 
-            // Return promise with the data from api call
-            return new Promise(function (resolve) {
+                        // Return promise with the data from api call
+                        return new Promise(function (resolve) {
 
-                var options = {
+                            var options = {
 
-                    port: process.env.PORT || 1200, // the port
-                    path: '/getAps/' + result[i][name] + '',
-                    method: 'get',
-                };
+                                port: process.env.PORT || 1200, // the port
+                                path: '/getAps/' + result[i][name] + '',
+                                method: 'get',
+                            };
 
-                http.request(options, function (res) {
+                            http.request(options, function (res) {
 
-                    res.setEncoding('utf8'); // Set encode to data 
+                                res.setEncoding('utf8'); // Set encode to data 
 
-                    resolve(res.on('data', function (chunk) {
+                                resolve(res.on('data', function (chunk) {
 
-                        number = 1;
-                        var temp = JSON.parse(chunk.toString()); // Convert chunck to string and then to json
-                        const json_length = Object.keys(temp[time]).length; // Length of json
-                        length = json_length - 1;
+                                    number = 1;
+                                    var temp = JSON.parse(chunk.toString()); // Convert chunck to string and then to json
+                                    const json_length = Object.keys(temp[time]).length; // Length of json
+                                    length = json_length - 1;
 
-                        for (var date in temp["Time Series (5min)"]) { // Fill array with data
+                                    for (var date in temp["Time Series (5min)"]) { // Fill array with data
 
-                            close_array_Real.push(temp[time][date]["4. close"]);
-                        };
-                    }));
+                                        close_array_Real.push(temp[time][date]["4. close"]);
+                                    };
+                                }));
 
-                }).end();
-            });
-        }
-
-        // Send email to the User 
-        function sendEmail(mailOptions) {
-
-            return new Promise(function (resolve) {
-
-                var transporter = nodemailer.createTransport({
-
-                    service: 'gmail',
-                    auth: {
-
-                        user: 'nstocksss@gmail.com',
-                        pass: Emailpass
+                            }).end();
+                        });
                     }
+
+                    // Send email to the User 
+                    function sendEmail(mailOptions) {
+
+                        return new Promise(function (resolve) {
+
+                            var transporter = nodemailer.createTransport({
+
+                                service: 'gmail',
+                                auth: {
+
+                                    user: 'nstocksss@gmail.com',
+                                    pass: Emailpass
+                                }
+                            });
+
+                            resolve(transporter.sendMail(mailOptions, function (error, info) {
+
+                                if (error) {
+
+                                    console.log(error);
+
+                                } else {
+
+                                    console.log('Email sent: ' + info.response);
+                                }
+                            }))
+                        });
+                    }
+
+                    // Find where to send the email
+                    function findEmail(i, text) {
+
+                        return new Promise(function (resolve) {
+
+                            //Find the User 
+                            User.find({ _id: result[i]['id'] }).then(user => {
+
+                                User.findOneAndUpdate({ _id: result[i]['id'] }, { '$push': { notification: text } }, (err, doc) => {
+
+                                    if (err) {
+
+                                        console.log("Something wrong when updating data!");
+                                    }
+
+                                    console.log(doc);
+                                })
+
+                                User.findOneAndUpdate({ _id: result[i]['id'] }, { $set: { "dot": 1 } }, (err, doc) => {
+
+                                    if (err) {
+
+                                        console.log("Something wrong when updating data!");
+                                    }
+
+                                    console.log(doc);
+                                })
+
+
+
+
+
+                                user = JSON.parse(JSON.stringify(user));
+                                userEmail = user[0]['email'];
+                                console.log(userEmail);
+
+                                var mailOptions = {
+
+                                    from: 'nickzte@gmail.com',
+                                    to: userEmail,
+                                    subject: 'Sending Email using Node.js',
+                                    text: text
+                                };
+
+                                // Send email
+                                resolve(sendEmail(mailOptions));
+                            })
+                        })
+                    }
+
+                    // Async for loop which wait the promises to continue iteration
+                    (async () => {
+
+                        // For every reminder in db 
+                        for (let i = 0; i < result.length; i++) {
+
+                            // Call Api 
+                            await HTTPget(i);
+                            console.log("To close einai :", close_array_Real[length]);
+                            // If reminder is true send email and delete max from db 
+                            if (close_array_Real[length] >= result[i]['max']) {
+                                console.log(close_array_Real[length]);
+                                console.log(result[i]['max']);
+                                console.log("H metoxh perase to max");
+                                const text = result[i]['stockName'] + " value got higher than " + result[i]['max'];
+                                await findEmail(i, text);
+
+                                //Delete max
+                                Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { max: "" } }, (err, doc) => {
+
+                                    if (err) {
+
+                                        console.log("Something wrong when updating data!");
+                                    }
+
+                                    console.log(doc);
+                                });
+                            }
+
+                            // If reminder is true send email and delete min from db 
+                            if ((close_array_Real[length] <= result[i]['min']) && (result[i]['min'] != "null")) {
+                                console.log(close_array_Real[length]);
+                                console.log(result[i]['min']);
+
+                                console.log("H metoxh epese katw apoto min");
+                                const text = result[i]['stockName'] + " value got lower than " + result[i]['min'];
+                                await findEmail(i, text);
+
+                                //Delete Min
+                                Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { min: "" } }, (err, doc) => {
+
+                                    if (err) {
+
+                                        console.log("Something wrong when updating data!");
+                                    }
+
+                                    console.log(doc);
+                                });
+                            }
+
+                            close_array_Real = [];  // Empty array 
+                        }
+                    })();
                 });
-
-                resolve(transporter.sendMail(mailOptions, function (error, info) {
-
-                    if (error) {
-
-                        console.log(error);
-
-                    } else {
-
-                        console.log('Email sent: ' + info.response);
-                    }
-                }))
-            });
-        }
-
-        // Find where to send the email
-        function findEmail(i, text) {
-
-            return new Promise(function (resolve) {
-
-                //Find the User 
-                User.find({ _id: result[i]['id'] }).then(user => {
-
-                    User.findOneAndUpdate({ _id: result[i]['id'] }, { '$push': { notification: text } }, (err, doc) => {
-
-                        if (err) {
-
-                            console.log("Something wrong when updating data!");
-                        }
-
-                        console.log(doc);
-                    })
-
-                    User.findOneAndUpdate({ _id: result[i]['id'] }, { $set: { "dot": 1 } }, (err, doc) => {
-
-                        if (err) {
-
-                            console.log("Something wrong when updating data!");
-                        }
-
-                        console.log(doc);
-                    })
-
-
-
-
-
-                    user = JSON.parse(JSON.stringify(user));
-                    userEmail = user[0]['email'];
-                    console.log(userEmail);
-
-                    var mailOptions = {
-
-                        from: 'nickzte@gmail.com',
-                        to: userEmail,
-                        subject: 'Sending Email using Node.js',
-                        text: text
-                    };
-
-                    // Send email
-                    resolve(sendEmail(mailOptions));
-                })
-            })
-        }
-
-        // Async for loop which wait the promises to continue iteration
-        (async () => {
-
-            // For every reminder in db 
-            for (let i = 0; i < result.length; i++) {
-
-                // Call Api 
-                await HTTPget(i);
-                console.log("To close einai :", close_array_Real[length]);
-                // If reminder is true send email and delete max from db 
-                if (close_array_Real[length] >= result[i]['max']) {
-                    console.log(close_array_Real[length]);
-                    console.log(result[i]['max']);
-                    console.log("H metoxh perase to max");
-                    const text = result[i]['stockName'] + " value got higher than " + result[i]['max'];
-                    await findEmail(i, text);
-
-                    //Delete max
-                    Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { max: "" } }, (err, doc) => {
-
-                        if (err) {
-
-                            console.log("Something wrong when updating data!");
-                        }
-
-                        console.log(doc);
-                    });
-                }
-
-                // If reminder is true send email and delete min from db 
-                if ((close_array_Real[length] <= result[i]['min']) && (result[i]['min'] != "null")) {
-                    console.log(close_array_Real[length]);
-                    console.log(result[i]['min']);
-
-                    console.log("H metoxh epese katw apoto min");
-                    const text = result[i]['stockName'] + " value got lower than " + result[i]['min'];
-                    await findEmail(i, text);
-
-                    //Delete Min
-                    Stock.findOneAndUpdate({ stockName: result[i]['stockName'], id: result[i]['id'] }, { '$unset': { min: "" } }, (err, doc) => {
-
-                        if (err) {
-
-                            console.log("Something wrong when updating data!");
-                        }
-
-                        console.log(doc);
-                    });
-                }
-
-                close_array_Real = [];  // Empty array 
             }
-        })();
-    });
-    //         }
-    //     }
-    // }
+        }
+    }
 
     console.log("I am doing my 5 minutes check");
 }, the_interval);
