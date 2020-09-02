@@ -115,6 +115,7 @@ socket.on('new-notification', async function (msg) {
 
   function check() {
     for (var i = 0; i <= 100; i++) {
+      console.log(msg);
       if (
         msg['updateDescription']['updatedFields']['notification'] !=
           undefined &&

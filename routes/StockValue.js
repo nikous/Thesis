@@ -130,7 +130,6 @@ setInterval(function () {
               res.on('data', function (chunk) {
                 number = 1;
                 var temp = JSON.parse(chunk.toString()); // Convert chunck to string and then to json
-
                 const json_length = Object.keys(temp[time]).length; // Length of json
                 length = json_length - 1;
 
