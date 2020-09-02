@@ -220,7 +220,7 @@ setInterval(function () {
         // Call Api
         await HTTPget(i);
         // If reminder is true send email and delete max from db
-        if (close_array_Real[length] >= result[i]['max']) {
+        if (parseFloat(lose_array_Real[length]) >= result[i]['max']) {
           const text =
             result[i]['stockName'] +
             ' value is higher than ' +
@@ -243,7 +243,7 @@ setInterval(function () {
 
         // If reminder is true send email and delete min from db
         if (
-          close_array_Real[length] <= result[i]['min'] &&
+          parseFloat(close_array_Real[length]) <= result[i]['min'] &&
           result[i]['min'] != 'null'
         ) {
           const text =
