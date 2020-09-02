@@ -109,7 +109,7 @@ setInterval(function () {
   Stock.find({}).then((result) => {
     result = JSON.parse(JSON.stringify(result));
     const name = 'stockName';
-    const time = 'Time Series (5min)';
+    const time = 'Time Series (15min)';
     var length;
 
     // Function to make HTTP request on server to call Api
@@ -130,10 +130,11 @@ setInterval(function () {
               res.on('data', function (chunk) {
                 number = 1;
                 var temp = JSON.parse(chunk.toString()); // Convert chunck to string and then to json
+
                 const json_length = Object.keys(temp[time]).length; // Length of json
                 length = json_length - 1;
 
-                for (var date in temp['Time Series (5min)']) {
+                for (var date in temp['Time Series (15min)']) {
                   // Fill array with data
 
                   close_array_Real.push(temp[time][date]['4. close']);
