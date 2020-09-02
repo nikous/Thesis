@@ -29,6 +29,16 @@ body {
     flex-direction: column;
 }
 
+.modalClose {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modaltext h6 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
 .dropdown-menu.show {
     /* 
     margin-left: -40%; */

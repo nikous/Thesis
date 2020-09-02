@@ -240,8 +240,26 @@
             <!-- <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button> -->
 
           </form>
-       <div id="myInputautocomplete-list"></div>
-       <div class="Inactive"></div>
+         <div id="myInputautocomplete-list"></div>
+         <div class="Inactive"></div>
+     </div>
+  
+     <!-- Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content ">
+         
+            <button type="button" class="close mr-3 modalClose" style="outline:none!important;" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+         
+          <div class="modal-body modaltext">
+            <h6>Since last changes on Alpha Vantage free API you can't see anymore real time data for the stocks you are looking for.</h6>
+
+          </div>
+          
+        </div>
+      </div>
     </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>
@@ -253,7 +271,16 @@
   <script> setTimer();</script>
 
   <script> 
+const person = {
+    name: "New User",
+    seen: "1",
+}
 
+window.localStorage.setItem('user', JSON.stringify(person));
+const user=JSON.parse(window.localStorage.getItem('user'));
+if(parseInt(user["seen"])!==1){
+  $("#myModal").modal('show')
+}
     var ro = new ResizeObserver(entries => {
       for (let entry of entries) {
         const cr = entry.contentRect;
