@@ -271,27 +271,29 @@
   <script> setTimer();</script>
 
   <script> 
-const person = {
-    name: "New User",
-    seen: "1",
-}
 
-window.localStorage.setItem('user', JSON.stringify(person));
-const user=JSON.parse(window.localStorage.getItem('user'));
-if(parseInt(user["seen"])!==1){
-  $("#myModal").modal('show')
-}
-    var ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        const cr = entry.contentRect;
-        console.log(cr.width);
-        if (cr.width <= 70) {
+  
 
-          $('#myInputautocomplete-list').addClass('Inactive');
+  const user=JSON.parse(window.localStorage.getItem('user'));
+  console.log(user);
+  if(user===null){
+    $("#myModal").modal('show');
+    const person = {
+      name: "New User",
+      seen: "1",
+    }
+    window.localStorage.setItem('user', JSON.stringify(person));
+  }
+      var ro = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const cr = entry.contentRect;
+          console.log(cr.width);
+          if (cr.width <= 70) {
+            $('#myInputautocomplete-list').addClass('Inactive');
+          }
         }
-      }
-    });
-    ro.observe(document.querySelector('#myInputautocomplete-list'));
+      });
+   ro.observe(document.querySelector('#myInputautocomplete-list'));
 
   </script> 
 
