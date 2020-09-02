@@ -1,0 +1,370 @@
+/* Set up color,hover width and height of navbar */
+.nav-link {
+
+  color: #fcfcfc;
+  cursor: pointer;
+  padding: 20px;
+  height: 50px;
+  line-height: 20px;
+}
+
+.navbar {
+  padding: 0rem 1rem !important;
+}
+
+.nav-item {
+  font-family: muli, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  /* padding-bottom:20px; */
+}
+
+.navbar-brand {
+  /* margin-bottom:8px; */
+}
+
+.dropdown-menu.show {
+
+  margin-left: -32%;
+}
+
+/* Add logo Properties to other pages exept homepage */
+.navbar-brand {
+
+  color: #fcfcfc;
+  cursor: pointer;
+  padding: 0px;
+  height: 50px;
+  line-height: 20px;
+}
+
+.nav-link {
+
+  margin-right: 2em !important;
+}
+
+.navbar {
+
+  background: #070000;
+}
+
+/* change color of links when hover */
+.nav-link:hover {
+
+  color: #5B0005 !important;
+}
+
+/* hover logo */
+.navbar-brand:hover {
+
+  color: #5B0005 !important;
+}
+
+.fixed-top {
+  position: absolute !important;
+}
+
+#aboutDesc {
+  font-family: muli, sans-serif;
+  font-weight: 400;
+
+  font-style: normal;
+}
+
+@media (max-width:991px) {
+  .navbar-nav {
+    background-color: black;
+  }
+}
+
+/* Text in How it works page */
+.description {
+
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  margin: auto;
+  padding: 2em;
+}
+
+.description p {
+
+  color: #000000;
+  font-size: 20px;
+  width: 70%;
+  line-height: 1.5;
+}
+
+/* Icons of used tools in How it works page */
+.dev-icons {
+
+  font-size: 3rem;
+}
+
+.dev-icons .list-inline-item i:hover {
+
+  color: #5B0005;
+}
+
+/* Add margin-left to container at Stocks page */
+.container-stock {
+
+  margin-left: 2%;
+}
+
+.navbar {
+  font-size: 18px;
+  font-family: muli, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  height: 60px;
+}
+
+/* Follow Stock btn at Stocks page */
+.buttonStock {
+
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #5B0005;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 6px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* Create animation for Follow Stock btn */
+.buttonStock span {
+
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonStock span:after {
+
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonStock:hover span {
+
+  padding-right: 25px;
+}
+
+.buttonStock:hover span:after {
+
+  opacity: 1;
+  right: 0;
+}
+
+/* Set height of navbars container  */
+
+.container-navbar,
+.row-nav {
+  height: 84px;
+}
+
+/* for counter in top of Stocks page */
+#emptyContainer {
+
+  min-height: 60px;
+}
+
+/* Change btn of login btn */
+#loginBtn {
+  color: #000000;
+  background-color: #5B0005;
+  border: none;
+}
+
+#loginBtn:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+/* Change btn of register */
+#registerBtn {
+
+
+  background-color: #5B0005;
+  border: none;
+}
+
+#registerBtn:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+#loginText {
+
+  color: #5B0005;
+}
+
+.list-group-item-action {
+
+  color: #000000;
+  /* background-color:#5B0005; */
+}
+
+.list-group-item-action:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+#profileBtn:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+#logoutBtn:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+#loginBtn:focus {
+
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
+#registerBtn:focus {
+
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
+.form-control:focus {
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
+#suButton:focus {
+  border-color: #5B0005;
+  box-shadow: 0 0 0 0.04rem rgba(91, 0, 5);
+}
+
+.dot {
+  position: relative;
+  top: -9px;
+  height: 10px;
+  width: 10px;
+  background-color: #5B0005;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dropdown-menu {
+
+  right: -130%;
+}
+
+
+.notification:hover {
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+.close {
+  margin-right: -21px;
+
+}
+
+#notification:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
+
+.dropdown-menu.show {
+
+  margin-top: 4%;
+
+}
+
+@media only screen and (min-width: 492px)and (max-width: 770px) {
+  .buttonStock {
+
+    text-align: center;
+    font-size: 15px;
+    padding: 3px;
+
+    cursor: pointer;
+    margin: 0px;
+
+  }
+
+  #cardBody {
+    padding: 0;
+    color: #0e0d0df6;
+    width: 16.2vw;
+    height: 32.5vh;
+    position: relative;
+    margin-left: 5%;
+  }
+}
+
+#search_bar {
+  padding: 0;
+  width: 50%;
+  top: 27px
+}
+
+#cardBody {
+
+  padding: 0;
+  color: #0e0d0df6;
+  width: 16.2vw;
+  height: 32.5vh;
+  position: relative;
+  top: 36px;
+}
+
+@media only screen and (min-width: 771px) and (max-width: 1085px) {
+
+  .buttonStock {
+
+    text-align: center;
+    font-size: 15px;
+    padding: 5px;
+
+    cursor: pointer;
+    margin: 0px;
+
+  }
+
+  #search_bar {
+
+    top: 67px;
+  }
+
+  #cardBody {
+
+    padding: 0;
+    color: #0e0d0df6;
+    width: 16.2vw;
+    height: 32.5vh;
+    position: relative;
+    top: 66px;
+    margin-left: 10px;
+  }
+
+}
+
+navbar-collapse {
+  background: black !important;
+}

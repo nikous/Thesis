@@ -1,0 +1,140 @@
+<head>
+
+    <!-------------------------Add css to ejs file--------------------------->
+    <link rel="stylesheet" type="text/css" href="/public/css/secondary.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+
+</head>
+
+<!-- Container for navbar  -->
+<div class="container-navbar">
+
+    <div class="row-nav">
+
+        <% include ./navbar %>
+
+    </div>
+
+</div>
+
+<!-- Empty container -->
+<div class="container-fluid" id="aboutDesc">
+
+    <div class="row">
+
+        <div class="col-12" id="emptyContainer"> </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- Text  -->
+        <div class=" col-md-7 ">
+
+            <p class="text">
+
+                Nstocks is a web application for the Stock market. It receives the data for the stocks from the Alpha
+                Vantage
+                and visualizes them with charts. Anyone who uses the web application has the capability to monitor
+                current high, low, close, previous close and open values. You can also register to the application and
+                therefore, as a user you can follow your favorite stocks in order for them to be organized in your
+                Profile. Another advantage of being a user at Nstocks is that you can set upper and lower bounds for a
+                specific stock and if its value decreases or increases, the server will send you an notification email.
+                The back-end is built with Nodejs, express and other packages from npm , while the front-end is built
+                with Bootstrap, EJS, CSS and Javascript. The server makes API calls and then sends the data to the
+                client, which visualizes them with charts for the timeline of: 1 Day, 2 Days, 1 Month, 5 Months, 1 Year,
+                5 Years and Max years. Both of the server and the client communicate with AJAX. The web application is
+                online with the usage of Heroku and Github.
+
+            </p>
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+
+
+        <!-- Container for tool icons -->
+        <div class="col-md-7">
+
+            <div class="subheading mb-7">Programming Languages &amp; Tools</div>
+
+            <ul class="list-inline dev-icons">
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-html5"></i>
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-css3-alt"></i>
+
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-js-square"></i>
+
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-node"></i>
+
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-adobe"></i>
+
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-github"></i>
+
+                </li>
+
+                <li class="list-inline-item">
+
+                    <i class="fab fa-npm"></i>
+
+                </li>
+
+            </ul>
+            <br>
+            <br>
+            <br>
+            <!-- Workflow Container -->
+            <div class="subheading mb-3">Workflow</div>
+
+            <ul class="fa-ul mb-0">
+
+                <li>
+                    <i class="fa-li fa fa-check"></i>
+
+                    Desktop-First, Responsive Design
+
+                </li>
+
+                <li>
+                    <i class="fa-li fa fa-check"></i>
+
+                    Cross Browser Testing &amp; Debugging
+
+                </li>
+                <br>
+                <br>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

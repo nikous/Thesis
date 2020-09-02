@@ -1,0 +1,67 @@
+<head>
+
+    <!-------------------------Add css to ejs file--------------------------->
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+
+</head>
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+
+        <div class="modal-header primary-color white-text">
+
+            <p class="title"> Login</p>
+
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Include error , success messages -->
+            <% include ./partials/messages %>
+
+            <!-- Send email password to server to login -->
+            <form action="/users/login " method="POST">
+
+                <div class="input-group Email mb-3" id="ema">
+
+
+
+                    <!-- Field for email-->
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+
+                </div>
+
+                <!-- Field for password-->
+                <div class="input-group Password mb-3" id="pass">
+
+
+
+                    <input type="password" class="form-control" id="password" name="password"
+                        aria-describedby="PasswordHelp" placeholder="Enter password"
+                        value="<%= typeof password != 'undefined' ? password : '' %>" />
+
+                </div>
+
+                <!-- Submit btn -->
+                <div class="text-center">
+
+                    <div class="Login">
+
+                        <button type="submit" class="btn btn-primary btn-lg" id="loginBtn">
+                            Login
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

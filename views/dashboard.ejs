@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-------------------------Add css to ejs file------------------------>
+
+    <link rel="stylesheet" type="text/css" href="/public/css/dashboard.css">
+    </link>
+
+    <link rel="stylesheet" href="https://use.typekit.net/awb6ikl.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script type="text/javascript" src="/public/js/api.js"></script>
+    <script type="text/javascript" src="/public/js/chart.js"></script>
+
+</head>
+
+<body>
+
+    <div class="wraper">
+        <!-- Container for navbar-->
+        <div class="container-navbar">
+
+            <div class="row-nav">
+
+                <% include ./navbar %>
+
+            </div>
+
+        </div>
+
+        <!-- Container for chart,serach ,follow btn and card body-->
+        <div class="container-stock">
+            <div class="row0"></div>
+
+            <div class="row1">
+
+                <div class="col-chart">
+
+                    <div id="charts">
+
+                        <section id="tabs">
+
+                            <!-- Container for tabs -->
+                            <div class="container">
+
+                                <nav id="nav-nav-container">
+
+                                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+
+                                        <a class="nav-item nav-link" id="nav-1Day-tab" data-toggle="tab"
+                                            href="#nav-1Day" role="tab" aria-controls="nav-home" aria-selected="true"
+                                            style="display:none;">1Day</a>
+
+                                        <a class="nav-item nav-link active" id="nav-3Days-tab" data-toggle="tab"
+                                            href="#nav-3Days" role="tab" aria-controls="nav-profile"
+                                            aria-selected="false">2Days</a>
+
+                                        <a class="nav-item nav-link" id="nav-1Month-tab" data-toggle="tab"
+                                            href="#nav-1Month" role="tab" aria-controls="nav-contact"
+                                            aria-selected="false">1Month</a>
+
+                                        <a class="nav-item nav-link" id="nav-4Months-tab" data-toggle="tab"
+                                            href="#nav-4Months" role="tab" aria-controls="nav-about"
+                                            aria-selected="false">5Months</a>
+
+                                        <a class="nav-item nav-link" id="nav-1Year-tab" data-toggle="tab"
+                                            href="#nav-1Year" role="tab" aria-controls="nav-about"
+                                            aria-selected="false">1Year</a>
+
+                                        <a class="nav-item nav-link" id="nav-5Years-tab" data-toggle="tab"
+                                            href="#nav-5Years" role="tab" aria-controls="nav-about"
+                                            aria-selected="false">5Years</a>
+
+                                        <a class="nav-item nav-link" id="nav-max-tab" data-toggle="tab" href="#nav-max"
+                                            role="tab" aria-controls="nav-about" aria-selected="false">Max</a>
+
+                                    </div>
+
+                                </nav id>
+
+                                <!-- -------------------Charts-------------------->
+                                <div class="tab-content" id="nav-tabContent">
+
+                                    <!-- Chart 1 Day -->
+                                    <div class="tab-pane fade " id="nav-1Day" role="tabpanel"
+                                        aria-labelledby="nav-profile-tab">
+
+                                        <canvas id="myChart1Day"> </canvas>
+
+                                    </div>
+
+                                    <!-- Chart 3 Days -->
+                                    <div class="tab-pane fade show active" id="nav-3Days" role="tabpanel"
+                                        aria-labelledby="nav-contact-tab">
+
+                                        <canvas id="myChart3Days"> </canvas>
+
+                                    </div>
+
+                                    <!-- Chart 1 Month -->
+                                    <div class="tab-pane fade" id="nav-1Month" role="tabpanel"
+                                        aria-labelledby="nav-about-tab">
+
+                                        <canvas id="myChart1Month"></canvas>
+
+                                    </div>
+
+                                    <!-- Chart 4 Months -->
+                                    <div class="tab-pane fade" id="nav-4Months" role="tabpanel"
+                                        aria-labelledby="nav-about-tab">
+
+                                        <canvas id="myChart4Months"></canvas>
+
+                                    </div>
+
+                                    <!-- Chart 1 year-->
+                                    <div class="tab-pane fade" id="nav-1Year" role="tabpanel"
+                                        aria-labelledby="nav-about-tab">
+
+                                        <canvas id="myChart1Year"></canvas>
+
+                                    </div>
+
+                                    <!-- Chart 5 years -->
+                                    <div class="tab-pane fade" id="nav-5Years" role="tabpanel"
+                                        aria-labelledby="nav-about-tab">
+
+                                        <canvas id="myChart5Years"></canvas>
+
+                                    </div>
+
+                                    <!-- Chart Max -->
+                                    <div class="tab-pane fade " id="nav-max" role="tabpanel"
+                                        aria-labelledby="nav-max-tab">
+
+                                        <canvas id="myChart"></canvas>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+                <div class="col-list">
+
+                    <div class=" list-container">
+
+                        <ul class="list-group-stocks" id="listStocks"> </ul>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row2">
+
+                <div class="col-labels">
+
+                    <div class="holder">
+                        <!--Stocks name   -->
+                        <p id="holder">International Business Machines Corporation</p>
+
+                        <!-- Stocks symbol -->
+                        <p id="holderSymbol">BAX </p><a id="diference"></a>
+
+                    </div>
+
+                    <div class="description">
+                        <!-- Open -->
+                        <div class="open">
+                            <p class="card-text">Open:<a id="open"></a></p>
+                        </div>
+                        <!-- High -->
+                        <div class="high">
+
+                            <p class="card-text">High:<a id="high"></a></p>
+                        </div>
+                        <div class=break></div>
+                        <!-- Low -->
+                        <div class="low">
+                            <p class="card-text">Low:<a id="low"></a></p>
+                        </div>
+                        <!-- Prev Close -->
+                        <div class="PrevClose">
+                            <p class="card-text">Prev Close:<a id="PrevClose"></a></p>
+                        </div>
+                        <!-- Price to Book ratio -->
+                        <!-- <p class="card-text">Price to Book:<a id="PriceToBook"></a></p> -->
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-searchValues">
+
+                    <form id="formInput" action="javascript:void(0)" class="form-inline md-form mr-auto mb-2"
+                        autocomplete="off">
+                        <div class="PutValue">
+                            <!-- Input text for min stock value -->
+                            <input id="min" type="text" name="minStock" class="form-control mr-sm-2" type="text"
+                                placeholder="Lower than" aria-label="Input">
+
+                            <!-- Input text for max stock value -->
+                            <input id="max" type="text" name="minStock" class="form-control mr-sm-2" type="text"
+                                placeholder="Higher than " aria-label="Input">
+                        </div>
+                        <div class="PutBtn">
+                            <!--Btn for submiting stock   -->
+                            <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="subBtn"> <i
+                                    data-feather="check" class='icon'></i>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <script type="text/javascript" src="/public/js/dash-search.js"></script>
+
+            <!--Script for the timer to start when refreshing page-->
+            <!-- <script> setTimer();</script> -->
+
+            <!-- Script for the button effect  -->
+            <script>
+                $("#subBtn").mouseup(function () {
+
+                    $('#subBtn').removeClass('show');
+
+
+                });
+
+                $("#subBtn").mousedown(function () {
+                    $('#subBtn').addClass('show');
+                });
+            </script>
+
+            <script>
+                feather.replace()
+            </script>
+
+            <!--Script for Defining the Stock -->
+            <script>
+                DefineStock();
+            </script>
+</body>
+
+</html>
