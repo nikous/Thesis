@@ -282,7 +282,13 @@ async function getDataReal(symbol) {
 
       // If its Monday and hour<16:35 go to friday
       if (numDay == 1 && numHour < 16) {
+        console.log('yes');
+
         curDay = curDay - 2;
+        console.log('1s', curDay);
+        if ((curDay = -1)) {
+          curDay = 30;
+        }
       }
 
       // If Sunday go to friday
@@ -298,7 +304,7 @@ async function getDataReal(symbol) {
       if (curDay < 10) {
         curDay = '0' + curDay;
       }
-      // curDay = 31;
+
       // Fill array with data for 1 Day
       for (var i = 0; i <= length; i++) {
         if (date_labels_Real[i].endsWith(curDay, 10)) {
@@ -346,7 +352,7 @@ async function getDataReal(symbol) {
         if (dateStock < 10) {
           dateStock = '0' + dateStock;
         }
-
+        console.log('Curday=', curDay, 'Datestock=', dateStock);
         aDays = curDay - dateStock;
 
         //Add 0 before number if tis <10 1 --> 01

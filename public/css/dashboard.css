@@ -713,3 +713,7 @@ body {
         text-align: center !important;
     }
 }
+
+#diference {
+    display: none !important;
+}
