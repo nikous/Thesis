@@ -1,13 +1,14 @@
-body{
+body {
   overflow: hidden;
 }
+
 /* Set up color,hover width and height of navbar */
-.nav-link{
+.nav-link {
 
   color: #fafafa;
   padding: 10px;
   height: 50px;
-  line-height: 20px; 
+  line-height: 20px;
 }
 
 .dropdown-menu.show {
@@ -23,9 +24,9 @@ body{
   line-height: 20px;
 }
 
-.nav-link:hover{
+.nav-link:hover {
 
-  color:  #5B0005 !important;
+  color: #5B0005 !important;
 }
 
 .navbar-brand:hover {
@@ -38,7 +39,7 @@ body{
   margin-right: 3em !important;
 }
 
-.navbardiv{
+.navbardiv {
 
   min-height: 76px;
 }
@@ -46,10 +47,10 @@ body{
 /* Position of the welcome text in homepage */
 .description {
 
-  align-self:center;
+  align-self: center;
   justify-self: center;
-  margin-top:50px;
- padding-left:50px;
+  margin-top: 50px;
+  padding-left: 50px;
 }
 
 .description h1 {
@@ -70,29 +71,26 @@ body{
 
   background: transparent;
   color: #000000;
-  background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal!important;
-    background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005), linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)), linear-gradient(141deg,#6e0909,#a5a5a5), linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5), linear-gradient(42deg,rgba(0,190,213,0),rgba(0, 0, 0, 0.85) 95%,rgb(39, 5, 3) 87%,#000000), linear-gradient(126deg,rgba(0,190,213,0),#000607), linear-gradient(#000000,#700808)!important;
+  background-blend-mode: normal, overlay, overlay, normal, normal, normal, normal !important;
+  background-image: linear-gradient(301deg, rgba(44, 34, 150, 0), #5B0005), linear-gradient(rgba(98, 14, 14, 0.95), rgba(88, 2, 2, 0.95)), linear-gradient(141deg, #6e0909, #a5a5a5), linear-gradient(238deg, rgba(173, 32, 142, 0), #b9a4b5), linear-gradient(42deg, rgba(0, 190, 213, 0), rgba(0, 0, 0, 0.85) 95%, rgb(39, 5, 3) 87%, #000000), linear-gradient(126deg, rgba(0, 190, 213, 0), #000607), linear-gradient(#000000, #700808) !important;
 }
 
 #DescBtn:hover {
 
-  color:  #ffffff;
-  background-blend-mode: normal,overlay,overlay,normal,normal,normal,normal!important;
-  background-image: linear-gradient(301deg,rgba(44,34,150,0),#5B0005), linear-gradient(rgba(98, 14, 14, 0.95),rgba(88, 2, 2, 0.95)), linear-gradient(141deg,#6e0909,#a5a5a5), linear-gradient(238deg,rgba(173,32,142,0),#b9a4b5), linear-gradient(42deg,rgba(0,190,213,0),rgba(0, 0, 0, 0.85) 95%,rgb(39, 5, 3) 87%,#000000), linear-gradient(126deg,rgba(0,190,213,0),#000607), linear-gradient(#000000,#700808)!important;
+  color: #ffffff;
+  background-blend-mode: normal, overlay, overlay, normal, normal, normal, normal !important;
+  background-image: linear-gradient(301deg, rgba(44, 34, 150, 0), #5B0005), linear-gradient(rgba(98, 14, 14, 0.95), rgba(88, 2, 2, 0.95)), linear-gradient(141deg, #6e0909, #a5a5a5), linear-gradient(238deg, rgba(173, 32, 142, 0), #b9a4b5), linear-gradient(42deg, rgba(0, 190, 213, 0), rgba(0, 0, 0, 0.85) 95%, rgb(39, 5, 3) 87%, #000000), linear-gradient(126deg, rgba(0, 190, 213, 0), #000607), linear-gradient(#000000, #700808) !important;
 }
 
 /*social Icons at the bottom page of welcome page */
-.social-icons a:hover {
-
- 
-}
+.social-icons a:hover {}
 
 .social-icons a {
 
   display: inline-block;
   height: 3.5rem;
   width: 3.5rem;
- 
+
   color: #fff !important;
   border-radius: 100%;
   text-align: center;
@@ -101,15 +99,15 @@ body{
   margin-right: 1rem;
 }
 
-#socialRow{
+#socialRow {
 
   min-height: 56px;
 }
 
 /* Add background svg to homepage */
-body{
+body {
 
-  background:rgb(195, 198, 201) url(../photos/Group\ 1.svg) no-repeat;
+  background: rgb(195, 198, 201) url(../photos/Group\ 1.svg) no-repeat;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -118,112 +116,116 @@ body{
   background-position: center;
   width: 100vw;
   height: 100vh;
-  display:grid;
-  grid-template-columns:auto;
-  margin:0;
-  padding:0;
+  display: grid;
+  grid-template-columns: auto;
+  margin: 0;
+  padding: 0;
 }
 
-#svg{
+#svg {
 
-  padding-right:0px;
+  padding-right: 0px;
 }
 
 /* Set svg to homepage at center  */
-svg{
+svg {
 
   width: 490px;
-  align-self:center;
+  align-self: center;
   justify-self: center;
-  margin-left:250px;
-  margin-top:100px;
+  margin-left: 250px;
+  margin-top: 100px;
 }
+
 @media (max-width:991px) {
-  .navbar-nav  {
-    background-color:black;
+  .navbar-nav {
+    background-color: black;
   }
 }
 
-#rowHome{
-  font-family: muli,sans-serif;
+#rowHome {
+  font-family: muli, sans-serif;
   font-weight: 600;
-  
+
   font-style: normal;
-  margin:0;
+  margin: 0;
 }
 
 /* Animation to make arrow move  */
-svg #Browser{
+svg #Browser {
 
   animation-duration: 1.8s;
-  animation-name:animateBrowser;
+  animation-name: animateBrowser;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  mix-blend-mode:normal;
+  mix-blend-mode: normal;
 }
 
 /* Where to move arrow  */
 @keyframes animateBrowser {
 
-  from{
+  from {
 
-    transform:translateX(0px) translateY(0px);
-    opacity:0;
+    transform: translateX(0px) translateY(0px);
+    opacity: 0;
   }
 
-  to{
+  to {
 
-    transform:translateX(190px) translateY(-195px);
-    opacity:1;  }
+    transform: translateX(190px) translateY(-195px);
+    opacity: 1;
+  }
 }
 
 #DescBtn:focus {
   border-color: none;
   box-shadow: none;
-} 
-#profileBtn:hover{
-
-  color: #ffffff;
-  background-color:#5B0005;
 }
 
-#logoutBtn:hover{
+#profileBtn:hover {
 
   color: #ffffff;
-  background-color:#5B0005;
+  background-color: #5B0005;
+}
+
+#logoutBtn:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
 }
 
 .dot {
   position: relative;
-  top:-9px;
+  top: -9px;
   height: 10px;
   width: 10px;
-  background-color:#5B0005;
+  background-color: #5B0005;
   border-radius: 50%;
   display: inline-block;
 }
 
 
- .notification:hover{
+.notification:hover {
   color: #ffffff;
-  background-color:#5B0005;
+  background-color: #5B0005;
 }
 
-.close{
-margin-right:-21px;
+.close {
+  margin-right: -21px;
 
 }
-  #notification:hover{
 
-    color: #ffffff;
-    background-color:#5B0005;
-  }
+#notification:hover {
+
+  color: #ffffff;
+  background-color: #5B0005;
+}
 
 
 @media only screen and (max-width: 998px) {
 
-  svg{
-    width:300px;
+  svg {
+    width: 300px;
     margin-left: 150px;
   }
 
@@ -239,28 +241,28 @@ margin-right:-21px;
     line-height: 2.5rem;
     margin-right: 1rem;
 
-  
+
   }
 }
 
 
 @media only screen and (min-width: 576px) and (max-width: 778px) {
 
-  svg{
-    width:250px;
+  svg {
+    width: 250px;
     margin-left: 100px;
   }
 
 }
 
-#facebook:hover{
+#facebook:hover {
   position: relative;
-  top:-10px;
-  
+  top: -10px;
+
 }
 
-#github:hover{
+#github:hover {
   position: relative;
-  top:-10px;
-  
+  top: -10px;
+
 }

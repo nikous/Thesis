@@ -29,6 +29,16 @@ body {
     flex-direction: column;
 }
 
+.modalClose {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modaltext h6 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
 .dropdown-menu.show {
     /* 
     margin-left: -40%; */
@@ -684,4 +694,8 @@ inset 0px 0px 4px rgba(255, 255, 255,.2);
     background-color: #5B0005;
     border-radius: 50%;
     display: inline-block;
+}
+
+#diference {
+    display: none !important;
 }

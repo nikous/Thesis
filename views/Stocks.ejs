@@ -240,8 +240,26 @@
             <!-- <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit" id="suButton">Search</button> -->
 
           </form>
-       <div id="myInputautocomplete-list"></div>
-       <div class="Inactive"></div>
+         <div id="myInputautocomplete-list"></div>
+         <div class="Inactive"></div>
+     </div>
+  
+     <!-- Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content ">
+         
+            <button type="button" class="close mr-3 modalClose" style="outline:none!important;" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+         
+          <div class="modal-body modaltext">
+
+            <h6>Due to the recent changes on Alpha Vantage free API you can no longer see the real time data of the stocks you are looking for.</h6>
+          </div>
+          
+        </div>
+      </div>
     </div>
 
   <script type="text/javascript" src="/public/js/search.js"></script>
@@ -254,17 +272,28 @@
 
   <script> 
 
-    var ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        const cr = entry.contentRect;
-        console.log(cr.width);
-        if (cr.width <= 70) {
+  
 
-          $('#myInputautocomplete-list').addClass('Inactive');
+  const user=JSON.parse(window.localStorage.getItem('user'));
+  console.log(user);
+  if(user===null){
+    $("#myModal").modal('show');
+    const person = {
+      name: "New User",
+      seen: "1",
+    }
+    window.localStorage.setItem('user', JSON.stringify(person));
+  }
+      var ro = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          const cr = entry.contentRect;
+          console.log(cr.width);
+          if (cr.width <= 70) {
+            $('#myInputautocomplete-list').addClass('Inactive');
+          }
         }
-      }
-    });
-    ro.observe(document.querySelector('#myInputautocomplete-list'));
+      });
+   ro.observe(document.querySelector('#myInputautocomplete-list'));
 
   </script> 
 
