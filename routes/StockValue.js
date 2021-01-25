@@ -109,7 +109,7 @@ setInterval(function () {
   Stock.find({}).then((result) => {
     result = JSON.parse(JSON.stringify(result));
     const name = 'stockName';
-    const time = 'Time Series (5min)';
+    const time = 'Time Series (15min)';
     var length;
 
     // Function to make HTTP request on server to call Api
@@ -133,7 +133,7 @@ setInterval(function () {
                 const json_length = Object.keys(temp[time]).length; // Length of json
                 length = json_length - 1;
 
-                for (var date in temp['Time Series (5min)']) {
+                for (var date in temp['Time Series (15min)']) {
                   // Fill array with data
 
                   close_array_Real.push(temp[time][date]['4. close']);
@@ -220,7 +220,7 @@ setInterval(function () {
         // Call Api
         await HTTPget(i);
         // If reminder is true send email and delete max from db
-        if (close_array_Real[length] >= result[i]['max']) {
+        if (parseFloat(close_array_Real[length]) >= result[i]['max']) {
           const text =
             result[i]['stockName'] +
             ' value is higher than ' +
@@ -243,7 +243,7 @@ setInterval(function () {
 
         // If reminder is true send email and delete min from db
         if (
-          close_array_Real[length] <= result[i]['min'] &&
+          parseFloat(close_array_Real[length]) <= result[i]['min'] &&
           result[i]['min'] != 'null'
         ) {
           const text =
